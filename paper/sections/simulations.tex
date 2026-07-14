@@ -1,0 +1,17 @@
+\section{Monte Carlo Design}
+
+The simulations will vary the auction sample size, number of bidders,
+valuation distribution, degree of tail thickness, auction-level heterogeneity,
+and structural misspecification. Candidate valuation distributions include
+lognormal, gamma, mixture, and nonregular designs.
+
+The comparison will include direct order-statistic inversion, conventional
+plug-in estimators, WGAN-GP plug-in estimation, cross-fitted WGAN-GP, and the
+orthogonal WGAN-DML estimator. Evaluation metrics include bias, root mean
+squared error, confidence-interval coverage, distributional fit, and revenue
+regret:
+\begin{equation}
+R(r_0;F_0)-R(\widehat r;F_0).
+\end{equation}
+Monte Carlo repetitions and random seeds will be selected before inspecting
+the final comparison results.

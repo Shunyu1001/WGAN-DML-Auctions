@@ -1,0 +1,25 @@
+\section{Auction Model and Target Parameter}
+
+Consider auctions indexed by $j=1,\ldots,n$. Auction $j$ has $N_j$ bidders and
+observable characteristics $X_j$. Conditional on $X_j$, bidder valuations
+satisfy
+\begin{equation}
+V_{ij}\mid X_j \overset{\mathrm{iid}}{\sim} F_0(\cdot\mid X_j),
+\qquad i=1,\ldots,N_j.
+\end{equation}
+The baseline observable is the maximum valuation,
+\begin{equation}
+B_j=\max_{1\leq i\leq N_j}V_{ij}.
+\end{equation}
+The empirical interpretation of $B_j$ depends on the auction format and the
+available data and will be stated explicitly for each application.
+
+For a homogeneous regular valuation distribution, the Myerson reserve price
+$r_0$ satisfies
+\begin{equation}
+1-F_0(r_0)-r_0 f_0(r_0)=0.
+\end{equation}
+The main theoretical target will be a regularized scalar reserve parameter
+$\theta_{0,h}$ defined through a smoothed expected-revenue criterion. The exact
+reserve price is recovered as a limiting target when the regularization
+parameter $h$ approaches zero under suitable conditions.

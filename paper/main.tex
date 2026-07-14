@@ -1,0 +1,58 @@
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+
+\linespread{1.3}
+\graphicspath{{figures/}{../output/figures/}}
+
+\newtheorem{assumption}{Assumption}
+\newtheorem{proposition}{Proposition}
+\newtheorem{theorem}{Theorem}
+
+\title{Semiparametric Estimation of Myerson Reserve Prices\\
+with WGAN-GP and Double Machine Learning}
+\author{Shunyu Hao}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This paper studies estimation and inference for optimal auction reserve prices
+when the econometrician observes incomplete bidding data. Under a symmetric
+independent-private-values benchmark, the distribution of an observed order
+statistic identifies the latent valuation distribution. I use a structural
+Wasserstein generative adversarial network with gradient penalty (WGAN-GP) as a
+flexible estimator of this infinite-dimensional nuisance object. I then develop
+a cross-fitted, Neyman-orthogonal estimator for a regularized Myerson reserve
+price. The framework separates distribution learning from inference on the
+low-dimensional economic parameter. Monte Carlo experiments compare direct
+order-statistic inversion, plug-in WGAN-GP, cross-fitted WGAN-GP, and the
+orthogonal WGAN-DML estimator in terms of bias, root mean squared error,
+confidence-interval coverage, and revenue regret.
+\end{abstract}
+
+\input{sections/introduction}
+\input{sections/literature}
+\input{sections/model}
+\input{sections/identification}
+\input{sections/estimation}
+\input{sections/inference}
+\input{sections/simulations}
+\input{sections/empirical_application}
+\input{sections/conclusion}
+
+\appendix
+\input{sections/appendix}
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

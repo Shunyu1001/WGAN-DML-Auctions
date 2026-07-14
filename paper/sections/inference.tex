@@ -1,0 +1,30 @@
+\section{Cross-Fitted Orthogonal Estimation}
+
+Partition the auction sample into folds $I_1,\ldots,I_K$. For each fold $k$,
+train the WGAN-GP and estimate all nuisance functions using observations outside
+$I_k$. Denote the resulting nuisance estimate by $\widehat\eta^{(-k)}$.
+
+Let $m_h(\theta,\eta)$ denote the regularized reserve-price first-order
+condition. The proposed score takes the form
+\begin{equation}
+\psi_h(O;\theta,\eta,\alpha)
+=m_h(\theta,\eta)+\alpha_h(O;\theta,\eta),
+\end{equation}
+where $\alpha_h$ is an influence-function or Riesz correction chosen to satisfy
+Neyman orthogonality:
+\begin{equation}
+\left.\partial_{\eta}
+\mathbb E\left[\psi_h(O;\theta_{0,h},\eta,\alpha_0)\right]
+\right|_{\eta=\eta_0}=0.
+\end{equation}
+
+The estimator solves
+\begin{equation}
+\frac{1}{n}\sum_{k=1}^K\sum_{i\in I_k}
+\psi_h\!\left(O_i;\widehat\theta_h,
+\widehat\eta^{(-k)},\widehat\alpha^{(-k)}\right)=0.
+\end{equation}
+The main theoretical task is to derive the correction from the
+order-statistic mapping and establish an asymptotically linear representation
+for fixed $h$. The analysis will separately track sampling error, nuisance
+estimation error, simulation error, and regularization bias.

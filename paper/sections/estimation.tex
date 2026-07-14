@@ -1,0 +1,22 @@
+\section{WGAN-GP Nuisance Estimation}
+
+The generator maps independent latent draws and auction characteristics into
+synthetic bidder values:
+\begin{equation}
+\widetilde V_{ij}=G_{\gamma}(Z_{ij},X_j),
+\qquad Z_{ij}\overset{\mathrm{iid}}{\sim}\mathcal N(0,I).
+\end{equation}
+Synthetic observables are constructed using the same order-statistic map as the
+data,
+\begin{equation}
+\widetilde B_j=\max_{1\leq i\leq N_j}\widetilde V_{ij}.
+\end{equation}
+A critic compares the joint distributions of $(B_j,N_j,X_j)$ and
+$(\widetilde B_j,N_j,X_j)$. Gradient-penalty regularization enforces an
+approximate Lipschitz restriction on the critic. The generator and critic loss
+functions are treated as modular implementation choices; the semiparametric
+inference layer requires only appropriate convergence of the resulting
+nuisance estimates in the norm relevant to the orthogonal score.
+
+The trained generator induces estimates of the latent distribution, revenue
+curve, and other nuisance functions required by the reserve-price score.

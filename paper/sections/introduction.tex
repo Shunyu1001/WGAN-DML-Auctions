@@ -1,0 +1,27 @@
+\section{Introduction}
+
+Optimal-auction theory characterizes the seller's revenue-maximizing reserve
+price as a functional of the latent distribution of bidder valuations
+\citep{myerson1981}. In empirical settings, however, researchers and sellers
+often observe only a transaction price, a winning bid, or a small number of
+order statistics rather than the complete vector of private values. This paper
+asks whether a flexible generative model can recover the economically relevant
+features of the latent distribution while still permitting valid inference on
+the reserve-price parameter.
+
+The proposed framework treats the valuation distribution as an
+infinite-dimensional nuisance parameter and the reserve price as the
+low-dimensional parameter of interest. A structural WGAN-GP reproduces the
+auction observation process: it generates independent bidder values, applies
+the relevant order-statistic map, and matches the resulting observable
+distribution to the data. Cross-fitting separates nuisance estimation from
+score evaluation, while a Neyman-orthogonal correction reduces the first-order
+sensitivity of the reserve-price estimator to errors in the learned
+distribution.
+
+The paper makes three intended contributions. First, it connects adversarial
+structural estimation to the order-statistics approach in empirical auctions.
+Second, it develops a DML-style inference procedure tailored to a reserve-price
+functional rather than importing an average-treatment-effect score. Third, it
+evaluates when good global distributional fit does or does not translate into
+accurate reserve prices and low revenue regret.
