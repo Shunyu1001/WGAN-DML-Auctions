@@ -20,6 +20,19 @@ reserve-price parameter.
 The main LaTeX document is `paper/main.tex`. In Overleaf, select this file as
 the project's Main document if it is not detected automatically.
 
+## Reproduce the First Monte Carlo Benchmark
+
+Install the Python dependencies and run:
+
+```bash
+python3 -m pip install -r requirements.txt
+python3 code/baseline_direct_inversion.py --reps 500
+```
+
+The script simulates maximum bids, applies the order-statistic inversion
+\(\widehat F=\widehat H^{1/N}\), estimates the reserve, and writes the table and
+figure used by the paper to `paper/tables/` and `paper/figures/`.
+
 ## Current Estimation Plan
 
 1. Establish identification from observed order statistics under a symmetric

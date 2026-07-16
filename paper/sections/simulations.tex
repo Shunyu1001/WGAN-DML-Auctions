@@ -1,17 +1,54 @@
 \section{Monte Carlo Design}
 
-The simulations will vary the auction sample size, number of bidders,
+\subsection{Direct-inversion benchmark}
+
+The first experiment fixes the baseline model before introducing WGAN-GP or
+DML. Values are lognormal with $\log V_{ij}\sim\mathcal N(0,0.5^2)$, every
+auction has $N=5$ bidders, and the econometrician observes only the maximum.
+For each sample size $n\in\{200,500,2000,10000\}$, I generate 500 Monte Carlo
+samples. The random seed is fixed at 20260716. In every replication,
+$\widehat F_{\mathrm{DI}}=\widehat H_n^{1/N}$ and the reserve maximizes
+$r\{1-\widehat F_{\mathrm{DI}}(r)\}$ over the observed maxima.
+
+\begin{table}[htbp]
+\centering
+\caption{Direct-inversion reserve estimates}
+\label{tab:baseline-direct-inversion}
+\input{tables/baseline_monte_carlo.tex}
+\begin{minipage}{0.94\textwidth}
+\footnotesize
+\emph{Notes:} The true reserve solves
+$1-F_0(r)-rf_0(r)=0$. Revenue regret is
+$\mathcal R_N(r_0;F_0)-\mathcal R_N(\widehat r;F_0)$.
+\end{minipage}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{baseline_direct_inversion.png}
+\caption{Recovery of the latent CDF and sampling distribution of the
+direct-inversion reserve estimator}
+\label{fig:baseline-direct-inversion}
+\end{figure}
+
+This experiment supplies a numerical identification check and a calibration
+target for every later learner. The left panel of
+Figure~\ref{fig:baseline-direct-inversion} shows where the inversion has little
+information; the right panel and Table~\ref{tab:baseline-direct-inversion}
+measure whether this translates into economically material reserve error.
+
+\subsection{Planned estimator comparison}
+
+The next experiments will vary the auction sample size, number of bidders,
 valuation distribution, degree of tail thickness, auction-level heterogeneity,
 and structural misspecification. Candidate valuation distributions include
-lognormal, gamma, mixture, and nonregular designs.
-
-The comparison will include direct order-statistic inversion, conventional
-plug-in estimators, WGAN-GP plug-in estimation, cross-fitted WGAN-GP, and the
-orthogonal WGAN-DML estimator. Evaluation metrics include bias, root mean
-squared error, confidence-interval coverage, distributional fit, and revenue
-regret:
+lognormal, gamma, mixture, and nonregular designs. The comparison will include
+direct order-statistic inversion, conventional plug-in estimators, WGAN-GP
+plug-in estimation, cross-fitted WGAN-GP, and the orthogonal WGAN-DML
+estimator. Evaluation metrics include bias, root mean squared error,
+confidence-interval coverage, distributional fit, and revenue regret:
 \begin{equation}
 R(r_0;F_0)-R(\widehat r;F_0).
 \end{equation}
-Monte Carlo repetitions and random seeds will be selected before inspecting
-the final comparison results.
+The same Monte Carlo seed policy and the direct benchmark will be retained
+when these estimators are added.
