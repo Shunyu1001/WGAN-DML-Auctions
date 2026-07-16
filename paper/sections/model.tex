@@ -1,25 +1,37 @@
 \section{Auction Model and Target Parameter}
 
-Consider auctions indexed by $j=1,\ldots,n$. Auction $j$ has $N_j$ bidders and
-observable characteristics $X_j$. Conditional on $X_j$, bidder valuations
-satisfy
+Consider auctions indexed by $j=1,\ldots,n$. In the baseline model each auction
+has a known and fixed number $N\geq2$ of risk-neutral bidders. Bidder
+valuations satisfy
 \begin{equation}
-V_{ij}\mid X_j \overset{\mathrm{iid}}{\sim} F_0(\cdot\mid X_j),
-\qquad i=1,\ldots,N_j.
+V_{ij}\overset{\mathrm{iid}}{\sim}F_0,
+\qquad i=1,\ldots,N,
 \end{equation}
-The baseline observable is the maximum valuation,
+independently across auctions. The distribution $F_0$ is continuously
+differentiable on the positive real line with density $f_0$. The observed data
+are $O_j=(B_j,N)$, where
 \begin{equation}
-B_j=\max_{1\leq i\leq N_j}V_{ij}.
+B_j=\max_{1\leq i\leq N}V_{ij}.
 \end{equation}
-The empirical interpretation of $B_j$ depends on the auction format and the
-available data and will be stated explicitly for each application.
+Under truthful bidding in the second-price benchmark, $B_j$ is the highest
+submitted bid. It is not the transaction price, which is the second-highest bid
+when the reserve does not bind. This distinction is an empirical requirement,
+not a relabeling of the observed price.
 
-For a homogeneous regular valuation distribution, the Myerson reserve price
-$r_0$ satisfies
+For a regular valuation distribution, the Myerson reserve $r_0$ is the unique
+solution to
 \begin{equation}
 1-F_0(r_0)-r_0 f_0(r_0)=0.
 \end{equation}
-The main theoretical target will be a regularized scalar reserve parameter
-$\theta_{0,h}$ defined through a smoothed expected-revenue criterion. The exact
-reserve price is recovered as a limiting target when the regularization
-parameter $h$ approaches zero under suitable conditions.
+Equivalently, $r_0$ maximizes the single-bidder posted-price revenue
+$r\{1-F_0(r)\}$. For $N$ bidders, expected revenue in a second-price auction
+with common reserve $r$ is
+\begin{align}
+\mathcal R_N(r;F_0)
+={}&r\{1-F_0(r)^N\}\\
+&+\int_r^\infty
+\left[1-F_0(t)^N-N\{1-F_0(t)\}F_0(t)^{N-1}\right]\,dt.
+\end{align}
+The baseline target is the scalar $r_0$. Later sections introduce smoothing
+only where it is needed to construct an orthogonal estimating equation and
+valid inference.

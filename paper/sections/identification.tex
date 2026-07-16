@@ -1,17 +1,38 @@
 \section{Identification from Order Statistics}
 
-Let $H_0(\cdot\mid N,X)$ denote the conditional distribution of the observed
-maximum. Under the baseline assumptions,
+Let $H_0(\cdot\mid N)$ denote the distribution of the observed maximum. Under
+the baseline assumptions,
 \begin{equation}
-H_0(b\mid N,X)=F_0(b\mid X)^N.
+H_0(b\mid N)=F_0(b)^N.
 \end{equation}
 For known $N$, the latent distribution is therefore identified by
 \begin{equation}
-F_0(v\mid X)=H_0(v\mid N,X)^{1/N}.
+F_0(v)=H_0(v\mid N)^{1/N}.
 \end{equation}
 
-This direct inversion supplies both an identification argument and a
-nonparametric benchmark. The section will also state which conclusions fail
-under unknown competition, correlated bidder values, auction-level unobserved
-heterogeneity, endogenous entry, or confusion between the highest bid and the
-transaction price.
+Let $\widehat H_n$ be the empirical CDF of the observed maxima. The direct
+inversion estimator is
+\begin{equation}
+\widehat F_{\mathrm{DI}}(v)=\widehat H_n(v)^{1/N}.
+\end{equation}
+It yields a density-free reserve estimator
+\begin{equation}
+\widehat r_{\mathrm{DI}}
+\in\arg\max_r r\{1-\widehat F_{\mathrm{DI}}(r)\}.
+\end{equation}
+In computation, the objective is evaluated at the observed maxima. This direct
+estimator is the first benchmark because it separates identification from the
+approximation and optimization error introduced by WGAN-GP.
+
+The transformation also makes the information problem transparent. When
+$F_0(r_0)$ is below one, the probability of observing a maximum below the
+reserve is $F_0(r_0)^N$, which can be small even for moderate $N$. Thus, tail
+and quantile errors near the economically relevant reserve can be substantial
+in finite samples despite point identification. The later semiparametric
+analysis asks whether the scalar reserve can nevertheless be estimated and
+inferred on without requiring uniformly accurate recovery of the entire
+distribution.
+
+These conclusions do not automatically extend to unknown competition,
+correlated bidder values, auction-level unobserved heterogeneity, endogenous
+entry, or data containing the transaction price rather than the highest bid.
