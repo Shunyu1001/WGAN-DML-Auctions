@@ -33,6 +33,18 @@ The script simulates maximum bids, applies the order-statistic inversion
 \(\widehat F=\widehat H^{1/N}\), estimates the reserve, and writes the table and
 figure used by the paper to `paper/tables/` and `paper/figures/`.
 
+The structural WGAN-GP pilot uses the same data-generating process and can be
+reproduced with:
+
+```bash
+python3 code/wgan_gp_baseline.py --reps 5 --steps 1200 --device cpu
+```
+
+The generator is bidder-level and is applied to independent noise draws before
+the auction maximum is formed. This preserves the independent-private-values
+restriction instead of allowing one network draw to create a correlated vector
+of bidder values.
+
 ## Current Estimation Plan
 
 1. Establish identification from observed order statistics under a symmetric

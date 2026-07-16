@@ -37,7 +37,53 @@ Figure~\ref{fig:baseline-direct-inversion} shows where the inversion has little
 information; the right panel and Table~\ref{tab:baseline-direct-inversion}
 measure whether this translates into economically material reserve error.
 
-\subsection{Planned estimator comparison}
+\subsection{Structural WGAN-GP pilot}
+
+I next replace direct inversion with the structural generator described in
+Section~5 while retaining the same lognormal DGP and $N=5$. The pilot uses five
+training seeds at each $n\in\{500,2000,10000\}$. Each run has 1,200 generator
+updates, five critic updates per generator update, a batch size of 512, and a
+gradient-penalty weight of 0.1. The generator checkpoint minimizes the
+observable maximum-bid Wasserstein distance. These five repetitions diagnose
+the pipeline and its failure modes; the final Monte Carlo will use substantially
+more repetitions.
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Structural WGAN-GP pilot estimates}
+\label{tab:wgan-gp-pilot}
+\input{tables/wgan_gp_pilot.tex}
+\begin{minipage}{0.96\textwidth}
+\footnotesize
+\emph{Notes:} Five training seeds per sample size. Max-bid $W_1$ compares the
+observed and generated auction maxima and is used only for WGAN-GP checkpoint
+selection. The true reserve is $0.7719$ and is not supplied to either
+estimator.
+\end{minipage}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{wgan_gp_pilot.png}
+\caption{Latent-distribution recovery and reserve estimates in the WGAN-GP
+pilot}
+\label{fig:wgan-gp-pilot}
+\end{figure}
+
+Table~\ref{tab:wgan-gp-pilot} shows that the WGAN-GP closely matches the
+observable maximum distribution, with mean $W_1$ between 0.034 and 0.039, but
+retains a reserve-price bias of roughly $-0.04$ in this pilot. The left panel
+of Figure~\ref{fig:wgan-gp-pilot} explains the discrepancy: the learned latent
+CDF is close over much of its support but misses part of the lower tail that is
+informative about the reserve. At $n=500$, WGAN-GP reduces RMSE relative to
+direct inversion from 0.0757 to 0.0687; at the larger pilot sample sizes it
+does not improve RMSE. This is evidence that observable distributional fit is
+not sufficient for accurate scalar estimation. It motivates the next
+cross-fitting and orthogonal-score experiments, without presuming that those
+steps will eliminate the bias.
+
+\subsection{Planned DML comparison}
 
 The next experiments will vary the auction sample size, number of bidders,
 valuation distribution, degree of tail thickness, auction-level heterogeneity,
