@@ -83,14 +83,57 @@ not sufficient for accurate scalar estimation. It motivates the next
 cross-fitting and orthogonal-score experiments, without presuming that those
 steps will eliminate the bias.
 
-\subsection{Planned DML comparison}
+\subsection{Fold-averaged WGAN precursor}
+
+I next partition each Monte Carlo sample into three folds. For each fold, the
+structural WGAN-GP is trained on the other two folds using the same architecture
+and 1,200-step training convention. The plug-in reserves from the three
+training samples are averaged. Held-out auctions are used only to calculate an
+out-of-fold maximum-bid Wasserstein diagnostic. Thus, this experiment isolates
+sample splitting and generator averaging from the orthogonal-score correction.
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Three-fold WGAN plug-in precursor}
+\label{tab:crossfit-wgan-pilot}
+\resizebox{\textwidth}{!}{\input{tables/crossfit_wgan_pilot.tex}}
+\begin{minipage}{0.96\textwidth}
+\footnotesize
+\emph{Notes:} Five common data seeds per sample size. ``Fold average'' is the
+mean of three plug-in reserves, each obtained from a WGAN trained outside one
+fold. Held-out $W_1$ compares generated maxima with the excluded auctions. Fold
+SD is the within-replication standard deviation of the three reserve estimates.
+This estimator is not yet Neyman orthogonal.
+\end{minipage}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{crossfit_wgan_pilot.png}
+\caption{Reserve stability and out-of-fold observable fit under three-fold
+WGAN training}
+\label{fig:crossfit-wgan-pilot}
+\end{figure}
+
+Table~\ref{tab:crossfit-wgan-pilot} shows that fold averaging reduces WGAN RMSE
+from 0.0687 to 0.0368 at $n=500$, from 0.0579 to 0.0270 at $n=2000$, and from
+0.0612 to 0.0274 at $n=10000$. The gain is mainly lower dispersion across data
+and training seeds. Bias remains negative, between $-0.033$ and $-0.019$.
+Figure~\ref{fig:crossfit-wgan-pilot} also shows that held-out maximum-bid
+$W_1$ falls with sample size, while the reserve does not converge monotonically
+in this small pilot. These results support using cross-fitting as the nuisance
+training architecture, but they do not attribute the improvement to DML or
+claim that sample splitting removes first-order nuisance bias.
+
+\subsection{Next orthogonal-score comparison}
 
 The next experiments will vary the auction sample size, number of bidders,
 valuation distribution, degree of tail thickness, auction-level heterogeneity,
 and structural misspecification. Candidate valuation distributions include
 lognormal, gamma, mixture, and nonregular designs. The comparison will include
 direct order-statistic inversion, conventional plug-in estimators, WGAN-GP
-plug-in estimation, cross-fitted WGAN-GP, and the orthogonal WGAN-DML
+plug-in estimation, fold-averaged WGAN-GP, and the orthogonal WGAN-DML
 estimator. Evaluation metrics include bias, root mean squared error,
 confidence-interval coverage, distributional fit, and revenue regret:
 \begin{equation}

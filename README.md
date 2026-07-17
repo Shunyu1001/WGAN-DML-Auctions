@@ -45,6 +45,18 @@ the auction maximum is formed. This preserves the independent-private-values
 restriction instead of allowing one network draw to create a correlated vector
 of bidder values.
 
+The three-fold WGAN plug-in precursor can be reproduced after the full-sample
+pilot with:
+
+```bash
+python3 code/crossfit_wgan_pilot.py --reps 5 --folds 3 --steps 1200 --device cpu
+```
+
+For each fold, the script trains the WGAN only on the other folds, computes a
+fold-specific plug-in reserve, and averages those reserves. Held-out auctions
+are used for an out-of-fold fit diagnostic. This is the sample-splitting layer
+that precedes DML, not yet the orthogonal WGAN-DML estimator.
+
 ## Current Estimation Plan
 
 1. Establish identification from observed order statistics under a symmetric

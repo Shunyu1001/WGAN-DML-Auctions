@@ -28,3 +28,18 @@ curve, and other nuisance functions required by the reserve-price score. The
 full DML procedure will repeat nuisance training separately within each
 training fold and will evaluate the reserve score only on the corresponding
 held-out fold.
+
+As a computational precursor, I also report a fold-averaged plug-in. Partition
+the auctions into $K$ folds and train $\widehat F^{(-k)}$ outside fold $k$.
+Define
+\begin{equation}
+\widehat r^{(-k)}_{\mathrm{PI}}
+\in\arg\max_r r\{1-\widehat F^{(-k)}(r)\},
+\qquad
+\overline r_{\mathrm{FA}}=\frac{1}{K}\sum_{k=1}^K
+\widehat r^{(-k)}_{\mathrm{PI}}.
+\end{equation}
+This construction measures the stability gained from sample splitting and
+averaging independently trained generators. Because the held-out observations
+do not yet enter an observation-level reserve score, $\overline r_{\mathrm{FA}}$
+is not the orthogonal DML estimator.
