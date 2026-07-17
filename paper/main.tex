@@ -36,7 +36,10 @@ price. The framework separates distribution learning from inference on the
 low-dimensional economic parameter. Monte Carlo experiments compare direct
 order-statistic inversion, plug-in WGAN-GP, cross-fitted WGAN-GP, and the
 orthogonal WGAN-DML estimator in terms of bias, root mean squared error,
-confidence-interval coverage, and revenue regret.
+confidence-interval coverage, and revenue regret. The first orthogonal-score
+pilot also shows that formal orthogonality is not sufficient when the learned
+local tail moments converge too slowly: the second-order remainder can dominate
+the nominal influence-function approximation.
 \end{abstract}
 
 \input{sections/introduction}

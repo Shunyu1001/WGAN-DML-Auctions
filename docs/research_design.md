@@ -20,14 +20,20 @@ inference on a low-dimensional Myerson reserve-price parameter?
 3. Cross-fitted WGAN-GP plug-in estimator.
 4. Cross-fitted orthogonal WGAN-DML estimator.
 
+## Orthogonal-Score Status
+
+- A fixed-bandwidth target and its observation-level influence correction are
+  implemented in `code/orthogonal_wgan_dml.py`.
+- The first pilot rejects the working assumption that global WGAN fit is enough
+  for the local nuisance rates required by orthogonal inference.
+
 ## Open Theoretical Tasks
 
-- Define the regularized reserve-price target.
-- Derive the pathwise derivative through the order-statistic mapping.
-- Construct the influence-function or Riesz correction.
-- State nuisance-rate and simulation-rate conditions.
+- State primitive local nuisance-rate and simulation-rate conditions.
+- Derive an explicit second-order remainder bound near the reserve.
 - Separate inference for the regularized target from approximation to the exact
   Myerson reserve.
+- Study a shrinking-bandwidth sequence and local tail-weighted nuisance learner.
 
 ## Data Requirements
 

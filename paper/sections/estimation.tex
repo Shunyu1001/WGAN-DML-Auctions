@@ -24,10 +24,10 @@ between real and generated maxima; the true reserve is not used in training or
 model selection.
 
 The trained generator induces estimates of the latent distribution, revenue
-curve, and other nuisance functions required by the reserve-price score. The
-full DML procedure will repeat nuisance training separately within each
-training fold and will evaluate the reserve score only on the corresponding
-held-out fold.
+curve, and the smoothed maximum-bid moments required by the reserve-price
+score. In the DML pilot, nuisance training is repeated separately within each
+training fold and the score is evaluated only on the corresponding held-out
+fold.
 
 As a computational precursor, I also report a fold-averaged plug-in. Partition
 the auctions into $K$ folds and train $\widehat F^{(-k)}$ outside fold $k$.

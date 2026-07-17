@@ -1,8 +1,11 @@
 \section{Conclusion}
 
 This paper develops a semiparametric framework in which a WGAN-GP learns a
-latent valuation distribution and an orthogonal, cross-fitted score delivers
-inference on a low-dimensional auction policy parameter. The analysis is
-designed to clarify when flexible distribution learning is sufficient for
-accurate policy estimation and when local regularization and orthogonal
-correction remain necessary.
+latent valuation distribution and a cross-fitted score targets a regularized
+auction policy parameter. The pilot delivers a deliberately cautionary result:
+good global fit and formal Neyman orthogonality do not ensure valid inference
+when the reserve depends on a weakly observed tail and the local nuisance error
+remains large. Fold averaging is accurate in the baseline design, while the
+current influence correction overadjusts and its nominal intervals undercover.
+The next step is therefore to strengthen reserve-local nuisance learning or the
+observation model before treating the orthogonal approximation as reliable.

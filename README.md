@@ -57,14 +57,27 @@ fold-specific plug-in reserve, and averages those reserves. Held-out auctions
 are used for an out-of-fold fit diagnostic. This is the sample-splitting layer
 that precedes DML, not yet the orthogonal WGAN-DML estimator.
 
+The observation-level orthogonal-score pilot can then be reproduced with:
+
+```bash
+python3 code/orthogonal_wgan_dml.py --reps 5 --folds 3 --steps 1200 --bandwidth 0.15 --device cpu
+```
+
+The score uses Gaussian-smoothed CDF and density moments of generated maximum
+bids as fold-specific nuisances. Held-out auctions enter through the associated
+influence-function correction. The fixed-bandwidth target and the exact
+Myerson reserve are reported separately; the current five-seed pilot is a
+diagnostic implementation and does not establish valid asymptotic coverage.
+
 ## Current Estimation Plan
 
 1. Establish identification from observed order statistics under a symmetric
    independent-private-values benchmark.
 2. Estimate the latent valuation distribution with a structural WGAN-GP.
 3. Implement a cross-fitted plug-in estimator as the computational baseline.
-4. Derive an orthogonal score for a regularized reserve-price parameter.
-5. Compare direct inversion, plug-in WGAN-GP, cross-fitted WGAN-GP, and the
-   orthogonal WGAN-DML estimator in Monte Carlo experiments.
+4. Evaluate an observation-level orthogonal score for a regularized
+   reserve-price parameter.
+5. Diagnose whether local nuisance rates are strong enough for the
+   orthogonal remainder and confidence intervals to be reliable.
 
 Raw or restricted data should never be committed to the repository.

@@ -126,7 +126,58 @@ in this small pilot. These results support using cross-fitting as the nuisance
 training architecture, but they do not attribute the improvement to DML or
 claim that sample splitting removes first-order nuisance bias.
 
-\subsection{Next orthogonal-score comparison}
+\subsection{Observation-level orthogonal-score pilot}
+
+I next implement equation~\eqref{eq:orthogonal-reserve-score} using the same
+three folds, WGAN architecture, data seeds, and 1,200-step training convention.
+The Gaussian bandwidth is fixed at $h=0.15$, and each training-fold generator
+produces 50,000 synthetic maxima for the nuisance moments. Held-out auctions
+enter the score through both the smoothed-CDF and kernel-density residuals. The
+true fixed-bandwidth target is $\theta_{0,h}=0.8318$, compared with the exact
+reserve $r_0=0.7719$; their difference is regularization bias, not estimation
+error.
+
+\begin{table}[htbp]
+\centering
+\scriptsize
+\caption{Observation-level orthogonal WGAN-DML pilot}
+\label{tab:orthogonal-wgan-dml}
+\resizebox{\textwidth}{!}{\input{tables/orthogonal_wgan_dml.tex}}
+\begin{minipage}{0.96\textwidth}
+\footnotesize
+\emph{Notes:} Five common data seeds per sample size. RMSE is reported relative
+to both the exact reserve $r_0$ and fixed-bandwidth target $r_h$. Mean SE and
+coverage apply only to the orthogonal estimator. With five repetitions,
+coverage is diagnostic rather than a precise Monte Carlo estimate.
+\end{minipage}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{orthogonal_wgan_dml.png}
+\caption{Finite-sample behavior of the orthogonal WGAN-DML correction}
+\label{fig:orthogonal-wgan-dml}
+\end{figure}
+
+Table~\ref{tab:orthogonal-wgan-dml} rejects the hypothesis that formal
+orthogonality alone repairs the current WGAN nuisance fit. The orthogonal
+correction raises the fold-averaged estimate by 0.123, 0.122, and 0.145 on
+average as $n$ increases. Relative to $r_0$, its RMSE is 0.1355, 0.1046, and
+0.1276, compared with 0.0368, 0.0270, and 0.0274 for fold averaging. Coverage
+of $r_h$ is 40 percent, 60 percent, and zero. The intervals narrow with $n$
+even though the bias does not, producing especially severe undercoverage at
+$n=10000$.
+
+This failure is informative. Orthogonality removes the first-order derivative
+with respect to $(A_h,G_h)$ at the truth; it does not make a large local
+nuisance error small. In this design, $r_0$ lies in the extreme lower tail of
+the maximum-bid distribution, and the global WGAN fit does not deliver the
+local rate needed to control the second-order remainder. Figure~\ref{fig:orthogonal-wgan-dml}
+therefore motivates local tail-weighting, additional observed order statistics,
+or a stronger structural restriction before using the influence-function
+standard errors for inference.
+
+\subsection{Next robustness experiments}
 
 The next experiments will vary the auction sample size, number of bidders,
 valuation distribution, degree of tail thickness, auction-level heterogeneity,

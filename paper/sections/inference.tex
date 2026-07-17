@@ -10,27 +10,63 @@ the same training partitions but does not evaluate an observation-level score
 on $I_k$. It is therefore an ensemble benchmark. Cross-fitting acquires its
 inferential role only when each held-out observation enters the score below.
 
-Let $m_h(\theta,\eta)$ denote the regularized reserve-price first-order
-condition. The proposed score takes the form
+Let $\Phi$ and $\phi$ denote the standard normal CDF and density. For fixed
+bandwidth $h$, define the observable signals
 \begin{equation}
-\psi_h(O;\theta,\eta,\alpha)
-=m_h(\theta,\eta)+\alpha_h(O;\theta,\eta),
+S_h(B;\theta)=\Phi\!\left(\frac{\theta-B}{h}\right),
+\qquad
+K_h(B;\theta)=\frac{1}{h}\phi\!\left(\frac{\theta-B}{h}\right),
 \end{equation}
-where $\alpha_h$ is an influence-function or Riesz correction chosen to satisfy
-Neyman orthogonality:
+and the local nuisance vector
+$\eta_h(\theta)=(A_h(\theta),G_h(\theta))$, where
+$A_h(\theta)=\mathbb E[S_h(B;\theta)]$ and
+$G_h(\theta)=\mathbb E[K_h(B;\theta)]$. The regularized reserve moment is
 \begin{equation}
-\left.\partial_{\eta}
-\mathbb E\left[\psi_h(O;\theta_{0,h},\eta,\alpha_0)\right]
-\right|_{\eta=\eta_0}=0.
+m_h(\theta,A,G)=1-A^{1/N}-\frac{\theta}{N}A^{1/N-1}G.
+\label{eq:regularized-reserve-moment}
+\end{equation}
+The fixed-bandwidth target $\theta_{0,h}$ is the selected zero of
+$m_h(\theta,A_h(\theta),G_h(\theta))$. It need not equal the exact Myerson
+reserve $r_0$; approximation of $r_0$ requires a separate shrinking-bandwidth
+argument.
+
+The derivatives needed for the locally robust correction are
+\begin{align}
+m_A(\theta,A,G)
+&=-\frac{1}{N}A^{1/N-1}
+-\frac{\theta}{N}\left(\frac{1}{N}-1\right)A^{1/N-2}G,\\
+m_G(\theta,A,G)&=-\frac{\theta}{N}A^{1/N-1}.
+\end{align}
+The observation-level score is
+\begin{equation}
+\begin{split}
+\psi_h(B;\theta,A,G)
+={}&m_h(\theta,A,G)
++m_A(\theta,A,G)\{S_h(B;\theta)-A\}\\
+&+m_G(\theta,A,G)\{K_h(B;\theta)-G\}.
+\end{split}
+\label{eq:orthogonal-reserve-score}
+\end{equation}
+Because the two residuals have mean zero at the truth, differentiation of the
+score expectation adds $-m_A$ and $-m_G$ to the derivatives of the first term.
+Hence
+\begin{equation}
+\left.\partial_{(A,G)}
+\mathbb E\left[\psi_h(B;\theta_{0,h},A,G)\right]
+\right|_{(A,G)=\eta_{0,h}(\theta_{0,h})}=0.
 \end{equation}
 
 The estimator solves
 \begin{equation}
 \frac{1}{n}\sum_{k=1}^K\sum_{i\in I_k}
-\psi_h\!\left(O_i;\widehat\theta_h,
-\widehat\eta^{(-k)},\widehat\alpha^{(-k)}\right)=0.
+\psi_h\!\left(B_i;\widehat\theta_h,
+\widehat A_h^{(-k)}(\widehat\theta_h),
+\widehat G_h^{(-k)}(\widehat\theta_h)\right)=0.
 \end{equation}
-The main theoretical task is to derive the correction from the
-order-statistic mapping and establish an asymptotically linear representation
-for fixed $h$. The analysis will separately track sampling error, nuisance
-estimation error, simulation error, and regularization bias.
+Here the fold-specific nuisances are computed from maximum bids simulated by
+the WGAN trained outside fold $k$. A numerical derivative of the cross-fitted
+mean score estimates the Jacobian, and the empirical score variance supplies
+the conventional influence-function standard error. Validity still requires
+the second-order nuisance remainder and generator simulation error to be
+smaller than sampling error. The pilot below directly tests, rather than
+assumes, this requirement.
