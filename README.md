@@ -95,6 +95,17 @@ regularization bias but eventually creates multiple roots and high variance;
 none of the four finite-sample paths delivers uniform 95 percent coverage of
 the exact reserve.
 
+The next experiment applies a covariance-aware two-bandwidth correction:
+
+```bash
+python3 code/bias_corrected_inference.py --reps 200 --exponents 0.2 0.35
+```
+
+It combines the estimates and observation-level influence functions at `h`
+and `sqrt(2) * h`. For the `n^(-0.2)` path, the correction lowers exact-target
+RMSE and raises coverage substantially without introducing multiple roots,
+although coverage remains below 95 percent at the largest sample size.
+
 ## Current Estimation Plan
 
 1. Establish identification from observed order statistics under a symmetric
@@ -107,5 +118,7 @@ the exact reserve.
    local nuisance rates are strong enough for reliable inference.
 6. Separate fixed-bandwidth inference from bias-aware inference on the exact
    Myerson reserve.
+7. Use covariance-aware Richardson correction as the exact-target prototype
+   and quantify its remaining higher-order and root-selection error.
 
 Raw or restricted data should never be committed to the repository.

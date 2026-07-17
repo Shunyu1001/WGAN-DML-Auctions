@@ -44,7 +44,10 @@ empirical ablations restore near-nominal coverage, locating the failure in the
 WGAN local nuisance approximation rather than the score construction. A
 shrinking-bandwidth experiment reduces regularization bias but reveals a
 second trade-off: aggressive undersmoothing produces high variance, multiple
-score roots, and continued undercoverage of the exact reserve.
+score roots, and continued undercoverage of the exact reserve. A
+covariance-aware Richardson correction substantially improves exact-target
+RMSE and coverage on a stable bandwidth path, but residual undercoverage keeps
+the fixed-bandwidth regularized target as the strongest inferential claim.
 \end{abstract}
 
 \input{sections/introduction}
