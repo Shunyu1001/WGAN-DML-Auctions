@@ -16,7 +16,15 @@ moments attain near-oracle RMSE and coverage, so WGAN-GP should estimate the
 global structural distribution while a dedicated observable local learner
 supplies the reserve score. Shrinking-bandwidth theory and conditional local
 nuisances remain necessary before taking this hybrid to an empirical auction
-application. The first bandwidth-path experiment also cautions against treating
+application. An external-validity design shows that this conclusion is not
+specific to the baseline lognormal distribution: for three or five bidders,
+fixed-bandwidth target coverage remains between 92.0 and 96.5 percent across
+baseline, heavy-tail, and mixture distributions. With ten bidders, however,
+almost no auction maxima lie near the reserve at the smaller sample size;
+coverage falls to about 78 percent and multiple roots emerge. This identifies
+a sharper boundary for the method: orthogonality protects against nuisance
+estimation error but cannot replace local identifying information absent from
+the observed order statistic. The first bandwidth-path experiment also cautions against treating
 undersmoothing as automatic bias removal: slower paths retain regularization
 bias, while faster paths create multiple roots and high variance. The current
 credible claim is valid fixed-bandwidth inference for a regularized reserve. A

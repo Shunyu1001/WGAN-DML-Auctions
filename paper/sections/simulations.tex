@@ -376,19 +376,57 @@ favors the $n^{-0.2}$ three-bandwidth envelope as the exact-target prototype,
 while retaining fixed-bandwidth inference as the formal baseline until the
 bias expansion and joint root process receive theoretical guarantees.
 
-\subsection{Scope of the Monte Carlo evidence}
+\subsection{Competition and valuation distributions}
 
-The reported design holds the number of bidders, lognormal valuation family,
-and symmetric independent-private-values observation model fixed. It therefore
-identifies the mechanisms behind the estimator in one transparent benchmark;
-it does not establish robustness to tail thickness, mixture or nonregular
-distributions, endogenous entry, auction heterogeneity, or structural
-misspecification. Across all experiments, the common evaluation metrics are
-bias, root mean squared error, confidence-interval coverage, distributional
-fit, and revenue regret:
-\begin{equation}
-R(r_0;F_0)-R(\widehat r;F_0).
-\end{equation}
-The direct-inversion benchmark and common-seed design make later external-
-validity exercises comparable without changing the inferential claims
-supported by the present baseline.
+The final experiment varies the number of bidders and the valuation family
+without adding another estimator or confidence-interval variant. It crosses
+$N\in\{3,5,10\}$ with the baseline lognormal distribution, a thicker-tailed
+lognormal distribution, and a two-component lognormal mixture. For each of the
+18 design cells, Table~\ref{tab:external-validity} reports 200 replications of
+the empirical-local DML estimator with the same fixed Gaussian bandwidth
+$h=0.15$ and three-fold cross-fitting. The formal inferential target is the
+cell-specific regularized root $r_h$. Exact-reserve RMSE is also reported for
+the DML estimate and direct order-statistic inversion so that smoothing bias
+is not hidden inside the inferential comparison.
+
+\begin{table}[htbp]
+\centering
+\caption{External validity of fixed-bandwidth local DML}
+\label{tab:external-validity}
+\resizebox{\textwidth}{!}{\input{tables/external_validity.tex}}
+\begin{minipage}{0.96\textwidth}
+\footnotesize
+\emph{Notes:} Each cell uses 200 replications, three folds, and $h=0.15$.
+The heavy-tail design is lognormal with log standard deviation $0.8$ rather
+than $0.5$. The mixture places probability $0.7$ on
+$\operatorname{LN}(-0.15,0.35^2)$ and probability $0.3$ on
+$\operatorname{LN}(0.55,0.25^2)$. Coverage is for the regularized target
+$r_h$; exact-target columns use the global monopoly-price maximizer $r_0$.
+Multi-root is the fraction of samples with more than one score-grid crossing.
+\end{minipage}
+\end{table}
+
+For $N=3$ or $N=5$, target coverage ranges from 92.0 to 96.5 percent across
+the three distributions and two sample sizes. The regularized-target RMSE
+falls by roughly one half when the number of auctions rises from 2000 to
+10000. These results show that the fixed-bandwidth theory is not specific to
+the baseline lognormal distribution. They also make clear that valid
+inference for $r_h$ does not remove the economically separate approximation
+error $r_h-r_0$: that gap is largest in the mixture and increases with the
+number of bidders.
+
+The difficult cells have $N=10$. With 2000 auctions, the target coverage is
+77.5, 78.0, and 78.5 percent in the baseline, heavy-tail, and mixture designs,
+respectively, and between 9.5 and 13.0 percent of samples have multiple roots.
+The expected number of observed auction maxima below the exact reserve is at
+most two in these cells and essentially zero in the baseline and mixture.
+With 10000 auctions, multiple roots disappear and coverage rises to 87.0,
+93.5, and 89.5 percent. Thus greater competition makes a low reserve a more
+severe lower-tail extrapolation from maxima. Cross-fitting and orthogonality
+do not manufacture local information that the order statistic rarely
+contains. This is a transparent support limitation, not a generic failure of
+global distribution fit.
+
+The exercise remains within symmetric independent private values and known
+$N$. It does not establish robustness to endogenous entry, auction
+heterogeneity, dependence across bidders, or structural misspecification.

@@ -26,29 +26,27 @@ with WGAN-GP and Double Machine Learning}
 
 \begin{abstract}
 This paper studies estimation and inference for optimal auction reserve prices
-when the econometrician observes incomplete bidding data. Under a symmetric
-independent-private-values benchmark, the distribution of an observed order
-statistic identifies the latent valuation distribution. I use a structural
-Wasserstein generative adversarial network with gradient penalty (WGAN-GP) as a
-flexible estimator of this infinite-dimensional nuisance object. I then develop
-a cross-fitted, Neyman-orthogonal estimator for a regularized Myerson reserve
-price and establish fixed-bandwidth asymptotic linearity under local nuisance-
-rate conditions. The framework separates distribution learning from inference
-on the low-dimensional economic parameter. Monte Carlo experiments compare direct
-order-statistic inversion, plug-in WGAN-GP, cross-fitted WGAN-GP, and the
-orthogonal WGAN-DML estimator. Formal orthogonality fails when learned local
-tail moments converge too slowly. Oracle and training-fold empirical ablations
-restore near-nominal coverage, locating the failure in the WGAN nuisance rather
-than the score construction. A
-shrinking-bandwidth experiment reduces regularization bias but reveals a
-second trade-off: aggressive undersmoothing produces high variance, multiple
-score roots, and continued undercoverage of the exact reserve. A
-covariance-aware Richardson correction substantially improves exact-target
-RMSE and coverage on a stable bandwidth path. A three-bandwidth residual-bias
-envelope then restores 96.5 percent exact-reserve coverage on that path, while
-a union over all root chains shows that omitted roots are not the main source
-of failure under aggressive undersmoothing. The fixed-bandwidth regularized
-target remains the strongest formally justified inferential claim.
+when only an order statistic of bids is observed. Under symmetric independent
+private values, its distribution identifies the latent valuation distribution.
+I estimate that nuisance object with a structural Wasserstein generative
+adversarial network with gradient penalty (WGAN-GP), then develop a cross-fitted
+Neyman-orthogonal estimator for a regularized Myerson reserve. For a fixed
+bandwidth, I establish asymptotic linearity under local nuisance-rate and root
+regularity conditions. Monte Carlo experiments show that good global WGAN fit
+and formal orthogonality need not deliver valid inference when learned local
+tail moments converge too slowly. Oracle and training-fold empirical
+ablations restore near-nominal coverage, locating the failure in the WGAN
+nuisance rather than the score construction and motivating a hybrid global
+WGAN/local-score procedure. Across bidder counts and baseline, heavy-tail, and
+mixture distributions, fixed-bandwidth coverage remains near nominal when the
+observed maxima contain local information. It deteriorates under intense
+competition when almost no maxima lie near the reserve, revealing a support
+limitation that orthogonality cannot repair. Shrinking-bandwidth experiments
+further separate regularization bias from sampling uncertainty: a
+covariance-aware correction and residual-bias envelope improve inference for
+the exact reserve, whereas aggressive undersmoothing creates high variance and
+multiple roots. The fixed-bandwidth regularized target remains the paper's
+strongest formally justified inferential claim.
 \end{abstract}
 
 \input{sections/introduction}
