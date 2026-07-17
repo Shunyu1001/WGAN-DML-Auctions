@@ -82,6 +82,19 @@ the known Monte Carlo DGP. The empirical-local version nearly matches the
 oracle, locating the failure in the WGAN's local tail approximation rather than
 in the orthogonal-score algebra.
 
+The fixed-bandwidth target differs from the exact Myerson reserve. The
+shrinking-bandwidth experiment studies this approximation step:
+
+```bash
+python3 code/bandwidth_path.py --reps 200 --exponents 0 0.2 0.35 0.5
+```
+
+The experiment reports coverage of both the regularized and exact targets,
+regularization bias, RMSE, and score-root stability. Faster shrinkage reduces
+regularization bias but eventually creates multiple roots and high variance;
+none of the four finite-sample paths delivers uniform 95 percent coverage of
+the exact reserve.
+
 ## Current Estimation Plan
 
 1. Establish identification from observed order statistics under a symmetric
@@ -92,5 +105,7 @@ in the orthogonal-score algebra.
    reserve-price parameter.
 5. Use oracle and empirical-local ablations to diagnose whether the WGAN's
    local nuisance rates are strong enough for reliable inference.
+6. Separate fixed-bandwidth inference from bias-aware inference on the exact
+   Myerson reserve.
 
 Raw or restricted data should never be committed to the repository.
