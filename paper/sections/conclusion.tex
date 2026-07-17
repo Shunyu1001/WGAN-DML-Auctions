@@ -4,7 +4,10 @@ This paper develops a semiparametric framework in which a WGAN-GP learns a
 latent valuation distribution and a cross-fitted score targets a regularized
 auction policy parameter. For a fixed bandwidth, orthogonality, cross-fitting,
 local $o(n^{-1/4})$ nuisance accuracy, and root regularity yield asymptotic
-linearity and valid inference for the regularized reserve. The Monte Carlo
+linearity and valid inference for the regularized reserve. For fixed bandwidth,
+the paper derives that rate from primitive empirical-process and local-overlap
+conditions for the training-fold empirical nuisance. It deliberately does not
+infer the same rate from the WGAN's global objective. The Monte Carlo
 study delivers a deliberately cautionary result:
 good global fit and formal Neyman orthogonality do not ensure valid inference
 when the reserve depends on a weakly observed tail and the local nuisance error

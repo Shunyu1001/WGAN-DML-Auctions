@@ -107,12 +107,54 @@ usual Wald interval has asymptotic coverage $1-\gamma$ for the regularized
 target $\theta_{0,h}$.
 \end{theorem}
 
+For the empirical-local learner, the high-level nuisance rate has a primitive
+verification. Let $I_k^c$ denote the training observations for fold $k$ and
+$n_{-k}=|I_k^c|$. Define
+\begin{equation}
+\widehat A_h^{(-k)}(\theta)
+=\frac{1}{n_{-k}}\sum_{j\in I_k^c}S_h(B_j;\theta),
+\qquad
+\widehat G_h^{(-k)}(\theta)
+=\frac{1}{n_{-k}}\sum_{j\in I_k^c}K_h(B_j;\theta).
+\label{eq:empirical-local-nuisance}
+\end{equation}
+
+\begin{proposition}[Primitive rate for the empirical-local nuisance]
+\label{prop:empirical-local-rate}
+Let $h>0$ and the number of folds $K$ be fixed. Suppose
+$\mathcal N_h$ is compact, $\min_k n_{-k}/n$ is bounded away from zero,
+and
+\begin{equation}
+\inf_{\theta\in\mathcal N_h}A_h(\theta)\geq a_h>0.
+\label{eq:local-cdf-overlap}
+\end{equation}
+Then the estimators in equation~\eqref{eq:empirical-local-nuisance} satisfy
+\begin{equation}
+\max_{k\leq K}\sup_{\theta\in\mathcal N_h}
+\left\|
+\widehat\eta_h^{(-k)}(\theta)-\eta_{0,h}(\theta)
+\right\|
+=O_p\!\left(\sqrt{\frac{\log n}{n}}\right)
+=o_p(n^{-1/4}).
+\label{eq:empirical-local-rate}
+\end{equation}
+On an event with probability approaching one, the nuisance lies in a region
+where the score and its first two nuisance derivatives are uniformly bounded.
+Thus the empirical-local learner satisfies the nuisance-rate and smoothness
+parts of Assumption~\ref{ass:fixed-h}. If the remaining root-separation,
+positive-variance, and numerical-consistency conditions in that assumption
+hold, Theorem~\ref{thm:fixed-h-dml} applies to the empirical-local estimator.
+\end{proposition}
+
 Theorem~\ref{thm:fixed-h-dml} is deliberately about $\theta_{0,h}$, not $r_0$.
 Orthogonality makes the nuisance contribution second order, so the sufficient
 $o(n^{-1/4})$ local rate controls the remainder. It does not follow from a
 small global Wasserstein distance. The Monte Carlo ablations below measure
 whether this sufficient local approximation is credible for each nuisance
-learner.
+learner. Proposition~\ref{prop:empirical-local-rate} shows that, for fixed
+$h$, the rate is automatic for training-fold empirical kernel moments under a
+local CDF overlap condition. No analogous implication follows from a global
+WGAN objective.
 Here the fold-specific nuisances are computed from maximum bids simulated by
 the WGAN trained outside fold $k$. A numerical derivative of the cross-fitted
 mean score estimates the Jacobian, and the empirical score variance supplies
@@ -120,6 +162,12 @@ the conventional influence-function standard error. Validity still requires
 the second-order nuisance remainder and generator simulation error to be
 smaller than sampling error. The pilot below directly tests, rather than
 assumes, this requirement.
+
+The asymptotic statement treats root-solving tolerance as $o(n^{-1/2})$ and a
+centered finite-difference step $c_n$ satisfying $c_n\to0$ and
+$\sqrt n c_n\to\infty$. The reported Monte Carlo uses a fine fixed grid and a
+small fixed derivative step as finite-sample numerical approximations; these
+choices are not additional statistical regularization parameters.
 
 To diagnose a failure of the WGAN-based nuisance, I also evaluate two versions
 of the identical score. The empirical-local version replaces generated maxima

@@ -26,20 +26,23 @@ The defensible contribution is a methodological and Monte Carlo paper:
 - A bounded external-validity Monte Carlo across three bidder counts and three
   valuation distributions, with the formal regularized target kept separate
   from the exact reserve.
+- A primitive fixed-bandwidth nuisance-rate proposition for the empirical-local
+  learner and an explicit cross-fitted remainder proof.
 
 ## Next Three Sprints
 
-1. **Theory audit:** check primitive conditions for the local nuisance rate and
-   replace the proof sketch with a fully referenced appendix proof.
-2. **Submission packaging:** choose a target field/econometrics journal, adapt
+1. **Submission packaging:** choose a target field/econometrics journal, adapt
    length and framing, prepare a clean replication archive, and obtain an
    adviser-level read focused on the contribution and maintained auction
    assumptions.
+2. **Replication audit:** run the documented commands from a clean environment,
+   record package versions and random seeds, and separate lightweight smoke
+   tests from the full Monte Carlo archive.
 3. **Empirical bridge:** if a suitable auction dataset becomes available,
    document entry, observed order statistics, and bidder-count variation before
    implementing the estimator. Do not weaken the current identification claim
    to force an application.
 
-The external-validity sprint is complete. The project should now move to the
-theory audit; additional tuning of the same confidence interval has lower
-priority.
+The external-validity and bounded theory-audit sprints are complete. The project
+should now move to submission packaging; additional tuning of the same
+confidence interval has lower priority.

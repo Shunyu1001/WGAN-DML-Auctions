@@ -11,19 +11,71 @@ obtain
 \end{equation}
 where $R_{1n}$ is the empirical-process effect of replacing $\eta_{0,h}$ by
 the fold-specific nuisance estimate and $R_{2n}$ is its population remainder.
-Conditional on the training sample, cross-fitting makes the held-out score
-independent of the nuisance estimate. Stochastic equicontinuity and consistency
-therefore imply $R_{1n}=o_p(n^{-1/2})$. Neyman orthogonality sets the first
-Gateaux derivative of the population score to zero. The bounded second
-derivative in Assumption~\ref{ass:fixed-h} then gives
+More explicitly, write $P_{n,k}$ for the empirical measure on holdout fold
+$k$ and $P$ for the population measure. At $\theta_{0,h}$, the empirical-
+process term is
+\begin{equation}
+R_{1n}=\sum_{k=1}^K\frac{|I_k|}{n}(P_{n,k}-P)
+\left[\psi_h(\widehat\eta_h^{(-k)})
+-\psi_h(\eta_{0,h})\right],
+\end{equation}
+where the common arguments $(B;\theta_{0,h})$ are suppressed. Conditional on
+the training sample, cross-fitting makes each bracketed function fixed and
+independent of its holdout observations. Bounded first derivatives of the
+score and the nuisance-rate condition imply that its conditional second
+moment is $O_p(\rho_n^2)$. With fixed $K$, conditional Chebyshev's inequality
+therefore yields
+\begin{equation}
+R_{1n}=O_p(\rho_n/\sqrt n)=o_p(n^{-1/2}).
+\end{equation}
+Neyman orthogonality sets the first Gateaux derivative of the population score
+to zero. A fold-by-fold second-order Taylor expansion and the bounded second
+derivative in Assumption~\ref{ass:fixed-h} give
 \begin{equation}
 |R_{2n}|\lesssim_p \rho_n^2=o_p(n^{-1/2}).
 \end{equation}
-Root consistency permits replacement of the intermediate Jacobian by $J_h$.
-Rearranging yields equation~\eqref{eq:fixed-h-linearization}. The i.i.d. central
-limit theorem applies to the oracle score by the $2+\delta$ moment condition.
-The same expansion and a law of large numbers give consistency of the empirical
-influence-function variance. Slutsky's theorem completes the proof.
+The same conditional argument applies uniformly on the shrinking root
+neighborhood in Assumption~\ref{ass:fixed-h}. Root and numerical-Jacobian
+consistency permit replacement of the intermediate derivative by $J_h$.
+Rearranging yields equation~\eqref{eq:fixed-h-linearization}. The i.i.d.
+central limit theorem applies to the oracle score by the $2+\delta$ moment
+condition. The score difference converges in mean square, so a foldwise law of
+large numbers also gives consistency of the empirical influence-function
+variance. Slutsky's theorem completes the proof. This is the standard
+cross-fitted Z-estimation argument in \citet{chernozhukov2018}, written here
+for the two local kernel moments.
+
+\subsection{Proof of Proposition~\ref{prop:empirical-local-rate}}
+
+For fixed $h$, the Gaussian signals $S_h(B;\theta)$ and $K_h(B;\theta)$ are
+uniformly bounded over $B$ and $\theta$. Their derivatives with respect to
+$\theta$ are also uniformly bounded by constants depending only on $h$.
+Consequently, the two one-dimensional translate classes indexed by the compact
+set $\mathcal N_h$ have polynomial covering numbers. A maximal inequality for
+bounded empirical processes therefore gives, for every training fold,
+\begin{align}
+\sup_{\theta\in\mathcal N_h}
+|\widehat A_h^{(-k)}(\theta)-A_h(\theta)|
+&=O_p\!\left(\sqrt{\frac{\log n}{n}}\right),\\
+\sup_{\theta\in\mathcal N_h}
+|\widehat G_h^{(-k)}(\theta)-G_h(\theta)|
+&=O_p\!\left(\sqrt{\frac{\log n}{n}}\right).
+\end{align}
+The maximum over a fixed number of folds has the same order. These bounds can
+also be obtained directly by applying Hoeffding's inequality on an
+$n^{-1}$-net of $\mathcal N_h$ and using the Lipschitz envelopes between grid
+points; see \citet{vandervaartwellner1996} for the general covering-number
+argument. Since $\sqrt{\log n/n}=o(n^{-1/4})$, equation
+\eqref{eq:empirical-local-rate} follows.
+
+Equation~\eqref{eq:local-cdf-overlap} and uniform convergence imply
+$\inf_{\theta}\widehat A_h^{(-k)}(\theta)\geq a_h/2$ for every fold with
+probability approaching one. On this event, all powers of $A$ appearing in
+$m_h$, $m_A$, $m_G$, and their first two nuisance derivatives are uniformly
+bounded. The Gaussian signals have bounded moments for fixed $h$. Hence the
+nuisance-rate and smoothness requirements stated in the proposition follow.
+The remaining root conditions are the usual separated-zero conditions for a
+Z-estimator; see \citet{vandervaart1998}. This proves the result.
 
 \subsection{Proof of Proposition~\ref{prop:richardson-exact}}
 
