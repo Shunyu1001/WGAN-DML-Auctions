@@ -1,16 +1,32 @@
 \section{Related Literature}
 
-The paper relates to optimal auction design \citep{myerson1981}, nonparametric
-identification and estimation in auctions \citep{atheyhaile2007,menzelmorganti2013},
-Wasserstein generative adversarial networks
-\citep{arjovsky2017,gulrajani2017}, adversarial structural estimation
-\citep{kaji2026}, and double/debiased machine learning
-\citep{chernozhukov2018}. The central distinction from standard DML
-applications is that the target is a nonlinear policy parameter derived from an
-estimated latent distribution, not a coefficient in a partially linear model
-or an average treatment effect.
+The starting point is the virtual-value characterization of optimal reserves
+in \citet{myerson1981}. The observation model belongs to the order-statistics
+literature surveyed by \citet{atheyhaile2007}: under symmetric independent
+private values and known competition, the distribution of the observed maximum
+identifies the latent valuation distribution. \citet{menzelmorganti2013}
+develop large-sample theory for auction estimators based on order statistics.
+Relative to direct inversion, the present paper asks whether a structural
+generator can regularize the latent distribution while preserving inference
+on one economically important functional. The weakly observed lower tail of
+the maximum distribution is central rather than incidental to that comparison.
 
-This section will position the estimator relative to direct order-statistic
-inversion, kernel and shape-constrained estimators of valuation distributions,
-simulation-based minimum distance, sieve methods, and modern adversarial
-estimators.
+The computational component builds on Wasserstein generative adversarial
+networks \citep{arjovsky2017} and gradient-penalty training
+\citep{gulrajani2017}. It is also related to adversarial structural estimation,
+which embeds economic restrictions and a simulator inside a distribution-
+matching problem \citep{kaji2026}. Here the restriction is imposed before the
+observable is formed: independent bidder-level draws are mapped into auction
+maxima. The main diagnostic result is that good fit of this observable
+distribution does not guarantee the local CDF and density accuracy needed by
+the reserve score.
+
+Finally, the inference layer follows the cross-fitting and orthogonality logic
+of double machine learning \citep{chernozhukov2018}. The target differs
+from standard treatment-effect and regression examples in two ways. It is an
+implicit nonlinear policy functional of a latent distribution, and its
+regularized score contains a density component whose variance changes with the
+bandwidth. The paper therefore separates three claims that are often combined:
+inference for a fixed regularized root, approximation of the exact Myerson
+reserve as the bandwidth shrinks, and root-robust inference when the empirical
+moment is nonmonotone.

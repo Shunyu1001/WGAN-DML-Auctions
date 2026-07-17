@@ -376,18 +376,19 @@ favors the $n^{-0.2}$ three-bandwidth envelope as the exact-target prototype,
 while retaining fixed-bandwidth inference as the formal baseline until the
 bias expansion and joint root process receive theoretical guarantees.
 
-\subsection{Next robustness experiments}
+\subsection{Scope of the Monte Carlo evidence}
 
-The next experiments will vary the auction sample size, number of bidders,
-valuation distribution, degree of tail thickness, auction-level heterogeneity,
-and structural misspecification. Candidate valuation distributions include
-lognormal, gamma, mixture, and nonregular designs. The comparison will include
-direct order-statistic inversion, conventional plug-in estimators, WGAN-GP
-plug-in estimation, fold-averaged WGAN-GP, and the orthogonal WGAN-DML
-estimator. Evaluation metrics include bias, root mean squared error,
-confidence-interval coverage, distributional fit, and revenue regret:
+The reported design holds the number of bidders, lognormal valuation family,
+and symmetric independent-private-values observation model fixed. It therefore
+identifies the mechanisms behind the estimator in one transparent benchmark;
+it does not establish robustness to tail thickness, mixture or nonregular
+distributions, endogenous entry, auction heterogeneity, or structural
+misspecification. Across all experiments, the common evaluation metrics are
+bias, root mean squared error, confidence-interval coverage, distributional
+fit, and revenue regret:
 \begin{equation}
 R(r_0;F_0)-R(\widehat r;F_0).
 \end{equation}
-The same Monte Carlo seed policy and the direct benchmark will be retained
-when these estimators are added.
+The direct-inversion benchmark and common-seed design make later external-
+validity exercises comparable without changing the inferential claims
+supported by the present baseline.

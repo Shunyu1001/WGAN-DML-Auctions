@@ -9,6 +9,14 @@ asks whether a flexible generative model can recover the economically relevant
 features of the latent distribution while still permitting valid inference on
 the reserve-price parameter.
 
+This question is difficult for a reason that is easy to hide with global fit
+statistics. If only the highest of $N$ valuations is observed, then the
+probability of seeing an auction maximum below the reserve is $F_0(r_0)^N$.
+The reserve can therefore depend on a region with very few observations even
+when the observable maximum-bid distribution is well approximated overall.
+Quantile or Wasserstein accuracy averaged over the support need not control the
+local CDF and density errors entering the Myerson first-order condition.
+
 The proposed framework treats the valuation distribution as an
 infinite-dimensional nuisance parameter and the reserve price as the
 low-dimensional parameter of interest. A structural WGAN-GP reproduces the
@@ -19,9 +27,33 @@ score evaluation, while a Neyman-orthogonal correction reduces the first-order
 sensitivity of the reserve-price estimator to errors in the learned
 distribution.
 
-The paper makes three intended contributions. First, it connects adversarial
-structural estimation to the order-statistics approach in empirical auctions.
-Second, it develops a DML-style inference procedure tailored to a reserve-price
-functional rather than importing an average-treatment-effect score. Third, it
-evaluates when good global distributional fit does or does not translate into
-accurate reserve prices and low revenue regret.
+The paper makes three contributions. First, it connects adversarial structural
+estimation to the order-statistics approach in empirical auctions. The
+generator respects the independent-private-values structure before applying
+the same maximum operator observed in the data. Second, it derives an
+observation-level orthogonal score for a smoothed reserve and gives
+conditions for cross-fitted asymptotic linearity and valid fixed-bandwidth
+inference. A covariance-aware Richardson combination provides a separate route
+from that regularized target to the exact reserve. Third, it uses nested Monte
+Carlo ablations to distinguish failures of global WGAN learning, local nuisance
+rates, smoothing bias, and empirical root selection rather than attributing all
+errors to the generative model.
+
+The results sharpen the role of WGAN-GP in this problem. It reproduces the
+observable maximum distribution reasonably well but misses local tail moments
+that matter for the reserve. Replacing only those score nuisances with
+training-fold empirical moments restores near-oracle coverage for the
+fixed-bandwidth target. For the exact reserve, a stable $n^{-0.2}$ bandwidth
+path combined with Richardson extrapolation reduces bias, and a
+three-bandwidth residual-bias envelope attains 96.5 percent coverage in the
+reported design. More aggressive shrinkage creates multiple roots; taking the
+union over all root chains increases interval length without improving
+coverage.
+
+These findings support a hybrid estimator rather than a WGAN-only inference
+procedure. The WGAN supplies a coherent global latent distribution for
+structural counterfactuals, while a dedicated local learner supplies the score
+nuisances used for inference. The paper's formal coverage result concerns the
+fixed-bandwidth regularized reserve. Exact-reserve intervals are reported as a
+bias-aware prototype whose uniform validity requires additional conditions on
+the shrinking-bandwidth root process.
