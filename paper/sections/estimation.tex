@@ -1,22 +1,30 @@
 \section{WGAN-GP Nuisance Estimation}
 
-The generator maps independent latent draws and auction characteristics into
-synthetic bidder values:
+For the baseline implementation, the generator maps independent bidder-level
+noise into a log valuation:
 \begin{equation}
-\widetilde V_{ij}=G_{\gamma}(Z_{ij},X_j),
+\widetilde L_{ij}=G_{\gamma}(Z_{ij}),\qquad
+\widetilde V_{ij}=\exp(\widetilde L_{ij}),
 \qquad Z_{ij}\overset{\mathrm{iid}}{\sim}\mathcal N(0,I).
 \end{equation}
-Synthetic observables are constructed using the same order-statistic map as the
-data,
+The same scalar generator is called independently for every bidder. This is
+essential: a network that produces the entire bidder vector from one common
+noise draw generally induces dependence across values and violates the
+independent-private-values benchmark. Synthetic observables are constructed
+using the same order-statistic map as the data,
 \begin{equation}
-\widetilde B_j=\max_{1\leq i\leq N_j}\widetilde V_{ij}.
+\log\widetilde B_j=\max_{1\leq i\leq N}\widetilde L_{ij}.
 \end{equation}
-A critic compares the joint distributions of $(B_j,N_j,X_j)$ and
-$(\widetilde B_j,N_j,X_j)$. Gradient-penalty regularization enforces an
-approximate Lipschitz restriction on the critic. The generator and critic loss
-functions are treated as modular implementation choices; the semiparametric
-inference layer requires only appropriate convergence of the resulting
-nuisance estimates in the norm relevant to the orthogonal score.
+A critic compares standardized real and synthetic log maxima. Gradient-penalty
+regularization imposes an approximate Lipschitz restriction on the critic. In
+the pilot, each network has two hidden layers with 64 units, the bidder-level
+noise dimension is eight, and every generator update follows five critic
+updates. Checkpoints are selected using only the empirical Wasserstein distance
+between real and generated maxima; the true reserve is not used in training or
+model selection.
 
 The trained generator induces estimates of the latent distribution, revenue
-curve, and other nuisance functions required by the reserve-price score.
+curve, and other nuisance functions required by the reserve-price score. The
+full DML procedure will repeat nuisance training separately within each
+training fold and will evaluate the reserve score only on the corresponding
+held-out fold.

@@ -1,0 +1,20 @@
+{
+  "bidders": 5,
+  "sample_sizes": [
+    500,
+    2000,
+    10000
+  ],
+  "repetitions": 5,
+  "training_steps": 1200,
+  "critic_steps": 5,
+  "batch_size": 512,
+  "latent_dim": 8,
+  "hidden_dim": 64,
+  "learning_rate": 0.0001,
+  "gradient_penalty": 0.1,
+  "generated_values": 50000,
+  "diagnostic_auctions": 20000,
+  "seed": 20260716,
+  "device": "cpu"
+}
