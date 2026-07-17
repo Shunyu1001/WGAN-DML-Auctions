@@ -32,6 +32,10 @@ inference on a low-dimensional Myerson reserve-price parameter?
 - A shrinking-bandwidth path shows that first-order undersmoothing reduces the
   gap to the exact reserve but does not deliver uniform nominal coverage in the
   current sample range; aggressive shrinkage creates multiple roots.
+- A covariance-aware Richardson correction on the `n^(-0.2)` path reduces
+  exact-target bias and RMSE and raises coverage to 92.5 and 88.5 percent at
+  2,000 and 10,000 auctions. It improves inference but does not fully restore
+  nominal coverage.
 
 ## Open Theoretical Tasks
 
@@ -39,7 +43,8 @@ inference on a low-dimensional Myerson reserve-price parameter?
 - Derive an explicit second-order remainder bound near the reserve.
 - Separate inference for the regularized target from approximation to the exact
   Myerson reserve.
-- Derive bias-aware or higher-order inference for the exact reserve.
+- Bound the residual higher-order bias after Richardson correction and develop
+  a root-robust confidence set for the exact reserve.
 - Compare empirical-local, tail-weighted WGAN, and conditional local learners.
 
 ## Data Requirements

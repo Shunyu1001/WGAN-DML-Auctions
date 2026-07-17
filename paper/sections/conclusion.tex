@@ -16,5 +16,8 @@ nuisances remain necessary before taking this hybrid to an empirical auction
 application. The first bandwidth-path experiment also cautions against treating
 undersmoothing as automatic bias removal: slower paths retain regularization
 bias, while faster paths create multiple roots and high variance. The current
-credible claim is valid fixed-bandwidth inference for a regularized reserve;
-exact-reserve inference still needs bias-aware or higher-order methods.
+credible claim is valid fixed-bandwidth inference for a regularized reserve. A
+covariance-aware Richardson correction on the stable $n^{-0.2}$ path materially
+reduces exact-target bias and RMSE and raises coverage, but does not fully
+restore the nominal level. Exact-reserve inference therefore still needs a
+bound on residual higher-order bias and a root-robust confidence set.

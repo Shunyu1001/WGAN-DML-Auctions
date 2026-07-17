@@ -89,3 +89,39 @@ guarantee stable finite-sample root selection, especially because the maximum-
 bid CDF is small near the reserve. The simulation below reports both coverage
 of $\theta_{0,h_n}$ and coverage of $r_0$ rather than treating them as the same
 target.
+
+To remove the leading smoothing bias without forcing $h_n$ into the unstable
+region, suppose the selected population root admits the local expansion
+
+\begin{equation}
+\theta_{0,h}=r_0+b_2h^2+O(h^4).
+\end{equation}
+
+For a fixed ratio $\lambda>1$, define the Richardson estimator
+
+\begin{equation}
+\widehat r_{\mathrm R}
+=\frac{\lambda^2\widehat\theta_h-
+\widehat\theta_{\lambda h}}{\lambda^2-1}.
+\label{eq:richardson-reserve}
+\end{equation}
+
+The $O(h^2)$ term cancels in its population analogue. Both estimates use the
+same folds and observations, so their dependence must enter inference. If
+$\widehat\varphi_{i,h}$ and $\widehat\varphi_{i,\lambda h}$ are their estimated
+influence values, the corrected influence value is
+
+\begin{equation}
+\widehat\varphi_{i,\mathrm R}
+=\frac{\lambda^2\widehat\varphi_{i,h}-
+\widehat\varphi_{i,\lambda h}}{\lambda^2-1},
+\qquad
+\widehat{\mathrm{se}}(\widehat r_{\mathrm R})
+=\frac{\widehat{\mathrm{sd}}(\widehat\varphi_{i,\mathrm R})}{\sqrt n}.
+\end{equation}
+
+The implementation sets $\lambda=\sqrt{2}$, so
+$\widehat r_{\mathrm R}=2\widehat\theta_h-
+\widehat\theta_{\sqrt{2}h}$. It selects the smoother root first and uses it as
+the reference for the smaller-bandwidth root. This continuation rule reduces
+arbitrary root switching but does not eliminate multiple-root uncertainty.
