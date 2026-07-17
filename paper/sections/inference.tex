@@ -78,3 +78,14 @@ $(A_h,G_h)$. The oracle version supplies their population values from the known
 Monte Carlo DGP. Agreement between these two versions, together with failure of
 the WGAN version, isolates the problem in nuisance approximation rather than in
 equation~\eqref{eq:orthogonal-reserve-score}.
+
+Inference for the exact reserve adds a separate bandwidth problem. Under local
+smoothness, Gaussian regularization produces a leading approximation bias of
+order $h^2$, while the density component of the score has stochastic scale of
+order $(nh)^{-1/2}$. A heuristic undersmoothing requirement is therefore
+$nh^5\to0$, together with $nh\to\infty$. For a power rule $h_n\propto
+n^{-\alpha}$, this suggests $1/5<\alpha<1$. These rate inequalities do not
+guarantee stable finite-sample root selection, especially because the maximum-
+bid CDF is small near the reserve. The simulation below reports both coverage
+of $\theta_{0,h_n}$ and coverage of $r_0$ rather than treating them as the same
+target.

@@ -224,6 +224,58 @@ local score moments. The preferred baseline is a hybrid: use WGAN-GP for the
 full latent distribution and structural counterfactuals, but use dedicated
 training-fold local moments for reserve inference.
 
+\subsection{Shrinking bandwidth and the exact reserve}
+
+The previous experiment validates inference for a fixed regularized target.
+I now set
+\begin{equation}
+h_n=0.15\left(\frac{n}{500}\right)^{-\alpha},
+\qquad \alpha\in\{0,0.2,0.35,0.5\},
+\end{equation}
+and repeat the empirical-local estimator 200 times. The comparison holds the
+data seeds and score construction fixed. It reports coverage of both
+$r_{h_n}$ and the exact reserve $r_0$, so decreasing regularization bias cannot
+be confused with improved score estimation.
+
+\begin{table}[htbp]
+\centering
+\scriptsize
+\caption{Shrinking-bandwidth paths for exact-reserve inference}
+\label{tab:bandwidth-path}
+\resizebox{\textwidth}{!}{\input{tables/bandwidth_path.tex}}
+\begin{minipage}{0.96\textwidth}
+\footnotesize
+\emph{Notes:} Two hundred common-seed repetitions per sample size. ``Fixed''
+sets $h_n=0.15$. Coverage columns refer to nominal 95 percent
+influence-function intervals. All paths share $h_{500}=0.15$.
+\end{minipage}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{bandwidth_path.png}
+\caption{Exact-target coverage and RMSE along shrinking-bandwidth paths}
+\label{fig:bandwidth-path}
+\end{figure}
+
+Table~\ref{tab:bandwidth-path} shows why fixed-$h$ and exact-target inference
+must remain distinct. Fixed-$h$ coverage of $r_0$ is 63.5 percent at $n=500$,
+1 percent at $n=2000$, and zero at $n=10000$, even though its coverage of
+$r_h$ approaches 95 percent. The $n^{-0.2}$ rule reduces exact-target RMSE to
+0.0327 at $n=10000$, the smallest value among the four paths there, but exact
+coverage is only 60 percent.
+
+The more aggressive $n^{-0.35}$ rule raises exact-target coverage to 82 percent
+at both $n=2000$ and $n=10000$, still below nominal. At $n=10000$, 10.5 percent
+of samples have multiple score roots. Shrinking at $n^{-0.5}$ is worse: the
+multiple-root rate reaches 69 percent, exact-target RMSE rises to 0.0475, and
+coverage falls to 73 percent. Figure~\ref{fig:bandwidth-path} summarizes the
+bias-variance and root-selection trade-off. No tested power rule simultaneously
+achieves low RMSE, nominal coverage of $r_0$, and stable roots in this sample
+range. Fixed-bandwidth inference for $r_h$ is therefore the current defensible
+baseline; exact-reserve inference requires explicit bias correction or a
+confidence set that accounts for regularization and root uncertainty.
+
 \subsection{Next robustness experiments}
 
 The next experiments will vary the auction sample size, number of bidders,

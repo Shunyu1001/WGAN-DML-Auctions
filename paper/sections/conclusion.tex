@@ -13,4 +13,8 @@ moments attain near-oracle RMSE and coverage, so WGAN-GP should estimate the
 global structural distribution while a dedicated observable local learner
 supplies the reserve score. Shrinking-bandwidth theory and conditional local
 nuisances remain necessary before taking this hybrid to an empirical auction
-application.
+application. The first bandwidth-path experiment also cautions against treating
+undersmoothing as automatic bias removal: slower paths retain regularization
+bias, while faster paths create multiple roots and high variance. The current
+credible claim is valid fixed-bandwidth inference for a regularized reserve;
+exact-reserve inference still needs bias-aware or higher-order methods.

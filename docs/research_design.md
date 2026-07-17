@@ -29,6 +29,9 @@ inference on a low-dimensional Myerson reserve-price parameter?
 - A 200-repetition ablation shows that training-fold empirical local moments
   restore near-oracle RMSE and coverage. The preferred baseline is therefore a
   hybrid rather than a WGAN-only score nuisance.
+- A shrinking-bandwidth path shows that first-order undersmoothing reduces the
+  gap to the exact reserve but does not deliver uniform nominal coverage in the
+  current sample range; aggressive shrinkage creates multiple roots.
 
 ## Open Theoretical Tasks
 
@@ -36,8 +39,8 @@ inference on a low-dimensional Myerson reserve-price parameter?
 - Derive an explicit second-order remainder bound near the reserve.
 - Separate inference for the regularized target from approximation to the exact
   Myerson reserve.
-- Study a shrinking-bandwidth sequence and compare empirical-local,
-  tail-weighted WGAN, and conditional local learners.
+- Derive bias-aware or higher-order inference for the exact reserve.
+- Compare empirical-local, tail-weighted WGAN, and conditional local learners.
 
 ## Data Requirements
 
