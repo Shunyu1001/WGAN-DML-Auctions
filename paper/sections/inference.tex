@@ -70,3 +70,11 @@ the conventional influence-function standard error. Validity still requires
 the second-order nuisance remainder and generator simulation error to be
 smaller than sampling error. The pilot below directly tests, rather than
 assumes, this requirement.
+
+To diagnose a failure of the WGAN-based nuisance, I also evaluate two versions
+of the identical score. The empirical-local version replaces generated maxima
+with observed maxima from the corresponding training fold when estimating
+$(A_h,G_h)$. The oracle version supplies their population values from the known
+Monte Carlo DGP. Agreement between these two versions, together with failure of
+the WGAN version, isolates the problem in nuisance approximation rather than in
+equation~\eqref{eq:orthogonal-reserve-score}.

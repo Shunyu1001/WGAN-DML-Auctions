@@ -69,6 +69,19 @@ influence-function correction. The fixed-bandwidth target and the exact
 Myerson reserve are reported separately; the current five-seed pilot is a
 diagnostic implementation and does not establish valid asymptotic coverage.
 
+To isolate whether the score or the WGAN nuisance causes the poor coverage,
+run the local-nuisance ablation:
+
+```bash
+python3 code/local_nuisance_ablation.py --reps 200 --folds 3 --bandwidth 0.15
+```
+
+This compares the stored WGAN-DML pilot with (i) score nuisances estimated
+directly from maximum bids in each training fold and (ii) oracle nuisances from
+the known Monte Carlo DGP. The empirical-local version nearly matches the
+oracle, locating the failure in the WGAN's local tail approximation rather than
+in the orthogonal-score algebra.
+
 ## Current Estimation Plan
 
 1. Establish identification from observed order statistics under a symmetric
@@ -77,7 +90,7 @@ diagnostic implementation and does not establish valid asymptotic coverage.
 3. Implement a cross-fitted plug-in estimator as the computational baseline.
 4. Evaluate an observation-level orthogonal score for a regularized
    reserve-price parameter.
-5. Diagnose whether local nuisance rates are strong enough for the
-   orthogonal remainder and confidence intervals to be reliable.
+5. Use oracle and empirical-local ablations to diagnose whether the WGAN's
+   local nuisance rates are strong enough for reliable inference.
 
 Raw or restricted data should never be committed to the repository.

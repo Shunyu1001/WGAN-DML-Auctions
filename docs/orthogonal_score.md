@@ -53,3 +53,8 @@ and nominal confidence intervals undercover the fixed-bandwidth target.
 This is a substantive diagnostic, not a reason to relabel fold averaging as
 DML. The next estimator should improve local tail nuisance learning (or exploit
 additional order statistics) before claiming valid inference.
+
+The follow-up oracle and empirical-local ablation confirms this diagnosis. When
+the same score uses local moments estimated directly from training-fold maximum
+bids, its RMSE and coverage nearly match an oracle supplied with population
+moments. See `docs/local_nuisance_ablation.md`.

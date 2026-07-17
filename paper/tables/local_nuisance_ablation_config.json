@@ -1,0 +1,20 @@
+{
+  "bidders": 5,
+  "sample_sizes": [
+    500,
+    2000,
+    10000
+  ],
+  "repetitions": 200,
+  "folds": 3,
+  "bandwidth": 0.15,
+  "theta_lower": 0.45,
+  "theta_upper": 1.15,
+  "theta_grid_size": 141,
+  "jacobian_step": 0.0025,
+  "target_integration_draws": 100000,
+  "seed": 20260716,
+  "regularized_target": 0.831833385726398,
+  "target_smoothed_maximum_cdf": 0.013795524034522229,
+  "target_smoothed_maximum_density": 0.11238612585788248
+}

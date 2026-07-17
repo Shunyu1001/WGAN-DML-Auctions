@@ -6,6 +6,11 @@ auction policy parameter. The pilot delivers a deliberately cautionary result:
 good global fit and formal Neyman orthogonality do not ensure valid inference
 when the reserve depends on a weakly observed tail and the local nuisance error
 remains large. Fold averaging is accurate in the baseline design, while the
-current influence correction overadjusts and its nominal intervals undercover.
-The next step is therefore to strengthen reserve-local nuisance learning or the
-observation model before treating the orthogonal approximation as reliable.
+WGAN-based influence correction overadjusts and its nominal intervals
+undercover. An oracle and empirical-local ablation changes the conclusion from
+a generic failure to a precise design recommendation: training-fold local
+moments attain near-oracle RMSE and coverage, so WGAN-GP should estimate the
+global structural distribution while a dedicated observable local learner
+supplies the reserve score. Shrinking-bandwidth theory and conditional local
+nuisances remain necessary before taking this hybrid to an empirical auction
+application.

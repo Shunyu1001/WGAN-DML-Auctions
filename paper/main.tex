@@ -39,7 +39,9 @@ orthogonal WGAN-DML estimator in terms of bias, root mean squared error,
 confidence-interval coverage, and revenue regret. The first orthogonal-score
 pilot also shows that formal orthogonality is not sufficient when the learned
 local tail moments converge too slowly: the second-order remainder can dominate
-the nominal influence-function approximation.
+the nominal influence-function approximation. Oracle and training-fold
+empirical ablations restore near-nominal coverage, locating the failure in the
+WGAN local nuisance approximation rather than the score construction.
 \end{abstract}
 
 \input{sections/introduction}
