@@ -4,6 +4,12 @@ Partition the auction sample into folds $I_1,\ldots,I_K$. For each fold $k$,
 train the WGAN-GP and estimate all nuisance functions using observations outside
 $I_k$. Denote the resulting nuisance estimate by $\widehat\eta^{(-k)}$.
 
+Sample splitting by itself is not sufficient for DML in this application. The
+fold-averaged plug-in $\overline r_{\mathrm{FA}}$ introduced in Section~5 uses
+the same training partitions but does not evaluate an observation-level score
+on $I_k$. It is therefore an ensemble benchmark. Cross-fitting acquires its
+inferential role only when each held-out observation enters the score below.
+
 Let $m_h(\theta,\eta)$ denote the regularized reserve-price first-order
 condition. The proposed score takes the form
 \begin{equation}
