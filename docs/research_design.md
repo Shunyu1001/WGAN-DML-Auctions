@@ -36,6 +36,11 @@ inference on a low-dimensional Myerson reserve-price parameter?
   exact-target bias and RMSE and raises coverage to 92.5 and 88.5 percent at
   2,000 and 10,000 auctions. It improves inference but does not fully restore
   nominal coverage.
+- A three-bandwidth residual-bias envelope raises exact-reserve coverage to
+  96.5 percent along the stable `n^(-0.2)` path. At `n=10,000` on the
+  `n^(-0.35)` path, uniting every continuation-root interval leaves coverage at
+  91.5 percent while doubling average length, so omitted roots are not the main
+  remaining problem.
 
 ## Open Theoretical Tasks
 
@@ -43,8 +48,8 @@ inference on a low-dimensional Myerson reserve-price parameter?
 - Derive an explicit second-order remainder bound near the reserve.
 - Separate inference for the regularized target from approximation to the exact
   Myerson reserve.
-- Bound the residual higher-order bias after Richardson correction and develop
-  a root-robust confidence set for the exact reserve.
+- Prove conditions under which the empirical three-bandwidth envelope is an
+  honest bias bound and the root union has uniform coverage.
 - Compare empirical-local, tail-weighted WGAN, and conditional local learners.
 
 ## Data Requirements

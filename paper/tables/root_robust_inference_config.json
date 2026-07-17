@@ -1,0 +1,23 @@
+{
+  "bidders": 5,
+  "sample_sizes": [
+    500,
+    2000,
+    10000
+  ],
+  "repetitions": 200,
+  "folds": 3,
+  "reference_bandwidth": 0.15,
+  "reference_sample_size": 500,
+  "exponents": [
+    0.2,
+    0.35
+  ],
+  "bandwidth_ratio": 1.4142135623730951,
+  "theta_lower": 0.4,
+  "theta_upper": 1.2,
+  "theta_grid_size": 161,
+  "jacobian_step": 0.0025,
+  "target_integration_draws": 100000,
+  "seed": 20260716
+}

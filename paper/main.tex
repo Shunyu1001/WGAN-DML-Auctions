@@ -46,8 +46,11 @@ shrinking-bandwidth experiment reduces regularization bias but reveals a
 second trade-off: aggressive undersmoothing produces high variance, multiple
 score roots, and continued undercoverage of the exact reserve. A
 covariance-aware Richardson correction substantially improves exact-target
-RMSE and coverage on a stable bandwidth path, but residual undercoverage keeps
-the fixed-bandwidth regularized target as the strongest inferential claim.
+RMSE and coverage on a stable bandwidth path. A three-bandwidth residual-bias
+envelope then restores 96.5 percent exact-reserve coverage on that path, while
+a union over all root chains shows that omitted roots are not the main source
+of failure under aggressive undersmoothing. The fixed-bandwidth regularized
+target remains the strongest formally justified inferential claim.
 \end{abstract}
 
 \input{sections/introduction}

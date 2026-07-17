@@ -106,6 +106,20 @@ and `sqrt(2) * h`. For the `n^(-0.2)` path, the correction lowers exact-target
 RMSE and raises coverage substantially without introducing multiple roots,
 although coverage remains below 95 percent at the largest sample size.
 
+The three-bandwidth follow-up estimates the remaining higher-order bias and
+retains every empirical root-continuation chain:
+
+```bash
+python3 code/root_robust_inference.py --reps 200 --exponents 0.2 0.35
+```
+
+On the stable `n^(-0.2)` path, the residual-bias envelope raises exact-reserve
+coverage to 96.5 percent at every reported sample size. On the aggressive
+path, taking the union over all roots greatly increases set length without
+raising coverage, showing that root omission is not the main remaining failure.
+This is reported as a finite-sample diagnostic rather than an honest uniform
+confidence set.
+
 ## Current Estimation Plan
 
 1. Establish identification from observed order statistics under a symmetric
@@ -118,7 +132,9 @@ although coverage remains below 95 percent at the largest sample size.
    local nuisance rates are strong enough for reliable inference.
 6. Separate fixed-bandwidth inference from bias-aware inference on the exact
    Myerson reserve.
-7. Use covariance-aware Richardson correction as the exact-target prototype
-   and quantify its remaining higher-order and root-selection error.
+7. Use covariance-aware Richardson correction plus a three-bandwidth
+   residual-bias envelope as the exact-target prototype.
+8. Enumerate root-continuation chains and report their interval union whenever
+   undersmoothing creates multiple roots.
 
 Raw or restricted data should never be committed to the repository.

@@ -324,6 +324,58 @@ percent coverage at $n=10000$ remains below nominal. This points to residual
 $O(h^4)$ bias, nonlinear root selection, or non-Gaussian score behavior as the
 next inferential problem.
 
+\subsection{Residual-bias envelope and root-robust set}
+
+I separate those explanations using the three-bandwidth construction in
+equations~\eqref{eq:residual-bias-bound}--\eqref{eq:bias-envelope}. The first
+row for each design is the covariance-aware Richardson Wald interval above.
+The second widens the selected-root interval by the estimated higher-order
+bias bound. The third takes the union over all empirical root-continuation
+chains. All three use the same 200 data seeds and $\lambda=\sqrt{2}$.
+
+\begin{table}[htbp]
+\centering
+\scriptsize
+\caption{Three-bandwidth residual-bias and root-robust confidence sets}
+\label{tab:root-robust-inference}
+\resizebox{\textwidth}{!}{\input{tables/root_robust_inference.tex}}
+\begin{minipage}{0.96\textwidth}
+\footnotesize
+\emph{Notes:} ``Selected-root bias envelope'' adds
+equation~\eqref{eq:residual-bias-bound} to both ends of the Richardson Wald
+interval. ``Root-robust'' is the union across all fine-bandwidth roots and
+their nearest-root continuation chains. Mean length is the total length of
+the union, excluding gaps. Multi-root records more than one grid crossing at
+any of the three bandwidths. The exponents coincide at $n=500$, so that design
+is shown once.
+\end{minipage}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{root_robust_inference.png}
+\caption{Coverage and length after residual-bias and root protection}
+\label{fig:root-robust-inference}
+\end{figure}
+
+On the stable $n^{-0.2}$ path, the selected-root bias envelope attains 96.5
+percent exact-reserve coverage at all three sample sizes. At $n=10000$, this
+raises coverage from 88.5 percent for the Richardson Wald interval while
+increasing mean length from 0.0998 to 0.1279. Every replication has exactly one
+root, so the selected-root and root-robust sets coincide. This evidence assigns
+the stable-path undercoverage primarily to remaining higher-order bias or
+uncertainty in its estimate, rather than root selection.
+
+The aggressive $n^{-0.35}$ path remains problematic. At $n=10000$, 30.5
+percent of samples have multiple roots. The bias envelope raises coverage from
+84.0 to 91.5 percent, still below nominal. Taking the union over all root chains
+does not improve coverage further, but doubles mean set length from 0.2051 to
+0.4064. Thus the omitted roots are mostly economically remote alternatives,
+not the source of the remaining coverage failures. The finite-sample evidence
+favors the $n^{-0.2}$ three-bandwidth envelope as the exact-target prototype,
+while retaining fixed-bandwidth inference as the formal baseline until the
+bias expansion and joint root process receive theoretical guarantees.
+
 \subsection{Next robustness experiments}
 
 The next experiments will vary the auction sample size, number of bidders,
