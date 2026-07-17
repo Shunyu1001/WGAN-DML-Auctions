@@ -120,6 +120,19 @@ raising coverage, showing that root omission is not the main remaining failure.
 This is reported as a finite-sample diagnostic rather than an honest uniform
 confidence set.
 
+The external-validity experiment changes bidder count and valuation shape
+while holding the formal fixed-bandwidth procedure fixed:
+
+```bash
+python3 code/external_validity_monte_carlo.py --reps 200
+```
+
+It crosses 3, 5, and 10 bidders with baseline lognormal, heavy-tail lognormal,
+and two-component mixture distributions at 2,000 and 10,000 auctions. The
+output separates coverage and RMSE for the regularized target from error
+relative to the exact reserve, and compares exact-reserve RMSE with direct
+order-statistic inversion.
+
 ## Current Estimation Plan
 
 1. Establish identification from observed order statistics under a symmetric
@@ -136,6 +149,8 @@ confidence set.
    residual-bias envelope as the exact-target prototype.
 8. Enumerate root-continuation chains and report their interval union whenever
    undersmoothing creates multiple roots.
+9. Stress-test the fixed-bandwidth claim across bidder counts, tail thickness,
+   and a mixture distribution without adding estimator variants.
 
 Raw or restricted data should never be committed to the repository.
 
