@@ -1,0 +1,15 @@
+\begin{tabular}{rlrrrrrr}
+\toprule
+$n$ & Score nuisance & Reps & Mean $\widehat r_h$ & Bias to $r_h$ & RMSE to $r_h$ & Mean SE & Coverage \\
+\midrule
+500 & WGAN generated & 5 & 0.8623 & 0.0305 & 0.1054 & 0.0374 & 0.4000 \\
+500 & Training-fold empirical & 200 & 0.8314 & -0.0005 & 0.0350 & 0.0335 & 0.9000 \\
+500 & Oracle & 200 & 0.8272 & -0.0046 & 0.0311 & 0.0304 & 0.9400 \\
+2000 & WGAN generated & 5 & 0.8749 & 0.0430 & 0.0468 & 0.0269 & 0.6000 \\
+2000 & Training-fold empirical & 200 & 0.8344 & 0.0026 & 0.0171 & 0.0172 & 0.9450 \\
+2000 & Oracle & 200 & 0.8329 & 0.0011 & 0.0164 & 0.0167 & 0.9600 \\
+10000 & WGAN generated & 5 & 0.8982 & 0.0664 & 0.0688 & 0.0115 & 0.0000 \\
+10000 & Training-fold empirical & 200 & 0.8334 & 0.0016 & 0.0079 & 0.0076 & 0.9500 \\
+10000 & Oracle & 200 & 0.8332 & 0.0014 & 0.0078 & 0.0075 & 0.9550 \\
+\bottomrule
+\end{tabular}

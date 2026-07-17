@@ -26,6 +26,9 @@ inference on a low-dimensional Myerson reserve-price parameter?
   implemented in `code/orthogonal_wgan_dml.py`.
 - The first pilot rejects the working assumption that global WGAN fit is enough
   for the local nuisance rates required by orthogonal inference.
+- A 200-repetition ablation shows that training-fold empirical local moments
+  restore near-oracle RMSE and coverage. The preferred baseline is therefore a
+  hybrid rather than a WGAN-only score nuisance.
 
 ## Open Theoretical Tasks
 
@@ -33,7 +36,8 @@ inference on a low-dimensional Myerson reserve-price parameter?
 - Derive an explicit second-order remainder bound near the reserve.
 - Separate inference for the regularized target from approximation to the exact
   Myerson reserve.
-- Study a shrinking-bandwidth sequence and local tail-weighted nuisance learner.
+- Study a shrinking-bandwidth sequence and compare empirical-local,
+  tail-weighted WGAN, and conditional local learners.
 
 ## Data Requirements
 

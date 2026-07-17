@@ -177,6 +177,53 @@ therefore motivates local tail-weighting, additional observed order statistics,
 or a stronger structural restriction before using the influence-function
 standard errors for inference.
 
+\subsection{Oracle and empirical-local nuisance ablation}
+
+I next hold the score and bandwidth fixed and change only its nuisance inputs.
+The empirical-local estimator calculates $(A_h,G_h)$ directly from maximum bids
+in each training fold. The oracle supplies their population values from the
+known DGP. Both designs use 200 repetitions per sample size; the WGAN column
+retains the five costly training seeds above.
+
+\begin{table}[htbp]
+\centering
+\scriptsize
+\caption{Local-nuisance ablation for the orthogonal reserve score}
+\label{tab:local-nuisance-ablation}
+\resizebox{\textwidth}{!}{\input{tables/local_nuisance_ablation.tex}}
+\begin{minipage}{0.96\textwidth}
+\footnotesize
+\emph{Notes:} The target is $r_h=0.8318$ and $h=0.15$. WGAN results use five
+repetitions; training-fold empirical and oracle results use 200. Coverage is
+for nominal 95 percent influence-function intervals for $r_h$.
+\end{minipage}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{local_nuisance_ablation.png}
+\caption{Coverage and RMSE under alternative local score nuisances}
+\label{fig:local-nuisance-ablation}
+\end{figure}
+
+Table~\ref{tab:local-nuisance-ablation} shows that the empirical-local score
+nearly reproduces the oracle. Its coverage is 90.0, 94.5, and 95.0 percent as
+$n$ increases, compared with 94.0, 96.0, and 95.5 percent under the oracle.
+Its RMSE relative to $r_h$ is 0.0350, 0.0171, and 0.0079; the oracle values are
+0.0311, 0.0164, and 0.0078. Every replication has a score root on the search
+grid. Figure~\ref{fig:local-nuisance-ablation} contrasts this convergence with
+the persistent WGAN-nuisance error.
+
+The ablation also quantifies the information problem. The sample contains on
+average only 1.05, 5.04, and 25.69 observed maxima at or below the exact reserve
+for $n=500,2000,10000$. Nevertheless, direct training-fold moments become
+accurate enough under the fixed bandwidth. Thus the earlier failure is not a
+failure of the orthogonal algebra. It is evidence that a globally trained WGAN
+is an unnecessarily indirect and currently inaccurate estimator of observable
+local score moments. The preferred baseline is a hybrid: use WGAN-GP for the
+full latent distribution and structural counterfactuals, but use dedicated
+training-fold local moments for reserve inference.
+
 \subsection{Next robustness experiments}
 
 The next experiments will vary the auction sample size, number of bidders,

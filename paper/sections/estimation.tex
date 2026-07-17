@@ -29,6 +29,13 @@ score. In the DML pilot, nuisance training is repeated separately within each
 training fold and the score is evaluated only on the corresponding held-out
 fold.
 
+Under the baseline without covariates, the score's two local moments are also
+directly estimable from observed maximum bids. I therefore report a hybrid
+ablation in which WGAN-GP remains the structural estimator of the full latent
+distribution, but $(A_h,G_h)$ in the reserve score are estimated empirically on
+each training fold. This separates the value of global structural learning
+from the local nuisance requirement for reserve inference.
+
 As a computational precursor, I also report a fold-averaged plug-in. Partition
 the auctions into $K$ folds and train $\widehat F^{(-k)}$ outside fold $k$.
 Define
