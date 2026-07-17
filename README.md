@@ -80,7 +80,10 @@ This compares the stored WGAN-DML pilot with (i) score nuisances estimated
 directly from maximum bids in each training fold and (ii) oracle nuisances from
 the known Monte Carlo DGP. The empirical-local version nearly matches the
 oracle, locating the failure in the WGAN's local tail approximation rather than
-in the orthogonal-score algebra.
+in the orthogonal-score algebra. The paper now also gives a primitive fixed-
+bandwidth result for this learner: bounded Gaussian kernel classes and local
+CDF overlap imply a uniform nuisance rate of
+`O_p(sqrt(log(n) / n))`, which is sufficient for the orthogonal expansion.
 
 The fixed-bandwidth target differs from the exact Myerson reserve. The
 shrinking-bandwidth experiment studies this approximation step:
@@ -151,6 +154,9 @@ order-statistic inversion.
    undersmoothing creates multiple roots.
 9. Stress-test the fixed-bandwidth claim across bidder counts, tail thickness,
    and a mixture distribution without adding estimator variants.
+10. Verify the empirical-local nuisance rate from primitive fixed-bandwidth
+    conditions and state separately which WGAN and numerical conditions remain
+    high-level.
 
 Raw or restricted data should never be committed to the repository.
 

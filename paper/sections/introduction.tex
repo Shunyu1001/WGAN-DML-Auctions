@@ -33,7 +33,10 @@ generator respects the independent-private-values structure before applying
 the same maximum operator observed in the data. Second, it derives an
 observation-level orthogonal score for a smoothed reserve and gives
 conditions for cross-fitted asymptotic linearity and valid fixed-bandwidth
-inference. A covariance-aware Richardson combination provides a separate route
+inference. For the empirical-local learner, primitive fixed-bandwidth empirical-
+process conditions imply the required nuisance rate; the corresponding WGAN
+rate remains an explicit condition to be diagnosed. A covariance-aware
+Richardson combination provides a separate route
 from that regularized target to the exact reserve. Third, it uses nested Monte
 Carlo ablations to distinguish failures of global WGAN learning, local nuisance
 rates, smoothing bias, and empirical root selection rather than attributing all
@@ -43,7 +46,9 @@ The results sharpen the role of WGAN-GP in this problem. It reproduces the
 observable maximum distribution reasonably well but misses local tail moments
 that matter for the reserve. Replacing only those score nuisances with
 training-fold empirical moments restores near-oracle coverage for the
-fixed-bandwidth target. For the exact reserve, a stable $n^{-0.2}$ bandwidth
+fixed-bandwidth target, and the paper verifies the required rate for that
+learner under a local overlap condition. For the exact reserve, a stable
+$n^{-0.2}$ bandwidth
 path combined with Richardson extrapolation reduces bias, and a
 three-bandwidth residual-bias envelope attains 96.5 percent coverage in the
 reported design. More aggressive shrinkage creates multiple roots; taking the
