@@ -1,4 +1,51 @@
 \section{Additional Derivations and Results}
 
-The appendix will contain proofs, influence-function calculations, additional
-simulation designs, hyperparameter diagnostics, and robustness checks.
+\subsection{Proof of Theorem~\ref{thm:fixed-h-dml}}
+
+Let $\widehat\Psi_n(\theta,\eta)$ denote the cross-fitted sample moment. Expand
+the moment around the population pair $\theta_{0,h}$ and $\eta_{0,h}$ to
+obtain
+\begin{equation}
+0=\widehat\Psi_n(\theta_{0,h},\eta_{0,h})
++J_h(\widehat\theta_h-\theta_{0,h})+R_{1n}+R_{2n},
+\end{equation}
+where $R_{1n}$ is the empirical-process effect of replacing $\eta_{0,h}$ by
+the fold-specific nuisance estimate and $R_{2n}$ is its population remainder.
+Conditional on the training sample, cross-fitting makes the held-out score
+independent of the nuisance estimate. Stochastic equicontinuity and consistency
+therefore imply $R_{1n}=o_p(n^{-1/2})$. Neyman orthogonality sets the first
+Gateaux derivative of the population score to zero. The bounded second
+derivative in Assumption~\ref{ass:fixed-h} then gives
+\begin{equation}
+|R_{2n}|\lesssim_p \rho_n^2=o_p(n^{-1/2}).
+\end{equation}
+Root consistency permits replacement of the intermediate Jacobian by $J_h$.
+Rearranging yields equation~\eqref{eq:fixed-h-linearization}. The i.i.d. central
+limit theorem applies to the oracle score by the $2+\delta$ moment condition.
+The same expansion and a law of large numbers give consistency of the empirical
+influence-function variance. Slutsky's theorem completes the proof.
+
+\subsection{Proof of Proposition~\ref{prop:richardson-exact}}
+
+The population Richardson combination satisfies
+\begin{align}
+r_{\mathrm R}(h)
+&=\frac{\lambda^2\theta_{0,h}-\theta_{0,\lambda h}}
+{\lambda^2-1}\\
+&=r_0-\lambda^2b_4h^4+o(h^4),
+\end{align}
+because the $b_2h^2$ terms cancel. Joint asymptotic linearity at the two
+bandwidths implies
+\begin{equation}
+\widehat r_{\mathrm R}-r_{\mathrm R}(h_n)
+=\frac{1}{n}\sum_{i=1}^n
+\frac{\lambda^2\varphi_{i,h_n}-\varphi_{i,\lambda h_n}}
+{\lambda^2-1}
++o_p(s_{\mathrm R,n}/\sqrt n).
+\end{equation}
+The assumed triangular-array central limit theorem and covariance consistency
+studentize this sum. Condition~\eqref{eq:richardson-rate} makes the remaining
+$O(h_n^4)$ population bias negligible relative to
+$s_{\mathrm R,n}/\sqrt n$. If $s_{\mathrm R,n}\asymp h_n^{-1/2}$, this
+condition is $\sqrt{nh_n}\,h_n^4\to0$, equivalently $nh_n^9\to0$; the
+additional condition $nh_n\to\infty$ supplies increasing local information.

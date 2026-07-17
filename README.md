@@ -138,3 +138,6 @@ confidence set.
    undersmoothing creates multiple roots.
 
 Raw or restricted data should never be committed to the repository.
+
+The current submission priorities and the boundary between formal and
+diagnostic claims are tracked in `docs/submission_roadmap.md`.

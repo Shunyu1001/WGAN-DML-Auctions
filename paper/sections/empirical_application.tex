@@ -1,8 +1,25 @@
-\section{Empirical Application}
+\section{Empirical Scope and Implementation}
 
-The empirical application will require auction-level information sufficient to
-distinguish the winning bid, transaction price, bidder count, auction format,
-and reserve-price censoring. The preferred data contain repeated comparable
-auctions and observed bidder counts. This section will document institutional
-details, sample construction, identifying assumptions, and the interpretation
-of the estimated counterfactual reserve policy.
+The current paper is a methodological Monte Carlo study rather than an
+application to a proprietary auction data set. An empirical implementation
+requires auction-level information that distinguishes the highest submitted
+bid from the transaction price, records the bidder count and auction format,
+and identifies whether a posted reserve censored participation or sale. Repeated
+auctions must be comparable after conditioning on observed item and market
+characteristics.
+
+With those data, estimation proceeds within covariate cells or through
+conditional nuisance learners. Each training fold fits the structural
+distribution and the local score moments; held-out auctions enter only the
+orthogonal score. Bidder counts either index separate observation maps or enter
+the structural simulator. The fixed-bandwidth target should be reported first,
+followed by the bandwidth path, root count, and bias-aware exact-reserve
+interval. Counterfactual revenue calculations use the global structural fit,
+whereas uncertainty for the reserve uses the local score learner.
+
+The maintained identification assumptions exclude endogenous entry,
+unobserved auction heterogeneity correlated with bidder values, affiliated
+private values, and confusion between the winning bid and transaction price.
+An application lacking information to address these issues would not validate
+the baseline model merely by matching the marginal distribution of observed
+prices.
