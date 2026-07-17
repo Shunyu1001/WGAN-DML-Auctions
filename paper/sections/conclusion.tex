@@ -19,5 +19,11 @@ bias, while faster paths create multiple roots and high variance. The current
 credible claim is valid fixed-bandwidth inference for a regularized reserve. A
 covariance-aware Richardson correction on the stable $n^{-0.2}$ path materially
 reduces exact-target bias and RMSE and raises coverage, but does not fully
-restore the nominal level. Exact-reserve inference therefore still needs a
-bound on residual higher-order bias and a root-robust confidence set.
+restore the nominal level. A three-bandwidth residual-bias envelope raises
+exact-reserve coverage to 96.5 percent throughout that path. Enumerating and
+uniting all continuation-root intervals does not further change coverage, but
+becomes very costly under aggressive undersmoothing. This locates the stable-
+path failure in residual smoothing bias rather than root omission and provides
+a useful exact-target prototype. It remains a diagnostic confidence set rather
+than a uniform theorem, so the fixed-bandwidth regularized target is still the
+paper's strongest formally justified inferential claim.

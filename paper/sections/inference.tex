@@ -125,3 +125,46 @@ $\widehat r_{\mathrm R}=2\widehat\theta_h-
 \widehat\theta_{\sqrt{2}h}$. It selects the smoother root first and uses it as
 the reference for the smaller-bandwidth root. This continuation rule reduces
 arbitrary root switching but does not eliminate multiple-root uncertainty.
+
+The remaining $O(h^4)$ term can be diagnosed with a third bandwidth. Strengthen
+the local expansion to
+\begin{equation}
+\theta_{0,h}=r_0+b_2h^2+b_4h^4+O(h^6)
+\end{equation}
+and let $\widehat r_{\mathrm R}(h)$ denote
+equation~\eqref{eq:richardson-reserve}. The adjacent extrapolation is
+$\widehat r_{\mathrm R}(\lambda h)$, constructed from $\lambda h$ and
+$\lambda^2h$. Since
+\begin{equation}
+r_{\mathrm R}(\lambda h)-r_{\mathrm R}(h)
+=(\lambda^4-1)\{r_{\mathrm R}(h)-r_0\}+O(h^6),
+\end{equation}
+the absolute residual-bias diagnostic is
+\begin{equation}
+\widehat B_h=
+\frac{|\widehat D_h|+1.96\,\widehat{\mathrm{se}}(\widehat D_h)}
+{\lambda^4-1},
+\qquad
+\widehat D_h=\widehat r_{\mathrm R}(\lambda h)
+-\widehat r_{\mathrm R}(h).
+\label{eq:residual-bias-bound}
+\end{equation}
+The standard error of $\widehat D_h$ again combines observation-level
+influence values across all three bandwidths and therefore retains their
+covariance. I report the bias-envelope interval
+\begin{equation}
+\left[\widehat r_{\mathrm R}(h)-1.96\widehat{\mathrm{se}}_{\mathrm R}
+-\widehat B_h,\;
+\widehat r_{\mathrm R}(h)+1.96\widehat{\mathrm{se}}_{\mathrm R}
++\widehat B_h\right].
+\label{eq:bias-envelope}
+\end{equation}
+
+For root robustness, I enumerate every grid crossing at $h$, connect each to
+the nearest root at $\lambda h$ and then $\lambda^2h$, construct
+equation~\eqref{eq:bias-envelope} for every continuation chain, and take the
+union of those intervals. This retains disconnected components rather than
+silently selecting one root. The procedure is a finite-sample diagnostic, not
+an honest uniform confidence set: its interpretation requires a stable even-
+order bias expansion, adequate grid coverage, and reliable local Gaussian
+approximations along each root chain.
