@@ -20,6 +20,19 @@ reserve-price parameter.
 The main LaTeX document is `paper/main.tex`. In Overleaf, select this file as
 the project's Main document if it is not detected automatically.
 
+For double-blind review, compile `paper/main_anonymous.tex`. It suppresses the
+author name and public repository URL while reusing the same manuscript source:
+
+```bash
+cd paper
+latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+latexmk -pdf -interaction=nonstopmode -halt-on-error main_anonymous.tex
+```
+
+The manuscript includes a concise abstract, keywords, JEL classifications, and
+a data-and-code availability statement. Journal positioning and the remaining
+formatting gap are recorded in `docs/submission_strategy.md`.
+
 ## Reproduce the First Monte Carlo Benchmark
 
 Install the Python dependencies and run:

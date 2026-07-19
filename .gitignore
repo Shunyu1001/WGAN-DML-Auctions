@@ -22,6 +22,7 @@ venv/
 *.synctex.gz
 *.toc
 paper/main.pdf
+paper/main_anonymous.pdf
 
 # Data and generated outputs
 data/raw/*
