@@ -30,20 +30,24 @@ The defensible contribution is a methodological and Monte Carlo paper:
   learner and an explicit cross-fitted remainder proof.
 - A submission-positioning memo, concise abstract, keywords, JEL codes,
   data-and-code statement, and a double-blind manuscript entry point.
+- A two-tier replication package with deterministic smoke checks, CI, an exact
+  environment record, a seed registry, and checksums for archived result files.
 
 ## Next Three Sprints
 
-1. **Replication audit:** run the documented commands from a clean environment,
-   record package versions and random seeds, and separate lightweight smoke
-   tests from the full Monte Carlo archive.
-2. **Adviser review:** obtain a read focused on contribution, maintained auction
+1. **Adviser review:** obtain a read focused on contribution, maintained auction
    assumptions, and whether the current-form computational journal target is
    appropriate.
-3. **Empirical bridge and upward submission:** if a suitable auction dataset
-   becomes available, document entry, observed order statistics, and bidder-count
-   variation before implementing the estimator. Do not weaken the current
-   identification claim to force an application.
+2. **Empirical bridge:** if a suitable auction dataset becomes available,
+   document entry, observed order statistics, and bidder-count variation before
+   implementing the estimator.
+3. **Submission pass:** incorporate adviser comments, apply the chosen journal
+   template and length limit, then freeze the anonymous manuscript and
+   replication archive. Do not weaken the current identification claim to force
+   an application.
 
-The external-validity, theory-audit, and first submission-packaging sprints are
-complete. The project should now move to a clean replication audit; additional
+The external-validity, theory-audit, first submission-packaging, and repository-
+level replication-audit sprints are complete. The expensive Monte Carlo archive
+has not been rerun in this audit; it is now documented separately from the fast
+checks. Adviser review is the next submission-critical step, and additional
 tuning of the same confidence interval has lower priority.

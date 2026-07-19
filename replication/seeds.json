@@ -1,0 +1,14 @@
+{
+  "policy": "Every experiment exposes a base seed in its dataclass and records it in the generated configuration JSON. Repetition, sample-size, and fold offsets are deterministic in the scripts.",
+  "scripts": {
+    "baseline_direct_inversion": {"base_seed": 20260716},
+    "wgan_gp_baseline": {"base_seed": 20260716},
+    "crossfit_wgan_pilot": {"base_seed": 20260716},
+    "orthogonal_wgan_dml": {"base_seed": 20260716},
+    "local_nuisance_ablation": {"base_seed": 20260716},
+    "bandwidth_path": {"base_seed": 20260716},
+    "bias_corrected_inference": {"base_seed": 20260716},
+    "root_robust_inference": {"base_seed": 20260716},
+    "external_validity_monte_carlo": {"base_seed": 20260717}
+  }
+}

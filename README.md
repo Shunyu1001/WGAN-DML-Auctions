@@ -13,6 +13,8 @@ reserve-price parameter.
 - `data/raw/`: original auction data; ignored by Git except for `.gitkeep`.
 - `data/processed/`: cleaned analysis data; ignored by Git except for `.gitkeep`.
 - `docs/`: research-design notes and implementation decisions.
+- `replication/`: environment, seed registry, artifact checksums, and the
+  two-tier replication guide.
 - `output/`: generated figures and tables; ignored by Git except for directory placeholders.
 
 ## Paper
@@ -32,6 +34,20 @@ latexmk -pdf -interaction=nonstopmode -halt-on-error main_anonymous.tex
 The manuscript includes a concise abstract, keywords, JEL classifications, and
 a data-and-code availability statement. Journal positioning and the remaining
 formatting gap are recorded in `docs/submission_strategy.md`.
+
+## Replication Audit
+
+After installing `requirements.txt`, run the non-destructive integrity check:
+
+```bash
+make smoke
+```
+
+It checks imports, recorded seeds, cross-fitting and score helpers, submission
+files, and SHA-256 checksums for every committed table and figure without
+training a WGAN or overwriting results. See `replication/README.md` for the full
+Monte Carlo order, environment record, reproducibility boundary, and manuscript
+build commands.
 
 ## Reproduce the First Monte Carlo Benchmark
 

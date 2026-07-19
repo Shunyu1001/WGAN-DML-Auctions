@@ -1,0 +1,231 @@
+{
+  "algorithm": "sha256",
+  "scope": [
+    "paper/tables/*.csv",
+    "paper/tables/*.json",
+    "paper/tables/*.tex",
+    "paper/figures/*.png"
+  ],
+  "files": [
+    {
+      "path": "paper/figures/bandwidth_path.png",
+      "bytes": 176128,
+      "sha256": "1add9c7f28748d4b57b0745de75e8e0a4694e83d0ab4019d055788876e69ea45"
+    },
+    {
+      "path": "paper/figures/baseline_direct_inversion.png",
+      "bytes": 108665,
+      "sha256": "dc59bb7bd5b72a189221044f93fa2ba4a6656e16d91930a38309ee2ca0eb0ba1"
+    },
+    {
+      "path": "paper/figures/bias_corrected_inference.png",
+      "bytes": 192218,
+      "sha256": "8e1f62cd0597b28e465da60305ad87949fb1f8cf1104d54ab2c6a4482f77ce58"
+    },
+    {
+      "path": "paper/figures/crossfit_wgan_pilot.png",
+      "bytes": 144496,
+      "sha256": "103dd03d34f9d51b81efa2296c7c932da22849a81b66c279f8de2f4878176c9c"
+    },
+    {
+      "path": "paper/figures/local_nuisance_ablation.png",
+      "bytes": 153318,
+      "sha256": "521fd7d41add9a4f17c9643d2f56fdff2404d31d3c2598a70f26b3bd38f5ed27"
+    },
+    {
+      "path": "paper/figures/orthogonal_wgan_dml.png",
+      "bytes": 126321,
+      "sha256": "e0cbb6b4b242514508a7e79adf5b8d366c9e981f55ffc3fadb625e6f486b4dad"
+    },
+    {
+      "path": "paper/figures/root_robust_inference.png",
+      "bytes": 182814,
+      "sha256": "f6089f6dfc9b7ed13a6aceab5561cd71a3b073c242b490f721feff15849c16ad"
+    },
+    {
+      "path": "paper/figures/wgan_gp_pilot.png",
+      "bytes": 137927,
+      "sha256": "c040c6b9d5bfdcbb21fe726f580ac4bf428b772694d8e99e906bac10759ef111"
+    },
+    {
+      "path": "paper/tables/bandwidth_path.csv",
+      "bytes": 2811,
+      "sha256": "6c2ec3b5a96f038801f238f16d89ad3758c1e6a4b432767e9d6a2b9f89da4656"
+    },
+    {
+      "path": "paper/tables/bandwidth_path.tex",
+      "bytes": 1188,
+      "sha256": "2c3e617287d6323844e2a86214b9c02ca3b43ef730e79e48528c680a23d816dd"
+    },
+    {
+      "path": "paper/tables/bandwidth_path_config.json",
+      "bytes": 386,
+      "sha256": "598dfc998312959826b430b6f495240d5f250513c863a42f9868a645af54803b"
+    },
+    {
+      "path": "paper/tables/bandwidth_path_raw.csv",
+      "bytes": 620648,
+      "sha256": "9f2a14fa1c2e2f2cb704a972f672095529036aeb739a9840fabd7c2de0ea29ad"
+    },
+    {
+      "path": "paper/tables/baseline_monte_carlo.csv",
+      "bytes": 836,
+      "sha256": "226a0b6e933c5fbfcc5548074774e9ebc0dd563146905ee670c0061d80f64aef"
+    },
+    {
+      "path": "paper/tables/baseline_monte_carlo.tex",
+      "bytes": 340,
+      "sha256": "66126141aa5b1e02f3618c36c74fc3de73458c36fb56bb9bf41f58c60df32c1d"
+    },
+    {
+      "path": "paper/tables/bias_corrected_inference.csv",
+      "bytes": 2509,
+      "sha256": "f9f7a69bf2f2231e113318f67ea34fcbaa2e2b27b5e6a7c90d29419c1938da55"
+    },
+    {
+      "path": "paper/tables/bias_corrected_inference.tex",
+      "bytes": 1112,
+      "sha256": "0efbfaacac4b873a49b697826a031339a392f73c871ee0a59d53704631aadff6"
+    },
+    {
+      "path": "paper/tables/bias_corrected_inference_config.json",
+      "bytes": 407,
+      "sha256": "023e6212c046eb40345a2f1f5a9b189c4b9da7e52f4c72d8cc83a4f0f83687c9"
+    },
+    {
+      "path": "paper/tables/bias_corrected_inference_raw.csv",
+      "bytes": 643938,
+      "sha256": "6ae22d3085e331bdaa31ab3c844644d7cd0ed86e2df5cdf9a9a5b396e74dcece"
+    },
+    {
+      "path": "paper/tables/crossfit_wgan_folds.csv",
+      "bytes": 5467,
+      "sha256": "fef7ef65303291c060d85c22cd13708eb848433cd05e75ad61f4cd17d1c1a5ed"
+    },
+    {
+      "path": "paper/tables/crossfit_wgan_pilot.csv",
+      "bytes": 1522,
+      "sha256": "22d9caafc5e1cb99c4c01348e1381f08862dd5f8cce91d6f95a3826cb9aca357"
+    },
+    {
+      "path": "paper/tables/crossfit_wgan_pilot.tex",
+      "bytes": 789,
+      "sha256": "842b54d4eef0ac87a37bc2ae32b4a337b67f36b5ba83a687085b1158a69dca74"
+    },
+    {
+      "path": "paper/tables/crossfit_wgan_pilot_config.json",
+      "bytes": 385,
+      "sha256": "1c64e04811142afc4c5574c62f3d6eb4afa195c099c2f775089a70b789c2afd5"
+    },
+    {
+      "path": "paper/tables/crossfit_wgan_pilot_raw.csv",
+      "bytes": 7739,
+      "sha256": "23e5b95ffbc93f1a73fd1136e0ab0bbf5a9d43aa8a5e4bdcfbd32e200364278c"
+    },
+    {
+      "path": "paper/tables/external_validity.csv",
+      "bytes": 3498,
+      "sha256": "8b6863a36a8c4f9ee2f029d34febefacf6db955dba312b6b97b2330bd2cbbe39"
+    },
+    {
+      "path": "paper/tables/external_validity.tex",
+      "bytes": 1497,
+      "sha256": "3ccd4c4cc7bb43ccf318399f0bc1b00488f62be232ae2ad706276c9388aab57f"
+    },
+    {
+      "path": "paper/tables/external_validity_config.json",
+      "bytes": 256,
+      "sha256": "fa18edd1c7aa17653a5a9348ecee041d8cfb178c59a75d65707d51aa0aca6c3b"
+    },
+    {
+      "path": "paper/tables/external_validity_raw.csv",
+      "bytes": 842216,
+      "sha256": "372829a811d4ed81abfbc3a11087c85022f3768949200751be564fd36a704f6a"
+    },
+    {
+      "path": "paper/tables/local_nuisance_ablation.csv",
+      "bytes": 1470,
+      "sha256": "0920aa22d51ac5b90aa3f45b9c3073d780d8d7febb3cf6ee482688a7deb1588c"
+    },
+    {
+      "path": "paper/tables/local_nuisance_ablation.tex",
+      "bytes": 859,
+      "sha256": "6ce96f4cd5bf472e81abe906257d2a1f7fd8fe0b1b1969be68b6a9e9aea40a5d"
+    },
+    {
+      "path": "paper/tables/local_nuisance_ablation_config.json",
+      "bytes": 442,
+      "sha256": "7b1193fa6a7d7dbd7bbe887ca986607600bdc68bbc73742cba8733ce42e27a7e"
+    },
+    {
+      "path": "paper/tables/local_nuisance_ablation_raw.csv",
+      "bytes": 374080,
+      "sha256": "6e2f65beb281c69fa29a469f98705716b9a28a061004e12b2db248f1dc422f01"
+    },
+    {
+      "path": "paper/tables/orthogonal_wgan_dml.csv",
+      "bytes": 2483,
+      "sha256": "8a1167be17160fbb88bf66083e7ee4e1d5fe4127311e7ff7155cc40e95bd25ec"
+    },
+    {
+      "path": "paper/tables/orthogonal_wgan_dml.tex",
+      "bytes": 1025,
+      "sha256": "2ea911fbc7876a1536d5377ec4d1bb51fc399c92aafc399433a7562f9f8f952d"
+    },
+    {
+      "path": "paper/tables/orthogonal_wgan_dml_config.json",
+      "bytes": 540,
+      "sha256": "339340492c61d38fc99a6cc9e9c456188e60fe4f8f2195392e41c176ff0490bf"
+    },
+    {
+      "path": "paper/tables/orthogonal_wgan_dml_folds.csv",
+      "bytes": 2680,
+      "sha256": "d578d7469079c7a2f666a408cdbb22721e6f122f87e70519b4363287d4b9bd6d"
+    },
+    {
+      "path": "paper/tables/orthogonal_wgan_dml_raw.csv",
+      "bytes": 15177,
+      "sha256": "70888b28316d97d6a6d9ab4cd39ac9085737d47790cc57632ce3846eb3eab237"
+    },
+    {
+      "path": "paper/tables/root_robust_inference.csv",
+      "bytes": 4613,
+      "sha256": "8106a6c2840448e98abc3f9f38f794996655aa9baebe943fb895884e8ddbd504"
+    },
+    {
+      "path": "paper/tables/root_robust_inference.tex",
+      "bytes": 1501,
+      "sha256": "4f75bc707974fb068004dc2768172c36e35b02aaaf4c9f708bc9f572f0e69821"
+    },
+    {
+      "path": "paper/tables/root_robust_inference_config.json",
+      "bytes": 407,
+      "sha256": "023e6212c046eb40345a2f1f5a9b189c4b9da7e52f4c72d8cc83a4f0f83687c9"
+    },
+    {
+      "path": "paper/tables/root_robust_inference_raw.csv",
+      "bytes": 1252388,
+      "sha256": "8fc93022e8c48fcdc9d288b82b30a7b7b0e5dc2f03eb1bbe61fa6b58e951ceab"
+    },
+    {
+      "path": "paper/tables/wgan_gp_pilot.csv",
+      "bytes": 1113,
+      "sha256": "f46d8e656ffee7899cefcea45c8333706d6becd98478ee74bf2e2cb689097a40"
+    },
+    {
+      "path": "paper/tables/wgan_gp_pilot.tex",
+      "bytes": 519,
+      "sha256": "f42360bf2d4a8912d34bbf609c0e8dd0156c5bf8d77dacb2b7f5ea8f9a7a924b"
+    },
+    {
+      "path": "paper/tables/wgan_gp_pilot_config.json",
+      "bytes": 353,
+      "sha256": "52a6340cd6b985b5deaffc7d5ecdd4a189700d65f9ae6225d99d9683b048fbf9"
+    },
+    {
+      "path": "paper/tables/wgan_gp_pilot_raw.csv",
+      "bytes": 4462,
+      "sha256": "448d1de97f84bb697093749c72ec5d7c8efc54294d5baf55edf3f74464bda009"
+    }
+  ]
+}
