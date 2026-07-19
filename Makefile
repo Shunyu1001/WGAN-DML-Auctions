@@ -1,4 +1,4 @@
-.PHONY: smoke manifest paper paper-anonymous
+.PHONY: smoke manifest paper paper-anonymous adviser-memo
 
 smoke:
 	python3 code/replication_smoke.py
@@ -12,3 +12,6 @@ paper:
 
 paper-anonymous:
 	cd paper && latexmk -pdf -interaction=nonstopmode -halt-on-error main_anonymous.tex
+
+adviser-memo:
+	cd paper && latexmk -pdf -interaction=nonstopmode -halt-on-error adviser_memo.tex

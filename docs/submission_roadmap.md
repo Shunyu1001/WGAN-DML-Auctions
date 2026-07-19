@@ -32,12 +32,14 @@ The defensible contribution is a methodological and Monte Carlo paper:
   data-and-code statement, and a double-blind manuscript entry point.
 - A two-tier replication package with deterministic smoke checks, CI, an exact
   environment record, a seed registry, and checksums for archived result files.
+- A concise adviser memo, decision matrix, reading order, and three bounded
+  questions separating contribution, journal choice, and auction assumptions.
 
 ## Next Three Sprints
 
-1. **Adviser review:** obtain a read focused on contribution, maintained auction
-   assumptions, and whether the current-form computational journal target is
-   appropriate.
+1. **Adviser decision:** send the prepared review packet and record a direct
+   choice among current-form submission, an empirical bridge, or a contribution
+   rewrite. Do not reopen estimator tuning before this decision.
 2. **Empirical bridge:** if a suitable auction dataset becomes available,
    document entry, observed order statistics, and bidder-count variation before
    implementing the estimator.
@@ -47,7 +49,8 @@ The defensible contribution is a methodological and Monte Carlo paper:
    an application.
 
 The external-validity, theory-audit, first submission-packaging, and repository-
-level replication-audit sprints are complete. The expensive Monte Carlo archive
-has not been rerun in this audit; it is now documented separately from the fast
-checks. Adviser review is the next submission-critical step, and additional
-tuning of the same confidence interval has lower priority.
+level replication-audit and adviser-packaging sprints are complete. The
+expensive Monte Carlo archive has not been rerun in this audit; it is documented
+separately from the fast checks. Obtaining the adviser decision is the next
+submission-critical step, and additional tuning of the same confidence interval
+has lower priority.

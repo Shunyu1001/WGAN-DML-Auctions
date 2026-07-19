@@ -35,6 +35,10 @@ The manuscript includes a concise abstract, keywords, JEL classifications, and
 a data-and-code availability statement. Journal positioning and the remaining
 formatting gap are recorded in `docs/submission_strategy.md`.
 
+For adviser review, compile `paper/adviser_memo.tex` and send it before the full
+manuscript. The corresponding decision matrix and bounded review questions are
+in `docs/adviser_review_packet.md`.
+
 ## Replication Audit
 
 After installing `requirements.txt`, run the non-destructive integrity check:

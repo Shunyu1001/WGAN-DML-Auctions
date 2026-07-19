@@ -61,10 +61,18 @@ Official source: [journal scope and author information](https://www.degruyterbri
 - explicit separation between the fixed-bandwidth theorem and diagnostic
   exact-reserve intervals.
 
-## Next Packaging Sprint
+## Current Decision Gate
 
-Create a clean replication archive with one lightweight smoke-test command and
-one full-results command. Record the Python and LaTeX environments, expected
-runtime, random seeds, generated file manifest, and checksums for final tables
-and figures. This is higher priority than another estimator or confidence-set
-variant.
+The replication archive and adviser review packet are complete. The next action
+depends on one bounded adviser decision documented in
+`docs/adviser_review_packet.md`:
+
+1. if the current contribution is sufficient, format for IJCEE, identify the
+   four expert suggestions required by its system, and freeze the submission;
+2. if an empirical bridge is required, secure a dataset and write a data memo
+   before modifying the estimator;
+3. if positioning is unclear, rewrite the introduction around the local-
+   information boundary before adding further simulations.
+
+Additional loss, bandwidth, or confidence-set tuning has lower priority until
+this decision is made.
