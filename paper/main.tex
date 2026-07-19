@@ -15,41 +15,41 @@
 \newtheorem{proposition}{Proposition}
 \newtheorem{theorem}{Theorem}
 
+\providecommand{\paperauthor}{Shunyu Hao}
+\providecommand{\paperdate}{\today}
+\providecommand{\replicationstatement}{All replication code, simulation designs,
+and random seeds are available at
+\url{https://github.com/Shunyu1001/WGAN-DML-Auctions}.}
+
 \title{Semiparametric Estimation of Myerson Reserve Prices\\
 with WGAN-GP and Double Machine Learning}
-\author{Shunyu Hao}
-\date{\today}
+\author{\paperauthor}
+\date{\paperdate}
 
 \begin{document}
 
 \maketitle
 
 \begin{abstract}
-This paper studies estimation and inference for optimal auction reserve prices
-when only an order statistic of bids is observed. Under symmetric independent
-private values, its distribution identifies the latent valuation distribution.
-I estimate that nuisance object with a structural Wasserstein generative
-adversarial network with gradient penalty (WGAN-GP), then develop a cross-fitted
-Neyman-orthogonal estimator for a regularized Myerson reserve. For a fixed
-bandwidth, I establish asymptotic linearity under local nuisance-rate and root
-regularity conditions and give primitive fixed-bandwidth conditions under which
-training-fold empirical kernel moments attain the required rate. Monte Carlo
-experiments show that good global WGAN fit
-and formal orthogonality need not deliver valid inference when learned local
-tail moments converge too slowly. Oracle and training-fold empirical
-ablations restore near-nominal coverage, locating the failure in the WGAN
-nuisance rather than the score construction and motivating a hybrid global
-WGAN/local-score procedure. Across bidder counts and baseline, heavy-tail, and
-mixture distributions, fixed-bandwidth coverage remains near nominal when the
-observed maxima contain local information. It deteriorates under intense
-competition when almost no maxima lie near the reserve, revealing a support
-limitation that orthogonality cannot repair. Shrinking-bandwidth experiments
-further separate regularization bias from sampling uncertainty: a
-covariance-aware correction and residual-bias envelope improve inference for
-the exact reserve, whereas aggressive undersmoothing creates high variance and
-multiple roots. The fixed-bandwidth regularized target remains the paper's
-strongest formally justified inferential claim.
+This paper studies inference for Myerson reserve prices when only auction maxima
+are observed. Under symmetric independent private values, maxima identify the
+latent value distribution, which is estimated globally by a structural WGAN-GP.
+I derive a cross-fitted Neyman-orthogonal score for a fixed-bandwidth regularized
+reserve. Primitive conditions give training-fold empirical kernel moments the
+required $o_p(n^{-1/4})$ nuisance rate. Monte Carlo experiments show that good
+global WGAN fit can coexist with inaccurate local tail moments and invalid
+inference; an empirical-local nuisance restores near-nominal coverage. Across
+valuation distributions, coverage remains stable with three or five bidders but
+deteriorates with ten bidders when maxima rarely contain local identifying
+information. Bias-corrected shrinking-bandwidth procedures improve exact-reserve
+inference but remain diagnostic. The results support a hybrid workflow: use the
+WGAN for global structural counterfactuals and local empirical moments for
+reserve inference.
 \end{abstract}
+
+\noindent\textbf{Keywords:} optimal auctions; reserve prices; double machine
+learning; generative adversarial networks; semiparametric inference.\\
+\textbf{JEL classification:} C14; C15; C45; D44.
 
 \input{sections/introduction}
 \input{sections/literature}
@@ -60,6 +60,7 @@ strongest formally justified inferential claim.
 \input{sections/simulations}
 \input{sections/empirical_application}
 \input{sections/conclusion}
+\input{sections/declarations}
 
 \appendix
 \input{sections/appendix}
