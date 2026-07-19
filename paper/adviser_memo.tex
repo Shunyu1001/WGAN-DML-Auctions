@@ -1,0 +1,99 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.72in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+
+\definecolor{heading}{RGB}{28,67,110}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\setlength{\leftmargini}{1.3em}
+\setlength{\leftmarginii}{1.2em}
+\newcommand{\memoheading}[1]{\vspace{3pt}{\color{heading}\bfseries #1}\par}
+
+\begin{document}
+
+\begin{center}
+{\Large\bfseries Adviser Review Memo}\par
+\vspace{2pt}
+{\large Semiparametric Estimation of Myerson Reserve Prices with WGAN-GP and DML}\par
+\vspace{2pt}
+Shunyu Hao \hfill July 19, 2026
+\end{center}
+
+\memoheading{Decision requested}
+I would like guidance on whether the current methodological and Monte Carlo
+paper is ready for a computational-econometrics submission, or whether an
+empirical auction application should be treated as a prerequisite for an
+upward journal target. I am not seeking another round of estimator tuning
+before this decision.
+
+\memoheading{Paper in one sentence}
+When only auction maxima are observed, a structural WGAN can learn a coherent
+global latent value distribution, but valid reserve-price inference requires
+separate control of local CDF and density moments; cross-fitting and
+orthogonality do not compensate for missing local identifying information.
+
+\memoheading{What the paper contributes}
+\begin{itemize}
+  \item It embeds the auction order-statistic observation rule inside a
+  bidder-level WGAN-GP, preserving symmetric independent private values before
+  taking the observed maximum.
+  \item It derives a cross-fitted Neyman-orthogonal score and an asymptotic
+  linearity result for a fixed-bandwidth regularized reserve.
+  \item It proves the required local nuisance rate for a training-fold empirical
+  kernel learner under primitive fixed-bandwidth and local-overlap conditions.
+  \item Nested Monte Carlo ablations isolate the failure of WGAN-based inference
+  in local tail moments and motivate a hybrid global-WGAN/local-score estimator.
+  \item External-validity designs identify a local-information boundary: the
+  formal procedure is stable with three or five bidders but deteriorates with
+  ten bidders when maxima rarely occur near the reserve.
+\end{itemize}
+
+\memoheading{Claim boundary}
+\textbf{Formal claim:} valid inference for the fixed-bandwidth regularized
+reserve when the stated nuisance-rate, overlap, and root conditions hold; these
+conditions are verified for the empirical-local learner.\par
+\textbf{Diagnostic evidence:} WGAN-GP global fit does not imply the local rate;
+Richardson correction, residual-bias envelopes, and root-union intervals for
+the exact Myerson reserve are finite-sample prototypes, not a uniform coverage
+theorem.
+
+\newpage
+\memoheading{Key evidence}
+\begin{itemize}
+  \item Replacing WGAN score nuisances with training-fold empirical-local
+  moments restores near-oracle RMSE and coverage in the baseline design.
+  \item Fixed-bandwidth target coverage is 92.0--96.5 percent across baseline,
+  heavy-tail, and mixture distributions with three or five bidders.
+  \item With ten bidders and weak local support, coverage falls to roughly
+  78 percent and multiple roots emerge.
+  \item The stable $n^{-0.2}$ exact-target prototype reaches 96.5 percent
+  coverage after a residual-bias envelope, but remains explicitly diagnostic.
+\end{itemize}
+
+\memoheading{Assumptions that should remain visible}
+Symmetric independent private values; observed auction maxima; known bidder
+count in the core design; local overlap around the reserve; and regular score
+root/Jacobian behavior. The paper should not imply that orthogonality repairs
+violations of these identifying conditions.
+
+\memoheading{Three questions for the review}
+\begin{enumerate}
+  \item Is the local-information boundary plus the hybrid estimator a clear
+  enough econometric contribution, or does the paper still read mainly as a
+  WGAN application?
+  \item Is IJCEE a sensible current-form target, or is the expected return high
+  enough to first add an empirical bridge and target \emph{The Econometrics
+  Journal} or \emph{Journal of Econometric Methods}?
+  \item Which maintained auction assumption is most likely to concern a
+  referee: symmetry/IPV, known bidder count, maxima-only observation, or local
+  overlap?
+\end{enumerate}
+
+\memoheading{Suggested reading order}
+Abstract and Introduction; Estimation and Inference; the local-nuisance and
+external-validity simulation results; Conclusion; then the proof appendix as
+needed. The identified and anonymous manuscripts, replication guide, and
+archived results are synchronized in the project repository.
+
+\end{document}
