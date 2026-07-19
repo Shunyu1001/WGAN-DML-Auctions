@@ -1,0 +1,17 @@
+{
+  "purpose": "Reference environment used for the repository-level replication audit; requirements.txt remains the portable installation specification.",
+  "captured_on": "2026-07-19",
+  "operating_system": "macOS 14.5 arm64",
+  "python": "3.13.9",
+  "packages": {
+    "matplotlib": "3.10.6",
+    "numpy": "2.4.2",
+    "pandas": "3.0.1",
+    "scipy": "1.16.3",
+    "torch": "2.12.0"
+  },
+  "notes": [
+    "The reported Monte Carlo artifacts were generated with CPU execution for WGAN experiments.",
+    "Exact floating-point agreement is not promised across operating systems or accelerator backends; use the reported Monte Carlo summaries and tolerances when comparing regenerated results."
+  ]
+}
