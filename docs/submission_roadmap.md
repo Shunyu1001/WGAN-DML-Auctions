@@ -34,12 +34,16 @@ The defensible contribution is a methodological and Monte Carlo paper:
   environment record, a seed registry, and checksums for archived result files.
 - A concise adviser memo, decision matrix, reading order, and three bounded
   questions separating contribution, journal choice, and auction assumptions.
+- A current-form IJCEE submission pack with an anonymous review file, cover
+  letter, metadata sheet, ethics declarations, and a requirements-based final
+  checklist.
 
 ## Next Three Sprints
 
-1. **Adviser decision:** send the prepared review packet and record a direct
-   choice among current-form submission, an empirical bridge, or a contribution
-   rewrite. Do not reopen estimator tuning before this decision.
+1. **Author and adviser confirmation:** send the prepared review packet, confirm
+   exclusivity and author details, and either approve the current-form IJCEE
+   route or choose the empirical bridge. Do not reopen estimator tuning before
+   this decision.
 2. **Empirical bridge:** if a suitable auction dataset becomes available,
    document entry, observed order statistics, and bidder-count variation before
    implementing the estimator.
@@ -49,7 +53,8 @@ The defensible contribution is a methodological and Monte Carlo paper:
    an application.
 
 The external-validity, theory-audit, first submission-packaging, and repository-
-level replication-audit and adviser-packaging sprints are complete. The
+level replication-audit, adviser-packaging, and current-form IJCEE packaging
+sprints are complete. The
 expensive Monte Carlo archive has not been rerun in this audit; it is documented
 separately from the fast checks. Obtaining the adviser decision is the next
 submission-critical step, and additional tuning of the same confidence interval

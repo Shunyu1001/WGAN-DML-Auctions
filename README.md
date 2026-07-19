@@ -39,6 +39,11 @@ For adviser review, compile `paper/adviser_memo.tex` and send it before the full
 manuscript. The corresponding decision matrix and bounded review questions are
 in `docs/adviser_review_packet.md`.
 
+The current-form IJCEE submission materials are tracked in
+`docs/ijcee_submission_checklist.md`. They include a metadata sheet and a
+one-page cover letter; author facts and four conflict-screened experts must be
+completed before submission.
+
 ## Replication Audit
 
 After installing `requirements.txt`, run the non-destructive integrity check:

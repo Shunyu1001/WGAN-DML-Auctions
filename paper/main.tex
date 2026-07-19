@@ -21,8 +21,8 @@
 and random seeds are available at
 \url{https://github.com/Shunyu1001/WGAN-DML-Auctions}.}
 
-\title{Semiparametric Estimation of Myerson Reserve Prices\\
-with WGAN-GP and Double Machine Learning}
+\title{Semiparametric Inference for Myerson Reserve Prices\\
+from Auction Maxima}
 \author{\paperauthor}
 \date{\paperdate}
 
@@ -33,7 +33,8 @@ with WGAN-GP and Double Machine Learning}
 \begin{abstract}
 This paper studies inference for Myerson reserve prices when only auction maxima
 are observed. Under symmetric independent private values, maxima identify the
-latent value distribution, which is estimated globally by a structural WGAN-GP.
+latent value distribution, which is estimated globally by a structural
+Wasserstein generative adversarial network with gradient penalty (WGAN-GP).
 I derive a cross-fitted Neyman-orthogonal score for a fixed-bandwidth regularized
 reserve. Primitive conditions give training-fold empirical kernel moments the
 required $o_p(n^{-1/4})$ nuisance rate. Monte Carlo experiments show that good
@@ -47,8 +48,10 @@ WGAN for global structural counterfactuals and local empirical moments for
 reserve inference.
 \end{abstract}
 
-\noindent\textbf{Keywords:} optimal auctions; reserve prices; double machine
-learning; generative adversarial networks; semiparametric inference.\\
+\noindent\textbf{Keywords:} optimal auctions; reserve prices; auction maxima;
+order statistics; double machine learning; cross-fitting; Neyman orthogonality;
+Wasserstein generative adversarial networks; semiparametric inference; Monte
+Carlo simulation.\\
 \textbf{JEL classification:} C14; C15; C45; D44.
 
 \input{sections/introduction}
