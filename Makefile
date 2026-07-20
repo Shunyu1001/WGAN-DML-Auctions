@@ -1,4 +1,4 @@
-.PHONY: smoke manifest paper paper-anonymous adviser-memo ijcee-cover-letter
+.PHONY: smoke manifest paper paper-anonymous adviser-memo release-check
 
 smoke:
 	python3 code/replication_smoke.py
@@ -16,5 +16,4 @@ paper-anonymous:
 adviser-memo:
 	cd paper && latexmk -pdf -interaction=nonstopmode -halt-on-error adviser_memo.tex
 
-ijcee-cover-letter:
-	cd paper && latexmk -pdf -interaction=nonstopmode -halt-on-error ijcee_cover_letter.tex
+release-check: smoke paper paper-anonymous adviser-memo
