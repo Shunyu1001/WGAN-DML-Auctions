@@ -3,6 +3,7 @@
 smoke:
 	python3 code/replication_smoke.py
 	python3 code/test_calibrated_wgan.py
+	python3 code/test_monotone_adaptive.py
 	python3 code/build_artifact_manifest.py --check
 
 manifest:
