@@ -50,9 +50,9 @@ inference; an empirical-local nuisance restores near-nominal coverage. Across
 valuation distributions, coverage remains stable with three or five bidders but
 deteriorates with ten bidders when maxima rarely contain local identifying
 information. Bias-corrected shrinking-bandwidth procedures improve exact-reserve
-inference but remain diagnostic. The results support a hybrid workflow: use the
-WGAN for global structural counterfactuals and local empirical moments for
-reserve inference.
+inference but remain diagnostic. A fixed-pseudo-count local calibration
+improves the WGAN score in a paired pilot while closely tracking empirical-only
+estimation and leaving the network and loss unchanged.
 \end{abstract}
 
 \noindent\textbf{Keywords:} optimal auctions; reserve prices; auction maxima;

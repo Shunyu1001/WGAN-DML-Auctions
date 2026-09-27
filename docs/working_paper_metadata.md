@@ -6,8 +6,8 @@
   Maxima
 - **Author:** Shunyu Hao
 - **Document type:** Working paper
-- **Version:** 0.1.0 candidate
-- **Date:** July 19, 2026
+- **Version:** 0.1.1 candidate (local-calibration follow-up)
+- **Date:** September 27, 2026
 - **Repository:** https://github.com/Shunyu1001/WGAN-DML-Auctions
 - **JEL classifications:** C14; C15; C45; D44
 
@@ -25,9 +25,9 @@ invalid inference; an empirical-local nuisance restores near-nominal coverage.
 Across valuation distributions, coverage remains stable with three or five
 bidders but deteriorates with ten bidders when maxima rarely contain local
 identifying information. Bias-corrected shrinking-bandwidth procedures improve
-exact-reserve inference but remain diagnostic. The results support a hybrid
-workflow: use the WGAN for global structural counterfactuals and local empirical
-moments for reserve inference.
+exact-reserve inference but remain diagnostic. A fixed-pseudo-count local
+calibration improves the WGAN score in a paired pilot while closely tracking
+empirical-only estimation and leaving the network and loss unchanged.
 
 ## Keywords
 

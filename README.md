@@ -174,6 +174,26 @@ output separates coverage and RMSE for the regularized target from error
 relative to the exact reserve, and compares exact-reserve RMSE with direct
 order-statistic inversion.
 
+## Simple Local Calibration Follow-up
+
+The paired follow-up keeps the original WGAN-GP network and loss, and mixes
+its local moments with training-fold empirical moments using the fixed weight
+`50 / (training_auctions + 50)`. It compares original WGAN-DML, calibrated
+WGAN-DML, empirical-local DML, and a full-sample smoothed plug-in on the same
+data and folds. No true target enters training, calibration, or root selection.
+
+```bash
+python3 code/calibrated_wgan_pilot.py --reps 10 --seed 20260928
+python3 code/test_calibrated_wgan.py
+```
+
+Outputs go to `output/tables/calibration_pilot` without overwriting older
+experiments. Reviewed copies are archived as `paper/tables/calibrated_wgan*`
+and `paper/figures/calibrated_wgan.png`. The new independent-seed comparison
+remains a small pilot. Its figure shows Monte Carlo coverage uncertainty, and
+the paired CSV compares squared errors with their Monte Carlo standard errors.
+See `docs/local_calibration.md` for the design and interpretation boundary.
+
 ## Current Estimation Plan
 
 1. Establish identification from observed order statistics under a symmetric

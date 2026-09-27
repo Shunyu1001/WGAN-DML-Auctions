@@ -23,6 +23,11 @@
       "sha256": "8e1f62cd0597b28e465da60305ad87949fb1f8cf1104d54ab2c6a4482f77ce58"
     },
     {
+      "path": "paper/figures/calibrated_wgan.png",
+      "bytes": 268073,
+      "sha256": "2c1c560a7197260faaee224b7bb61993b5b778ce82e8bd5d2bc490a8d6803c70"
+    },
+    {
       "path": "paper/figures/crossfit_wgan_pilot.png",
       "bytes": 144496,
       "sha256": "103dd03d34f9d51b81efa2296c7c932da22849a81b66c279f8de2f4878176c9c"
@@ -96,6 +101,31 @@
       "path": "paper/tables/bias_corrected_inference_raw.csv",
       "bytes": 643938,
       "sha256": "6ae22d3085e331bdaa31ab3c844644d7cd0ed86e2df5cdf9a9a5b396e74dcece"
+    },
+    {
+      "path": "paper/tables/calibrated_wgan.csv",
+      "bytes": 5229,
+      "sha256": "7fb819d671bc19a3ddd951e02915de645fb7b76aebd211cc05cf86487366748c"
+    },
+    {
+      "path": "paper/tables/calibrated_wgan.tex",
+      "bytes": 900,
+      "sha256": "d71dd12470c2d6991e87d26c1b17761d82674649340fd6ec9422ef9be6ab249e"
+    },
+    {
+      "path": "paper/tables/calibrated_wgan_config.json",
+      "bytes": 737,
+      "sha256": "8a2edf88a37cf30112b89573d06d92ace3e65c3f9416cdeb448c9f57d59ad19b"
+    },
+    {
+      "path": "paper/tables/calibrated_wgan_paired.csv",
+      "bytes": 1448,
+      "sha256": "ca58ef179001ad1ec33b67675917cc70fbfc679025a81c735f5221b49c8aa8de"
+    },
+    {
+      "path": "paper/tables/calibrated_wgan_raw.csv",
+      "bytes": 60634,
+      "sha256": "516000bb32161f6694e37c5af22c8a3c2253c98c7c6f7f33a0e47de1f839d560"
     },
     {
       "path": "paper/tables/crossfit_wgan_folds.csv",

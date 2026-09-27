@@ -27,6 +27,7 @@ MODULES = (
     "bias_corrected_inference",
     "root_robust_inference",
     "external_validity_monte_carlo",
+    "calibrated_wgan_pilot",
 )
 
 CONFIG_FILES = {
@@ -38,6 +39,7 @@ CONFIG_FILES = {
     "bias_corrected_inference": "bias_corrected_inference_config.json",
     "root_robust_inference": "root_robust_inference_config.json",
     "external_validity_monte_carlo": "external_validity_config.json",
+    "calibrated_wgan_pilot": "calibrated_wgan_config.json",
 }
 
 CONFIG_CLASSES = {
@@ -49,6 +51,7 @@ CONFIG_CLASSES = {
     "bias_corrected_inference": "BiasCorrectionConfig",
     "root_robust_inference": "RootRobustConfig",
     "external_validity_monte_carlo": "ExternalValidityConfig",
+    "calibrated_wgan_pilot": "CalibrationConfig",
 }
 
 

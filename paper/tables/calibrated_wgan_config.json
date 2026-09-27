@@ -1,0 +1,29 @@
+{
+  "sample_sizes": [
+    500,
+    2000,
+    10000
+  ],
+  "repetitions": 10,
+  "bidders": 5,
+  "folds": 3,
+  "bandwidth": 0.15,
+  "pseudo_observations": 50.0,
+  "training_steps": 1200,
+  "generated_maxima": 50000,
+  "seed": 20260928,
+  "threads": 1,
+  "environment": {
+    "python": "3.13.4 (v3.13.4:8a526ec7cbe, Jun  3 2025, 21:14:54) [Clang 16.0.0 (clang-1600.0.26.6)]",
+    "numpy": "2.2.6",
+    "torch": "2.8.0",
+    "scipy": "1.18.1",
+    "pandas": "2.3.0",
+    "matplotlib": "3.10.3",
+    "platform": "macOS-14.5-arm64-arm-64bit-Mach-O",
+    "device": "cpu"
+  },
+  "exact_reserve": 0.7718567076821209,
+  "regularized_target": 0.8318283572057763,
+  "design": "paired data/folds/generators; fixed pseudo-count; all seeds retained"
+}

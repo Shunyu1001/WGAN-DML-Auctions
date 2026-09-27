@@ -1,0 +1,70 @@
+\subsection{A simple paired local calibration}
+
+Equation~\eqref{eq:local-calibration} implements a small post-fit change to
+WGAN-DML. The architecture, adversarial loss, three folds, 1,200 training
+steps, and 50,000 generated maxima per fold are unchanged. A fixed pseudo-count
+of 50 gives the WGAN about 13.0, 3.6, and 0.74 percent weight as $n$ increases.
+The comparison uses ten new repetitions per sample size, with base seed
+20260928, following a one-sample development check with seed 20260927.
+All variants share the data, folds, and trained generators. Every repetition
+is retained; no estimator uses the known target in training or selection.
+
+In addition to original and calibrated WGAN-DML, I report empirical-local
+DML and a full-sample smoothed plug-in with the identical Gaussian kernel and
+bandwidth. All roots use the same direct-inversion reference. Grid brackets
+are refined numerically to tolerance $10^{-10}$. The fixed-bandwidth panel
+targets $r_h$ at $h=0.15$. The exact-reserve panel applies the existing
+covariance-aware Richardson combination on the $n^{-0.2}$ bandwidth path;
+this remains a diagnostic rather than an exact-reserve coverage theorem.
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Paired local calibration: fixed-bandwidth target}
+\label{tab:calibrated-wgan}
+\resizebox{\textwidth}{!}{\input{tables/calibrated_wgan.tex}}
+\begin{minipage}{0.96\textwidth}
+\footnotesize
+\emph{Notes:} Ten repetitions per cell, $N=5$, $h=0.15$, and
+$r_h=0.8318$. Bias, RMSE, coverage, and mean 95 percent interval length refer
+to $r_h$, not $r_0=0.7719$. The pseudo-count is fixed in advance. With ten
+repetitions, coverage moves in ten-percentage-point increments; Wilson
+intervals in Figure~\ref{fig:calibrated-wgan} display this uncertainty.
+\end{minipage}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{calibrated_wgan.png}
+\caption{Paired performance after a simple local calibration. Panels A--B
+concern the fixed-bandwidth target; C--D concern the Richardson-corrected
+exact-reserve diagnostic. Revenue regret is shown on a logarithmic scale.
+Error bars in B are 95 percent Wilson intervals for Monte Carlo coverage.}
+\label{fig:calibrated-wgan}
+\end{figure}
+
+Table~\ref{tab:calibrated-wgan} shows that the calibration reduces
+fixed-bandwidth RMSE from 0.0713, 0.0654, and 0.0444 to 0.0456, 0.0182,
+and 0.0080, respectively. Coverage changes from 80, 50, and 30 percent to
+100, 90, and 100 percent while mean interval length falls in every case.
+These are pilot estimates: even ten successes out of ten give a Wilson
+lower bound of only 72.2 percent. They should not be read as evidence of
+exact or conservative coverage in repeated use.
+
+The empirical-local estimates are nearly identical to the calibrated ones.
+The same-kernel smoothed plug-in has still lower fixed-bandwidth RMSE at all
+three sample sizes. Thus the improvement over raw WGAN-DML establishes a
+useful safeguard against its local error, but does not establish incremental
+accuracy from retaining the WGAN. Paired squared-error differences and their
+Monte Carlo standard errors are included in the replication archive.
+
+For the exact-reserve diagnostic, calibrated Richardson RMSE is 0.0897,
+0.0472, and 0.0172. Its observed coverage is 80, 90, and 100 percent, again
+with substantial Monte Carlo uncertainty. Uncalibrated WGAN inputs become
+unstable on the shrinking-bandwidth path: at $n=10000$, half of the runs
+have multiple roots at one of the two bandwidths, one corrected estimate
+is negative, and corrected RMSE is 0.3064. These failures are retained rather
+than clipped or discarded. The calibration and both empirical comparators have no missing or
+multiple roots in this pilot. These results favor the small post-fit change
+over adding network or loss complexity, while retaining a clear empirical-only
+benchmark and the separate exact-target validity limitation.

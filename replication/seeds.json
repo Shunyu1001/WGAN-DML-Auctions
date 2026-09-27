@@ -9,6 +9,7 @@
     "bandwidth_path": {"base_seed": 20260716},
     "bias_corrected_inference": {"base_seed": 20260716},
     "root_robust_inference": {"base_seed": 20260716},
-    "external_validity_monte_carlo": {"base_seed": 20260717}
+    "external_validity_monte_carlo": {"base_seed": 20260717},
+    "calibrated_wgan_pilot": {"base_seed": 20260928}
   }
 }
