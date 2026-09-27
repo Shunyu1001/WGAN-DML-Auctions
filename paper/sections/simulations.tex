@@ -226,11 +226,12 @@ training-fold local moments supplying reserve inference. The empirical-only
 ablation does not measure a gain from WGAN participation in the score.
 
 \input{sections/calibration_results}
+\input{sections/monotone_adaptive_results}
 
 \subsection{Shrinking bandwidth and the exact reserve}
 
-The previous experiment validates inference for a fixed regularized target.
-I now set
+The empirical-local ablation supports inference for a fixed regularized target.
+To examine shrinking-bandwidth behavior separately, I set
 \begin{equation}
 h_n=0.15\left(\frac{n}{500}\right)^{-\alpha},
 \qquad \alpha\in\{0,0.2,0.35,0.5\},

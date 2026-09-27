@@ -1,0 +1,36 @@
+{
+  "sample_sizes": [
+    500,
+    2000
+  ],
+  "distributions": [
+    "lognormal"
+  ],
+  "repetitions": 10,
+  "bidders": 5,
+  "folds": 3,
+  "bandwidth": 0.15,
+  "training_steps": 1200,
+  "generated_maxima": 50000,
+  "quadrature_nodes": 32768,
+  "monotone_learning_rate": 0.0005,
+  "validation_fraction": 0.25,
+  "weight_grid": [
+    0.0,
+    0.25,
+    0.5,
+    1.0
+  ],
+  "pseudo_observations": 50.0,
+  "seed": 20260930,
+  "threads": 1,
+  "design": "paired; inner 75/25 selection, outer 3-fold inference; all repetitions retained",
+  "source_sha256": "7ebd710e5696fec5fbb1b3b39c824b23d3b96a1deda2d61a0803fd92e77c7070",
+  "python": "3.13.4 (v3.13.4:8a526ec7cbe, Jun  3 2025, 21:14:54) [Clang 16.0.0 (clang-1600.0.26.6)]",
+  "numpy": "2.2.6",
+  "torch": "2.8.0",
+  "scipy": "1.18.1",
+  "status": "superseded cohort retained for audit, not pooled with final evaluation",
+  "reason": "8 of 10 data seeds per sample size overlap the earlier 20260928 calibration study",
+  "replacement_base_seed": 90260930
+}

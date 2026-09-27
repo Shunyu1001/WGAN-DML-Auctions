@@ -59,7 +59,10 @@ A paired follow-up implements a simple hybrid by giving the WGAN the weight
 of 50 pseudo-observations in the training-fold local moments. It substantially
 reduces error relative to the raw WGAN score without changing the network or
 loss, but tracks empirical-only estimation closely and does not establish an
-incremental WGAN advantage. The paper's formal coverage result concerns the
+incremental WGAN advantage. A subsequent nested-validation ablation tests an
+eleven-parameter monotone generator and adaptive mixing separately and jointly.
+Its mixed results do not establish a uniform gain over empirical benchmarks.
+The paper's formal coverage result concerns the
 fixed-bandwidth regularized reserve. Exact-reserve intervals are reported as a
 bias-aware prototype whose uniform validity requires additional conditions on
 the shrinking-bandwidth root process.

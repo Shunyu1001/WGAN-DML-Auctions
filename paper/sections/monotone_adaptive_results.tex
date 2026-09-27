@@ -1,0 +1,131 @@
+\subsection{Monotone generation and adaptive calibration}
+\label{sec:monotone-adaptive}
+
+A second paired pilot asks whether a smaller structural generator and
+training-only weight selection can improve on fixed local calibration.
+The monotone generator represents the log-valuation quantile as a linear
+spline in $\Phi^{-1}(u)$, with eleven fixed knots, ten positive slopes, and
+one intercept. Linear tail extensions remove the finite support imposed by
+the original generator's $\tanh$ output. This is an eleven-parameter
+generator rather than a larger network. Monotonicity gives the exact
+distributional identity
+\begin{equation}
+\max_{1\leq i\leq N}Q_\gamma(U_i)
+\overset{d}{=}Q_\gamma(U^{1/N}),
+\qquad U,U_1,\ldots,U_N\sim\operatorname{Uniform}(0,1),
+\end{equation}
+where the bidder draws are independent. The right-hand side generates
+maxima directly. Local kernel moments use 32,768 deterministic midpoint
+quantiles of this distribution. These are numerical integration nodes,
+not additional observed auctions.
+
+Each monotone generator starts from a data-only linear fit of log-maximum quantiles
+on $\Phi^{-1}(p^{1/N})$. This initialization favors lognormal structure;
+it is an eligible checkpoint, including step zero, rather than evidence
+of a benefit from adversarial training. The original critic, adversarial
+loss, gradient penalty, and 1,200 training steps are retained. The monotone
+generator learning rate is $5\times10^{-4}$; the original network keeps
+$2\times10^{-5}$. Architecture, tail extension, initialization, and
+deterministic integration change together, so this pilot does not identify
+their separate contributions.
+The fixed spline dimension and linear normal-quantile tails also remain
+approximation restrictions; unbounded support alone does not ensure tail accuracy.
+
+For adaptive calibration, each outer training fold is split into an inner
+fitting sample (75 percent) and a validation sample (25 percent). Choose
+one shared CDF/density weight from $\{0,0.25,0.5,1\}$ using standardized
+squared prediction errors of the observable kernel signals. Validation
+uses 21 prices between 0.6 and 1.4 times the inner fitting-sample
+direct-inversion reserve. Signal variances are estimated on that fitting
+sample and floored at 0.01. The generator is then refitted to the entire
+outer training fold. Only the untouched outer holdout enters its score.
+The same selected weight applies at all prices for a given bandwidth;
+different bandwidths may select different weights.
+
+The four ablations vary generator (original or monotone) and mixing rule
+(fixed or adaptive), with identical observations and outer folds. The
+empirical-local DML and smoothed plug-in remain benchmarks. A lognormal
+maximum-order-statistic MLE supplies a correctly specified parametric
+benchmark in the lognormal design and a misspecified benchmark in the
+Weibull design. Its sandwich delta-method interval targets the fitted
+parametric reserve; under misspecification it need not cover the actual
+reserve. Adaptive mixing does not inherit the $O(n^{-1})$ fixed-weight
+argument: the local nuisance-rate and root assumptions require separate
+verification. All exact-reserve intervals below remain diagnostic.
+
+The evaluation design fixes $N=5$, $n\in\{500,2000\}$, and ten new
+repetitions per cell. Valuations are either $\operatorname{LN}(0,0.5^2)$
+or Weibull with shape 1.5 and scale one. Development uses seed 20260929;
+final evaluation uses base seed 90260930 for lognormal and 20260930 for
+Weibull, which has a separate distribution offset. An initial lognormal
+cohort overlapped the prior calibration data because of additive seed
+indexing. It is archived separately and replaced in full, with no estimator
+or tuning changes, by the fresh lognormal cohort. No repetitions are
+removed based on their outcomes. The exact
+target uses the existing covariance-aware Richardson correction; the
+replication archive also reports the fixed-bandwidth target separately.
+
+In the independent lognormal $n=500$ cell, combined monotone/adaptive
+RMSE is 0.0525, compared with 0.0593 for original fixed calibration,
+0.0591 for empirical DML, and 0.0530 for the smoothed plug-in.
+The paired MSE difference against the plug-in is $-0.000052$ with Monte
+Carlo standard error $0.000214$, so the small ordering should not be
+interpreted as a stable advantage. The correctly specified lognormal MLE is considerably more
+accurate, with RMSE 0.0151, illustrating the information supplied by its
+parametric restriction.
+
+At lognormal $n=2000$, combined monotone/adaptive RMSE is 0.0318,
+against 0.0335 for original fixed calibration and empirical DML, and
+0.0349 for the smoothed plug-in. The paired MSE difference against the
+plug-in is $-0.000207$ with Monte Carlo standard error $0.000236$.
+Thus this cell also shows a favorable point estimate without resolving
+the ranking. Correctly specified MLE RMSE is 0.0073. Adaptive mixing with
+the original generator is worse than fixed calibration in all four cells;
+weight selection by itself is not the source of an established gain.
+
+The Weibull cells caution against treating validation-selected mixing as
+an automatic improvement. At $n=500$, the combined monotone/adaptive
+version has RMSE 0.0512 versus 0.0552 for original fixed calibration and
+0.0503 for the smoothed plug-in. At $n=2000$, its RMSE rises relative to
+these comparators: 0.0393 versus 0.0327 and 0.0328, respectively. Merely
+replacing the generator while retaining fixed calibration closely tracks
+the empirical estimator. The misspecified lognormal MLE has RMSE near
+0.097 and zero observed actual-target coverage in both Weibull cells.
+This illustrates parametric misspecification, but cannot establish a
+WGAN-specific advantage because the empirical benchmarks also avoid it.
+
+The fixed-calibration estimator therefore remains the main safeguarded
+procedure. The adaptive variants are reported as experiments, not as a
+validated replacement. Validation-based mixing and cross-fitting do
+not ensure dominance in reserve-price error, and ten repetitions leave
+substantial Monte Carlo uncertainty. The archive reports paired MSE
+differences with their Monte Carlo standard errors rather than selecting
+a method solely from the ordering of point estimates.
+
+\begin{table}[p]
+\centering
+\linespread{1}\selectfont
+\small
+\caption{Monotone generation and adaptive mixing: exact-reserve pilot}
+\label{tab:monotone-adaptive}
+\resizebox{\textwidth}{!}{\input{tables/monotone_adaptive.tex}}
+\begin{minipage}{0.96\textwidth}
+\footnotesize
+\emph{Notes:} Ten paired repetitions per cell. All nonparametric methods
+use the same score, root rule, bandwidth path, and observations. Coverage
+and interval length concern nominal 95 percent intervals for the exact
+reserve. These are pilot diagnostics, not a coverage theorem. The MLE is
+correctly specified only in the lognormal design. Candidate validation
+risks, selected weights, and paired MSE Monte Carlo standard errors are
+included in the replication files.
+\end{minipage}
+\end{table}
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=\textwidth]{monotone_adaptive.png}
+\caption{Exact-reserve error and revenue regret in the nested-validation
+pilot. Every method uses the same ten evaluation samples in each cell.
+No curve represents an oracle-selected tuning parameter.}
+\label{fig:monotone-adaptive}
+\end{figure}

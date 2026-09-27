@@ -23,6 +23,13 @@ relative to raw WGAN-DML at every sample size, with shorter intervals, but
 nearly reproduces empirical-only estimation. A same-kernel smoothed plug-in
 is a strong comparator and has lower fixed-bandwidth RMSE in this pilot.
 These comparisons do not establish a separate accuracy gain from WGAN.
+An additional nested-validation pilot tests a small monotone generator and
+adaptive mixing separately and together. It likewise does not establish
+uniform dominance: in the larger Weibull cell, adaptive mixing raises
+exact-reserve RMSE relative to fixed calibration and the empirical benchmarks.
+The original fixed-calibration safeguard therefore remains the main
+procedure; the adaptive versions are experimental and require their own
+local-rate justification.
 Shrinking-bandwidth theory and conditional local
 nuisances remain necessary before taking this hybrid to an empirical auction
 application. An external-validity design shows that this conclusion is not

@@ -28,6 +28,7 @@ MODULES = (
     "root_robust_inference",
     "external_validity_monte_carlo",
     "calibrated_wgan_pilot",
+    "monotone_adaptive_pilot",
 )
 
 CONFIG_FILES = {
@@ -40,6 +41,7 @@ CONFIG_FILES = {
     "root_robust_inference": "root_robust_inference_config.json",
     "external_validity_monte_carlo": "external_validity_config.json",
     "calibrated_wgan_pilot": "calibrated_wgan_config.json",
+    "monotone_adaptive_pilot": "monotone_adaptive_config.json",
 }
 
 CONFIG_CLASSES = {
@@ -52,6 +54,7 @@ CONFIG_CLASSES = {
     "root_robust_inference": "RootRobustConfig",
     "external_validity_monte_carlo": "ExternalValidityConfig",
     "calibrated_wgan_pilot": "CalibrationConfig",
+    "monotone_adaptive_pilot": "AdaptiveConfig",
 }
 
 
