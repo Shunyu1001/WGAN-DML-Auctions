@@ -106,12 +106,15 @@ def check_interval_helpers(module: object) -> None:
     require(not module.contains(merged, 1.7), "Interval exclusion failed")
 
 
-def check_submission_files() -> None:
+def check_release_files() -> None:
     required = (
+        "CITATION.cff",
         "paper/main.tex",
         "paper/main_anonymous.tex",
         "paper/references.bib",
         "docs/submission_strategy.md",
+        "docs/working_paper_checklist.md",
+        "docs/working_paper_metadata.md",
         "replication/environment.json",
         "replication/seeds.json",
     )
@@ -125,10 +128,10 @@ def main() -> None:
     check_cross_fitting(imported["crossfit_wgan_pilot"])
     check_score_helpers(imported["orthogonal_wgan_dml"])
     check_interval_helpers(imported["root_robust_inference"])
-    check_submission_files()
+    check_release_files()
     print(
         "Replication smoke checks passed: imports, seeds, folds, score helpers, "
-        "interval helpers, and submission files."
+        "interval helpers, and working-paper release files."
     )
 
 

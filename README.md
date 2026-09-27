@@ -8,7 +8,7 @@ reserve-price parameter.
 
 ## Project Structure
 
-- `paper/`: LaTeX paper draft for Overleaf.
+- `paper/`: LaTeX working paper for local builds and Overleaf.
 - `code/`: estimation, simulation, and data-processing code.
 - `data/raw/`: original auction data; ignored by Git except for `.gitkeep`.
 - `data/processed/`: cleaned analysis data; ignored by Git except for `.gitkeep`.
@@ -31,18 +31,18 @@ latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
 latexmk -pdf -interaction=nonstopmode -halt-on-error main_anonymous.tex
 ```
 
-The manuscript includes a concise abstract, keywords, JEL classifications, and
-a data-and-code availability statement. Journal positioning and the remaining
-formatting gap are recorded in `docs/submission_strategy.md`.
+The manuscript includes a concise abstract, keywords, JEL classifications,
+PDF metadata, and a data-and-code availability statement. The standard for a
+circulation-ready working paper and the remaining release checks are recorded
+in `docs/submission_strategy.md` and `docs/working_paper_checklist.md`.
 
 For adviser review, compile `paper/adviser_memo.tex` and send it before the full
 manuscript. The corresponding decision matrix and bounded review questions are
 in `docs/adviser_review_packet.md`.
 
-The current-form IJCEE submission materials are tracked in
-`docs/ijcee_submission_checklist.md`. They include a metadata sheet and a
-one-page cover letter; author facts and four conflict-screened experts must be
-completed before submission.
+The journal-neutral release metadata are tracked in
+`docs/working_paper_metadata.md`. Journal choice, templates, cover letters, and
+reviewer suggestions are deliberately outside the current project scope.
 
 ## Replication Audit
 
@@ -52,8 +52,8 @@ After installing `requirements.txt`, run the non-destructive integrity check:
 make smoke
 ```
 
-It checks imports, recorded seeds, cross-fitting and score helpers, submission
-files, and SHA-256 checksums for every committed table and figure without
+It checks imports, recorded seeds, cross-fitting and score helpers, working-paper
+release files, and SHA-256 checksums for every committed table and figure without
 training a WGAN or overwriting results. See `replication/README.md` for the full
 Monte Carlo order, environment record, reproducibility boundary, and manuscript
 build commands.
@@ -198,5 +198,5 @@ order-statistic inversion.
 
 Raw or restricted data should never be committed to the repository.
 
-The current submission priorities and the boundary between formal and
+The current working-paper priorities and the boundary between formal and
 diagnostic claims are tracked in `docs/submission_roadmap.md`.
