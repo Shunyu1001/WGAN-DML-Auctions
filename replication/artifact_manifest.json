@@ -38,6 +38,11 @@
       "sha256": "521fd7d41add9a4f17c9643d2f56fdff2404d31d3c2598a70f26b3bd38f5ed27"
     },
     {
+      "path": "paper/figures/monotone_adaptive.png",
+      "bytes": 324013,
+      "sha256": "51d2b910d02ee06625158a435660d4ee9ee464b03341c93593f0042f349fa2e0"
+    },
+    {
       "path": "paper/figures/orthogonal_wgan_dml.png",
       "bytes": 126321,
       "sha256": "e0cbb6b4b242514508a7e79adf5b8d366c9e981f55ffc3fadb625e6f486b4dad"
@@ -191,6 +196,61 @@
       "path": "paper/tables/local_nuisance_ablation_raw.csv",
       "bytes": 374080,
       "sha256": "6e2f65beb281c69fa29a469f98705716b9a28a061004e12b2db248f1dc422f01"
+    },
+    {
+      "path": "paper/tables/monotone_adaptive.csv",
+      "bytes": 9505,
+      "sha256": "d20d4372c2dafb7b3f6f3d7cd1f0abdfe643706a192c0c91ced079e0a40efb51"
+    },
+    {
+      "path": "paper/tables/monotone_adaptive.tex",
+      "bytes": 1824,
+      "sha256": "50bce7343935cdcc154c6fd1ca6a24f30dde793a12033da2e47be1ca5f1d4e76"
+    },
+    {
+      "path": "paper/tables/monotone_adaptive_config.json",
+      "bytes": 1089,
+      "sha256": "038cf45756972fb293c337257ca891a53c1862a4210ac1a5c405d7d78d98fd8a"
+    },
+    {
+      "path": "paper/tables/monotone_adaptive_paired.csv",
+      "bytes": 9829,
+      "sha256": "5977047d2ec08ef97699e273331fe6fa4819d7cad203e294cc51b3282eb2336a"
+    },
+    {
+      "path": "paper/tables/monotone_adaptive_raw.csv",
+      "bytes": 142847,
+      "sha256": "a2f8c0738207f60152a13116fbdb60c08fafb746f2dab7d54ca4f209b4814f37"
+    },
+    {
+      "path": "paper/tables/monotone_adaptive_training.csv",
+      "bytes": 57106,
+      "sha256": "465583e9cea1eaf33e39fc49a04cc47811665e020e6d10a9d2820c36daa8a637"
+    },
+    {
+      "path": "paper/tables/monotone_adaptive_weights.csv",
+      "bytes": 77246,
+      "sha256": "c0400454233c98318b8eeda0d1a491b50c0c83d9139e1b3bb50b0819a1787c4f"
+    },
+    {
+      "path": "paper/tables/monotone_overlap_config.json",
+      "bytes": 1003,
+      "sha256": "e481dec20386712ab419daaa28d28a1efcdd94b041c3488c9c3152da1ca4d34d"
+    },
+    {
+      "path": "paper/tables/monotone_overlap_raw.csv",
+      "bytes": 71795,
+      "sha256": "1e5cea4b00e34b38e6fd88c5a5328b88682c1751237564f2975edbe2de43d85d"
+    },
+    {
+      "path": "paper/tables/monotone_overlap_training.csv",
+      "bytes": 28893,
+      "sha256": "49b26fa7b89819875252bc7f07392f38d59938360f6eafd2a084cca97e2a9850"
+    },
+    {
+      "path": "paper/tables/monotone_overlap_weights.csv",
+      "bytes": 38994,
+      "sha256": "855065f3962ab1067d3e0e9b36f1191bd4575ced77c8174044803258e315ed50"
     },
     {
       "path": "paper/tables/orthogonal_wgan_dml.csv",

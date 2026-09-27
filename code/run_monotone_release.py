@@ -16,6 +16,23 @@ from monotone_adaptive_pilot import ROOT, AdaptiveConfig, run, summarize
 EVALUATION_SEEDS = {"lognormal":90260930,"weibull":20260930}
 
 
+def archive_overlap(directories,output):
+    """Retain the complete superseded lognormal cohort, not a selected subset."""
+    configs=[json.loads((p/'monotone_adaptive_config.json').read_text()) for p in directories]
+    if any(c['seed']!=20260930 or c['distributions']!=['lognormal'] for c in configs):
+        raise ValueError('Expected only the original overlapping lognormal cohort')
+    output.mkdir(parents=True,exist_ok=True)
+    for suffix in ['raw','weights','training']:
+        frame=pd.concat([pd.read_csv(p/f'monotone_adaptive_{suffix}.csv') for p in directories],ignore_index=True)
+        frame['evaluation_base_seed']=20260930
+        frame.to_csv(output/f'monotone_overlap_{suffix}.csv',index=False)
+    config=dict(configs[0],sample_sizes=sorted({n for c in configs for n in c['sample_sizes']}),
+        status='superseded cohort retained for audit, not pooled with final evaluation',
+        reason='8 of 10 data seeds per sample size overlap the earlier 20260928 calibration study',
+        replacement_base_seed=90260930)
+    (output/'monotone_overlap_config.json').write_text(json.dumps(config,indent=2)+'\n')
+
+
 def combine_release(directories,output):
     configs=[json.loads((p/'monotone_adaptive_config.json').read_text()) for p in directories]
     keys=set(AdaptiveConfig.__dataclass_fields__)-{'sample_sizes','distributions','seed'}
@@ -55,8 +72,11 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output-dir',type=Path,default=ROOT/'output/tables/monotone_release')
     parser.add_argument('--combine-dirs',type=Path,nargs='+')
+    parser.add_argument('--archive-overlap-dirs',type=Path,nargs='+')
     args=parser.parse_args()
-    if args.combine_dirs:
+    if args.archive_overlap_dirs:
+        archive_overlap(args.archive_overlap_dirs,args.output_dir)
+    elif args.combine_dirs:
         combine_release(args.combine_dirs,args.output_dir)
     else:
         directories=[]

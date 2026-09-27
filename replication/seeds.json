@@ -10,6 +10,9 @@
     "bias_corrected_inference": {"base_seed": 20260716},
     "root_robust_inference": {"base_seed": 20260716},
     "external_validity_monte_carlo": {"base_seed": 20260717},
-    "calibrated_wgan_pilot": {"base_seed": 20260928}
+    "calibrated_wgan_pilot": {"base_seed": 20260928},
+    "monotone_adaptive_pilot": {"base_seed": 20260930,
+      "final_evaluation_seeds": {"lognormal": 90260930, "weibull": 20260930},
+      "note": "Use run_monotone_release.py; initial lognormal data overlap was replaced in full and retained separately for audit."}
   }
 }

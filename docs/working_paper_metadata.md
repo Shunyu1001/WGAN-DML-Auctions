@@ -6,7 +6,7 @@
   Maxima
 - **Author:** Shunyu Hao
 - **Document type:** Working paper
-- **Version:** 0.1.1 candidate (local-calibration follow-up)
+- **Version:** 0.1.2 candidate (monotone/adaptive ablation)
 - **Date:** September 27, 2026
 - **Repository:** https://github.com/Shunyu1001/WGAN-DML-Auctions
 - **JEL classifications:** C14; C15; C45; D44
@@ -28,6 +28,8 @@ identifying information. Bias-corrected shrinking-bandwidth procedures improve
 exact-reserve inference but remain diagnostic. A fixed-pseudo-count local
 calibration improves the WGAN score in a paired pilot while closely tracking
 empirical-only estimation and leaving the network and loss unchanged.
+A separate monotone-generator and adaptive-mixing pilot gives mixed results,
+without a uniform advantage over empirical benchmarks.
 
 ## Keywords
 

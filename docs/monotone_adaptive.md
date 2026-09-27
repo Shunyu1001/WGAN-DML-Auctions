@@ -37,6 +37,10 @@ are archived separately as `monotone_overlap_raw.csv`; they are not pooled
 with the new evaluation. A regression test checks seed disjointness. This
 replacement is due to provenance, not performance; no fresh seed is selected
 or removed based on an outcome.
+As a provenance cross-check, all sixteen overlapping original-fixed corrected
+estimates exactly match their earlier calibration-study counterparts. The
+final cohort's seed set is disjoint from both the earlier study and this
+superseded cohort.
 
 ## Monotone generator
 
@@ -103,6 +107,38 @@ where z=(log B-mu)/sigma. Its interval uses a sandwich parameter covariance and
 the reserve's delta-method gradient. Under Weibull misspecification this
 targets a pseudo-true lognormal reserve, not generally the actual reserve;
 reported actual-target coverage is a diagnostic, not a coverage guarantee.
+
+## Final pilot results
+
+Exact-reserve RMSE in the independent evaluation is:
+
+| Design | Auctions | Original fixed | Monotone adaptive | Smoothed plug-in |
+| --- | ---: | ---: | ---: | ---: |
+| Lognormal | 500 | 0.0593 | 0.0525 | 0.0530 |
+| Lognormal | 2,000 | 0.0335 | 0.0318 | 0.0349 |
+| Weibull | 500 | 0.0552 | 0.0512 | 0.0503 |
+| Weibull | 2,000 | 0.0327 | 0.0393 | 0.0328 |
+
+Each cell has ten paired repetitions. Against the plug-in, the combined
+variant's paired MSE differences (Monte Carlo standard errors) are -0.000052
+(0.000214), -0.000207 (0.000236), +0.000094 (0.000193), and +0.000469
+(0.000292), respectively. The lognormal point improvements do not establish
+a stable ranking; the larger Weibull cell is materially worse. Original
+generator plus adaptive mixing is worse than original fixed calibration in
+all four cells. Monotone generation with fixed mixing closely follows the
+empirical benchmark. The fixed-calibration procedure remains the main
+safeguarded estimator; adaptive mixing remains experimental.
+
+The correctly specified lognormal MLE has RMSE 0.0151 and 0.0073 in the
+lognormal cells, but about 0.097 and zero actual-target coverage under Weibull
+misspecification. This is not a WGAN-specific advantage: the empirical
+benchmarks also avoid that parametric misspecification. Ten repetitions do
+not support precise coverage claims or a broad superiority claim.
+
+The primary archive contains 520 estimates, 600 weight selections, and 480
+generator fits. The superseded overlap archive is separate and contains 260
+estimates. Automated checks verify seeds, paired completeness, finite results,
+summary arithmetic, validation argmin choices, and training diagnostics.
 
 ## Reproduction and audit
 

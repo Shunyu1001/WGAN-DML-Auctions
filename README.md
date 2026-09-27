@@ -46,6 +46,14 @@ reviewer suggestions are deliberately outside the current project scope.
 
 ## Replication Audit
 
+The latest architecture/weight-selection ablation is documented in
+[`docs/monotone_adaptive.md`](docs/monotone_adaptive.md). It tests an
+eleven-parameter monotone quantile generator and nested-validation mixing,
+separately and together, without changing the adversarial loss or reserve
+score. It preserves all evaluation runs and strong empirical/parametric
+comparators; neither adaptive weighting nor cross-fitting alone establishes
+an accuracy advantage or valid exact-reserve coverage.
+
 After installing `requirements.txt`, run the non-destructive integrity check:
 
 ```bash

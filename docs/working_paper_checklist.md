@@ -15,6 +15,8 @@ outlet-specific formatting are later decisions.
 - [x] Maintained auction assumptions and the empirical implementation boundary
   are explicit.
 - [x] No empirical result is claimed from simulated data.
+- [x] The monotone/adaptive pilot separates development and evaluation seeds,
+  preserves strong benchmarks, and does not inherit the fixed-weight proof.
 
 ## Manuscript Integrity
 
