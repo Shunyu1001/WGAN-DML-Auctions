@@ -11,11 +11,22 @@ from monotone_adaptive_pilot import (
     targets_and_revenue,
 )
 from orthogonal_wgan_dml import gaussian_kernel_moments
+from run_monotone_release import EVALUATION_SEEDS
 
 
 class MonotoneAdaptiveTests(unittest.TestCase):
     def setUp(self):
         torch.set_num_threads(1)
+
+    def test_release_seeds_do_not_overlap_prior_calibration(self):
+        old={20260928+n*100+rep for n in [500,2000,10000] for rep in range(10)}
+        development={20260929+n*100 for n in [120,500]}
+        new={EVALUATION_SEEDS[d]+offset+n*100+rep
+             for d,offset in [('lognormal',0),('weibull',9000000)]
+             for n in [500,2000] for rep in range(10)}
+        self.assertFalse(old.intersection(new))
+        self.assertFalse(development.intersection(new))
+        self.assertEqual(len(new),40)
 
     def test_positive_slopes_and_unbounded_log_tails(self):
         model=MonotoneLogQuantile(.1,.5)
@@ -82,6 +93,14 @@ class MonotoneAdaptiveTests(unittest.TestCase):
         self.assertTrue(result['optimizer_success'])
         self.assertAlmostEqual(result['estimate'],lognormal_reserve([0.,np.log(.5)]),places=3)
         self.assertGreater(result['standard_error'],0)
+
+    def test_mle_estimate_and_standard_error_scale_with_units(self):
+        u=(np.arange(800)+.5)/800
+        data=np.exp(.5*ndtri(u**.2))
+        first=lognormal_mle(data,5)
+        second=lognormal_mle(3*data,5)
+        self.assertAlmostEqual(second['estimate']/first['estimate'],3.,places=5)
+        self.assertAlmostEqual(second['standard_error']/first['standard_error'],3.,places=5)
 
     def test_population_targets_and_negative_reserve_revenue(self):
         for name in ['lognormal','weibull']:

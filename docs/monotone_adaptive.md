@@ -17,10 +17,26 @@ misspecified parametric reference in the Weibull design.
 
 Evaluation is fixed at ten repetitions for each combination of n=500 or 2,000
 and LN(0,0.5^2) or Weibull(shape=1.5, scale=1). Both designs satisfy the baseline
-positive-value regularity conditions. Development uses seed 20260929; final
-evaluation uses seed 20260930. No test-seed outcome changes the architecture,
+positive-value regularity conditions. Development uses seed 20260929. Final
+evaluation uses base seed 90260930 for lognormal and 20260930 for Weibull
+(the latter also has the fixed 9,000,000 DGP offset). No test-seed outcome changes the architecture,
 weight candidates, bandwidth, or reported cells. This is a pilot, not evidence
 of uniform dominance or precise coverage. Every run is retained.
+
+### Seed-overlap correction
+
+The initially scheduled lognormal base seed 20260930 overlapped eight of ten
+data seeds per sample size with the earlier calibration experiment, whose
+base seed was 20260928: both scripts add the repetition index directly. This
+was identified during the audit, before final reporting. The entire affected
+lognormal cohort, including its two non-overlapping repetitions, was replaced
+by a fresh prespecified cohort with base seed 90260930. The estimator source
+and all tuning settings stayed frozen at commit d5c6a5a. The already completed
+Weibull cohort did not overlap and was retained. Original lognormal results
+are archived separately as `monotone_overlap_raw.csv`; they are not pooled
+with the new evaluation. A regression test checks seed disjointness. This
+replacement is due to provenance, not performance; no fresh seed is selected
+or removed based on an outcome.
 
 ## Monotone generator
 
@@ -33,6 +49,8 @@ valuation cap. It differs from the original tanh generator, whose log-value
 support is centered on the training log-maxima mean with half-width four times
 their standard deviation. Changing architecture and removing this cap are a
 joint intervention; their separate causal contributions are not identified here.
+The fixed knot count and linear normal-quantile tails remain approximation
+restrictions; unbounded support is not a guarantee of accurate tail estimation.
 
 Initialization regresses empirical log-maximum quantiles on Phi^{-1}(p^{1/N})
 at 39 probabilities from 0.05 to 0.95. It uses fitting data only. This is a
@@ -90,17 +108,20 @@ reported actual-target coverage is a diagnostic, not a coverage guarantee.
 
 ```bash
 python3 code/test_monotone_adaptive.py
-python3 code/monotone_adaptive_pilot.py
+python3 code/run_monotone_release.py
 ```
 
 The runner writes raw estimates, candidate validation risks and selected
 weights, per-fit training diagnostics, paired MSE differences with Monte Carlo
 standard errors, configuration, a table, and a figure into
-output/tables/monotone_adaptive. Training caches are keyed by architecture,
+output/tables/monotone_release. Training caches are keyed by architecture,
 configuration, data, seed, and source hashes. No original artifact is replaced.
 
-Independent design cells may run in parallel using --distributions and --sizes;
-combine them with --combine-dirs. The merger rejects conflicting configurations,
-different source fingerprints, and duplicate cells. Plot axes and table labels
+Independent design cells may run in parallel with `monotone_adaptive_pilot.py`
+using --distributions, --sizes, and the correct distribution-specific --seed;
+combine them with `run_monotone_release.py --combine-dirs`. The release merger
+requires the predeclared distribution/seed mapping, identical estimator
+settings and source fingerprints, and no duplicate cells. Each archived row
+records its actual evaluation base seed. Plot axes and table labels
 distinguish exact-reserve results from fixed-bandwidth results. No method or
 seed is omitted because of poor performance.
