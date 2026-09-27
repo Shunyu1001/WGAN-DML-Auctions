@@ -39,20 +39,20 @@ The defensible contribution is a methodological and Monte Carlo paper:
 
 ## Next Three Sprints
 
-1. **Editorial freeze:** complete the journal-neutral release checklist, record
-   the author affiliation/contact line, and freeze identified and anonymous PDFs
-   from the same commit.
-2. **External circulation:** send the prepared adviser packet and working paper,
-   collect comments against the bounded contribution and assumption questions,
-   and log decisions without reopening general estimator tuning.
-3. **Optional empirical bridge:** if a suitable auction dataset becomes
-   available, document entry, observed order statistics, and bidder-count
-   variation before implementation. Treat this as a later version, not a
-   prerequisite for releasing the current methodological paper.
+1. **Confirm the simple calibration:** expand the paired ten-repetition pilot
+   before making precise coverage claims. Retain the empirical-only and
+   same-kernel plug-in comparators and the fixed pseudo-count, and report
+   Monte Carlo uncertainty as well as interval length.
+2. **Bounded robustness:** check the same calibration across the existing
+   heavy-tail and mixture designs, without adding network or score variants.
+   Assess whether any incremental benefit over empirical-only estimation
+   survives; do not infer that benefit from improvement over raw WGAN-DML.
+3. **Editorial freeze:** complete the journal-neutral release checklist,
+   confirm the author affiliation/contact line, and freeze identified and
+   anonymous PDFs from the same commit. An empirical application remains an
+   optional later extension requiring a suitable auction dataset.
 
-The external-validity, theory-audit, repository-level replication-audit, and
-adviser-packaging sprints are complete. The
-expensive Monte Carlo archive has not been rerun in this audit; it is documented
-separately from the fast checks. Freezing a traceable working-paper release and
-obtaining bounded external feedback are the next critical steps; additional
-tuning of the same confidence interval has lower priority.
+The earlier external-validity and theory-audit results are preserved. The
+September follow-up adds a deliberately small, paired calibration experiment
+with independent evaluation seeds; it does not replace the original Monte
+Carlo archive or certify exact-reserve inference.

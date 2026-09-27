@@ -17,7 +17,13 @@ undercover. An oracle and empirical-local ablation changes the conclusion from
 a generic failure to a precise design recommendation: training-fold local
 moments attain near-oracle RMSE and coverage, so WGAN-GP should estimate the
 global structural distribution while a dedicated observable local learner
-supplies the reserve score. Shrinking-bandwidth theory and conditional local
+supplies the reserve score. A new paired ten-repetition pilot implements this
+safeguard with a fixed-pseudo-count mixture. It lowers fixed-bandwidth RMSE
+relative to raw WGAN-DML at every sample size, with shorter intervals, but
+nearly reproduces empirical-only estimation. A same-kernel smoothed plug-in
+is a strong comparator and has lower fixed-bandwidth RMSE in this pilot.
+These comparisons do not establish a separate accuracy gain from WGAN.
+Shrinking-bandwidth theory and conditional local
 nuisances remain necessary before taking this hybrid to an empirical auction
 application. An external-validity design shows that this conclusion is not
 specific to the baseline lognormal distribution: for three or five bidders,

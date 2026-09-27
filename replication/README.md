@@ -40,11 +40,20 @@ python3 code/bandwidth_path.py --reps 200 --exponents 0 0.2 0.35 0.5
 python3 code/bias_corrected_inference.py --reps 200 --exponents 0.2 0.35
 python3 code/root_robust_inference.py --reps 200 --exponents 0.2 0.35
 python3 code/external_validity_monte_carlo.py --reps 200
+python3 code/calibrated_wgan_pilot.py --reps 10 --seed 20260928
 ```
 
+The calibration follow-up is self-contained and caches synthetic training-fold
+samples under `output/tables/calibration_cache`. It writes its reviewed results
+first to `output/tables/calibration_pilot`; archive its CSV, JSON, and TeX files
+to `paper/tables` and its PNG to `paper/figures` only after reviewing the run.
+The original experiments remain intact. The fixed pseudo-count is 50 and the
+evaluation seed is separate from the one-sample development check.
+
 The WGAN outputs feed the cross-fit and orthogonal-score scripts, so their
-order matters. All scripts write directly to `paper/tables/` and
-`paper/figures/`. Regenerate the checksum manifest only after reviewing an
+order matters. The original scripts write directly to `paper/tables/` and
+`paper/figures/`; the calibration follow-up uses the separate directory above.
+Regenerate the checksum manifest only after reviewing an
 intentional full or partial result update:
 
 ```bash

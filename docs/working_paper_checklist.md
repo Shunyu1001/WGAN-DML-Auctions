@@ -19,7 +19,7 @@ outlet-specific formatting are later decisions.
 ## Manuscript Integrity
 
 - [x] The identified and anonymous entry points reuse the same manuscript.
-- [x] The abstract is 140 words.
+- [x] The abstract concisely states both the formal result and pilot limitations.
 - [x] Keywords and JEL classifications are present.
 - [x] Data/code, conflicts-of-interest, and AI-assisted-tool declarations are
   present.

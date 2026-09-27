@@ -30,11 +30,35 @@ training fold and the score is evaluated only on the corresponding held-out
 fold.
 
 Under the baseline without covariates, the score's two local moments are also
-directly estimable from observed maximum bids. I therefore report a hybrid
-ablation in which WGAN-GP remains the structural estimator of the full latent
-distribution, but $(A_h,G_h)$ in the reserve score are estimated empirically on
-each training fold. This separates the value of global structural learning
-from the local nuisance requirement for reserve inference.
+directly estimable from observed maximum bids. The empirical-local ablation
+therefore estimates $(A_h,G_h)$ on each training fold without using a WGAN.
+Its reference for selecting among roots is the direct-inversion estimate.
+This experiment diagnoses the local nuisance requirement; it does not by
+itself establish a gain from retaining a global generative model.
+
+A subsequent paired pilot implements a simple hybrid directly. Let $n_{-k}$
+be the training-fold size and let $\widehat\eta^{(-k)}_{W,h}$ and
+$\widehat\eta^{(-k)}_{E,h}$ denote the WGAN and empirical local moments.
+Use the same mixture weight for the CDF and density:
+\begin{equation}
+\widehat\eta^{(-k)}_{C,h}
+=(1-w_k)\widehat\eta^{(-k)}_{E,h}
++w_k\widehat\eta^{(-k)}_{W,h},\qquad
+w_k=\frac{50}{n_{-k}+50}.
+\label{eq:local-calibration}
+\end{equation}
+The fixed pseudo-count of 50 is specified before the evaluation runs; it is
+not chosen using the true reserve, coverage, or evaluation-fold observations.
+This post-fit calibration preserves the original WGAN-GP architecture and
+loss. It changes only the moments supplied to the existing orthogonal score.
+For fixed $h$, CDF signals lie in $[0,1]$ and density signals in
+$[0,(\sqrt{2\pi}h)^{-1}]$. Hence the difference from the empirical nuisance
+is uniformly $O(n^{-1})$, regardless of the WGAN fit, and the empirical-local
+rate result continues to apply under the same overlap and root conditions.
+This is an empirical-dominated safeguard, not a claim of improved asymptotic
+efficiency. Whether the retained WGAN component improves finite-sample
+performance is assessed against the empirical-only estimator and a
+full-sample smoothed plug-in using the same kernel and bandwidth.
 
 As a computational precursor, I also report a fold-averaged plug-in. Partition
 the auctions into $K$ folds and train $\widehat F^{(-k)}$ outside fold $k$.

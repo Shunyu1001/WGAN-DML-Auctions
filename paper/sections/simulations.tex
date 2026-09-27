@@ -159,8 +159,8 @@ coverage is diagnostic rather than a precise Monte Carlo estimate.
 \label{fig:orthogonal-wgan-dml}
 \end{figure}
 
-Table~\ref{tab:orthogonal-wgan-dml} rejects the hypothesis that formal
-orthogonality alone repairs the current WGAN nuisance fit. The orthogonal
+Table~\ref{tab:orthogonal-wgan-dml} illustrates that formal
+orthogonality alone does not repair the current WGAN nuisance fit. The orthogonal
 correction raises the fold-averaged estimate by 0.123, 0.122, and 0.145 on
 average as $n$ increases. Relative to $r_0$, its RMSE is 0.1355, 0.1046, and
 0.1276, compared with 0.0368, 0.0270, and 0.0274 for fold averaging. Coverage
@@ -220,9 +220,12 @@ for $n=500,2000,10000$. Nevertheless, direct training-fold moments become
 accurate enough under the fixed bandwidth. Thus the earlier failure is not a
 failure of the orthogonal algebra. It is evidence that a globally trained WGAN
 is an unnecessarily indirect and currently inaccurate estimator of observable
-local score moments. The preferred baseline is a hybrid: use WGAN-GP for the
-full latent distribution and structural counterfactuals, but use dedicated
-training-fold local moments for reserve inference.
+local score moments. These results motivate a workflow using WGAN-GP for the
+full latent distribution and structural counterfactuals, with dedicated
+training-fold local moments supplying reserve inference. The empirical-only
+ablation does not measure a gain from WGAN participation in the score.
+
+\input{sections/calibration_results}
 
 \subsection{Shrinking bandwidth and the exact reserve}
 

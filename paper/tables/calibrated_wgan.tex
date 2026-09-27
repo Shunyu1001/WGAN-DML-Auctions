@@ -1,0 +1,21 @@
+\begin{tabular}{rlrrrr}
+\toprule
+$n$ & Method & Bias & RMSE & Coverage & CI length \\
+\midrule
+500 & WGAN-DML & 0.0572 & 0.0713 & 80.0\% & 0.1780 \\
+500 & Calibrated WGAN & 0.0258 & 0.0456 & 100.0\% & 0.1416 \\
+500 & Empirical-local & 0.0249 & 0.0452 & 100.0\% & 0.1377 \\
+500 & Smooth plug-in & 0.0139 & 0.0357 & 100.0\% & 0.1230 \\
+\addlinespace
+2,000 & WGAN-DML & 0.0471 & 0.0654 & 50.0\% & 0.0896 \\
+2,000 & Calibrated WGAN & 0.0044 & 0.0182 & 90.0\% & 0.0686 \\
+2,000 & Empirical-local & 0.0043 & 0.0182 & 90.0\% & 0.0680 \\
+2,000 & Smooth plug-in & 0.0019 & 0.0162 & 90.0\% & 0.0656 \\
+\addlinespace
+10,000 & WGAN-DML & 0.0370 & 0.0444 & 30.0\% & 0.0420 \\
+10,000 & Calibrated WGAN & -0.0019 & 0.0080 & 100.0\% & 0.0294 \\
+10,000 & Empirical-local & -0.0019 & 0.0080 & 100.0\% & 0.0293 \\
+10,000 & Smooth plug-in & -0.0024 & 0.0077 & 100.0\% & 0.0290 \\
+\addlinespace
+\bottomrule
+\end{tabular}

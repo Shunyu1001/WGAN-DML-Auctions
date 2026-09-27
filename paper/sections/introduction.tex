@@ -55,10 +55,11 @@ reported design. More aggressive shrinkage creates multiple roots; taking the
 union over all root chains increases interval length without improving
 coverage.
 
-These findings support a hybrid estimator rather than a WGAN-only inference
-procedure. The WGAN supplies a coherent global latent distribution for
-structural counterfactuals, while a dedicated local learner supplies the score
-nuisances used for inference. The paper's formal coverage result concerns the
+A paired follow-up implements a simple hybrid by giving the WGAN the weight
+of 50 pseudo-observations in the training-fold local moments. It substantially
+reduces error relative to the raw WGAN score without changing the network or
+loss, but tracks empirical-only estimation closely and does not establish an
+incremental WGAN advantage. The paper's formal coverage result concerns the
 fixed-bandwidth regularized reserve. Exact-reserve intervals are reported as a
 bias-aware prototype whose uniform validity requires additional conditions on
 the shrinking-bandwidth root process.
