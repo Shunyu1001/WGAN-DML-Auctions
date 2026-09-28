@@ -1,0 +1,25 @@
+distribution,auctions,procedure,comparison,trained,initial,mse_difference,paired_mcse
+lognormal,500,Exact reserve,Fixed weights,Monotone fixed,Initialization fixed,-3.328225173566647e-05,4.508943337370045e-05
+lognormal,500,Exact reserve,Matched weights,Monotone adaptive,Initialization matched,4.328071909415344e-05,0.00014420977185539442
+lognormal,500,Exact reserve,Reselected weights,Monotone adaptive,Initialization adaptive,-1.8424696199296748e-05,9.650828268382842e-05
+lognormal,500,Fixed bandwidth,Fixed weights,Monotone fixed,Initialization fixed,-8.323774483841252e-06,1.4340895443184587e-05
+lognormal,500,Fixed bandwidth,Matched weights,Monotone adaptive,Initialization matched,2.1192974924903692e-05,4.245720016871053e-05
+lognormal,500,Fixed bandwidth,Reselected weights,Monotone adaptive,Initialization adaptive,3.6154107114736175e-05,7.23640571814897e-05
+lognormal,2000,Exact reserve,Fixed weights,Monotone fixed,Initialization fixed,2.4566682278098886e-06,1.5572063317508762e-06
+lognormal,2000,Exact reserve,Matched weights,Monotone adaptive,Initialization matched,9.609191469976998e-06,8.350502271263461e-06
+lognormal,2000,Exact reserve,Reselected weights,Monotone adaptive,Initialization adaptive,2.1630198823896035e-05,1.586034185614112e-05
+lognormal,2000,Fixed bandwidth,Fixed weights,Monotone fixed,Initialization fixed,3.0464541981629563e-07,1.7866526182607604e-07
+lognormal,2000,Fixed bandwidth,Matched weights,Monotone adaptive,Initialization matched,1.0995309605669982e-06,9.096827000199751e-07
+lognormal,2000,Fixed bandwidth,Reselected weights,Monotone adaptive,Initialization adaptive,1.0067050599628544e-06,9.267256136024155e-07
+weibull,500,Exact reserve,Fixed weights,Monotone fixed,Initialization fixed,-3.785705388870261e-05,4.312101570882491e-05
+weibull,500,Exact reserve,Matched weights,Monotone adaptive,Initialization matched,0.000272928107508287,0.0008619629644268499
+weibull,500,Exact reserve,Reselected weights,Monotone adaptive,Initialization adaptive,0.00026177664295873543,0.0008554620270601587
+weibull,500,Fixed bandwidth,Fixed weights,Monotone fixed,Initialization fixed,-6.192187563590888e-06,1.6598896416842427e-05
+weibull,500,Fixed bandwidth,Matched weights,Monotone adaptive,Initialization matched,0.00022816678429918375,0.00031563681529205435
+weibull,500,Fixed bandwidth,Reselected weights,Monotone adaptive,Initialization adaptive,0.00020260685323766764,0.00031850396316881433
+weibull,2000,Exact reserve,Fixed weights,Monotone fixed,Initialization fixed,-1.3794398591291697e-06,2.197778346153963e-06
+weibull,2000,Exact reserve,Matched weights,Monotone adaptive,Initialization matched,-0.0018803267455245083,0.0010841242850225005
+weibull,2000,Exact reserve,Reselected weights,Monotone adaptive,Initialization adaptive,0.00020591824258295283,0.00019559617692681153
+weibull,2000,Fixed bandwidth,Fixed weights,Monotone fixed,Initialization fixed,9.299168299930385e-07,9.795638060996684e-07
+weibull,2000,Fixed bandwidth,Matched weights,Monotone adaptive,Initialization matched,-0.00027621559493002133,0.00023007993271218969
+weibull,2000,Fixed bandwidth,Reselected weights,Monotone adaptive,Initialization adaptive,-1.7183442713517387e-05,8.733740071225966e-06

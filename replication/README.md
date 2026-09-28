@@ -42,6 +42,7 @@ python3 code/root_robust_inference.py --reps 200 --exponents 0.2 0.35
 python3 code/external_validity_monte_carlo.py --reps 200
 python3 code/calibrated_wgan_pilot.py --reps 10 --seed 20260928
 python3 code/run_monotone_release.py
+python3 code/initialization_ablation.py --train-missing
 ```
 
 The calibration follow-up is self-contained and caches synthetic training-fold
@@ -72,7 +73,16 @@ Do not combine that cohort with the primary evaluation. The release audit
 checks that primary lognormal data seeds overlap neither this archived cohort
 nor the earlier calibration experiment.
 
-The WGAN outputs feed the cross-fit and orthogonal-score scripts, so their
+The initialization-only mechanism follow-up reuses all forty corrected evaluation
+datasets, without a new independent-validation claim. It authenticates the
+trained cache, recomputes a subset of prior estimates/SEs, and adds zero-step
+controls under fixed, reselected, and matched weights. The default command
+fails on a missing cache; `--train-missing` explicitly authorizes reproducing
+those old fits on a fresh machine. Results go to
+`output/tables/initialization_ablation`. See `docs/initialization_ablation.md`
+for the frozen protocol and `docs/initialization_findings.md` for its limitations.
+
+The original WGAN outputs feed the cross-fit and orthogonal-score scripts, so their
 order matters. The original scripts write directly to `paper/tables/` and
 `paper/figures/`; the calibration follow-up uses the separate directory above.
 Regenerate the checksum manifest only after reviewing an

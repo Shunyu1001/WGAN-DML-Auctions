@@ -30,6 +30,12 @@ exact-reserve RMSE relative to fixed calibration and the empirical benchmarks.
 The original fixed-calibration safeguard therefore remains the main
 procedure; the adaptive versions are experimental and require their own
 local-rate justification.
+A retrospective initialization-only ablation nearly reproduces the adaptive
+lognormal results without adversarial updates. Under Weibull, training
+improves observable-distribution fit but changes selected mixture weights;
+the resulting reserve error need not improve. Thus the current evidence
+does not identify a stable reserve-estimation gain attributable to adversarial
+training itself.
 Shrinking-bandwidth theory and conditional local
 nuisances remain necessary before taking this hybrid to an empirical auction
 application. An external-validity design shows that this conclusion is not

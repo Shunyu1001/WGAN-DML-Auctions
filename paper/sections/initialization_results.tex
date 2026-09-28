@@ -1,0 +1,82 @@
+\subsubsection{Initialization versus adversarial training}
+\label{sec:initialization-ablation}
+
+The lognormal-shaped initialization could itself account for the preceding
+pilot's favorable point estimates. A retrospective paired ablation therefore
+reuses all forty evaluation datasets, without new tuning or sample selection.
+It holds the outer folds, inner split, numerical integration, score, and
+bandwidths fixed, and replaces adversarial training by the existing data-only
+initialization with zero optimizer steps. This linear normal-quantile
+initialization is a lognormal-family restriction, not an unrestricted learner.
+This is a mechanism diagnostic on already inspected samples, not a second
+independent confirmation.
+
+Three comparisons distinguish training from weight selection. Fixed weights
+retain the fifty-pseudo-observation rule. Reselected weights allow initialized
+and trained generators to choose weights separately on the same inner
+validation data. Matched weights instead give the initialized outer nuisance
+the trained learner's weights. The last comparison isolates outer-nuisance
+training conditional on that weight-selection policy; it is not a cheap
+standalone estimator, since selecting its weights still requires training.
+All prior trained estimates are preserved. Thirty-two recomputed estimate
+and standard-error checks agree with the archive within $10^{-15}$.
+
+Table~\ref{tab:initialization} shows that initialization alone nearly
+reproduces the lognormal adaptive results: RMSE is 0.0527 and 0.0314,
+compared with 0.0525 and 0.0318 after training. Under fixed calibration, all
+four training-induced RMSE changes are below 0.0004. These results do not
+identify adversarial learning as the source of the earlier lognormal gains.
+With separately selected weights, initialization also has lower point RMSE
+in both Weibull cells, although paired Monte Carlo uncertainty remains large.
+
+The matched-weight comparison adds an important qualification. At Weibull
+$n=2000$, training reduces RMSE from 0.0585 to 0.0393 when the trained
+selection rule's weights are held fixed. Its paired MSE difference is
+$-0.00188$, with Monte Carlo standard error 0.00108. Yet allowing the
+initialized learner to select its own weights gives RMSE 0.0366, while the
+smoothed plug-in remains more accurate at 0.0328. Averaged over all folds and
+distinct bandwidths in this cell, generated-component weights rise from
+0.139 before training to 0.400 after training. Training and the induced
+weight response can therefore move the reserve error in different directions.
+
+Training does improve observable-distribution fit under Weibull. Mean
+outer-holdout maximum-distribution $W_1$ falls from 0.0955 to 0.0780 at
+$n=500$ and from 0.0657 to 0.0483 at $n=2000$, using equal integration
+precision. These are descriptive means over thirty outer fits per cell;
+overlapping folds are not thirty independent replications. Holdout fit is
+used only for reporting. Better global fit therefore does not establish
+improved reserve estimation under adaptive calibration. Figure~\ref{fig:initialization}
+reports paired uncertainty: every displayed approximate Monte Carlo interval
+includes zero. The ten-repetition retrospective study motivates examining
+conservative mixing on fresh data, but does not validate such a modification
+or justify replacing the fixed-calibration safeguard.
+
+\begin{table}[htbp]
+\centering
+\linespread{1}\selectfont
+\small
+\caption{Exact-reserve RMSE before and after adversarial training}
+\label{tab:initialization}
+\resizebox{\textwidth}{!}{\input{tables/initialization_ablation.tex}}
+\begin{minipage}{0.96\textwidth}
+\footnotesize
+\emph{Notes:} Ten paired repetitions per cell, reusing the preceding pilot's
+complete evaluation cohort. ``Init.'' has zero adversarial updates. The
+matched initialized arm uses weights selected by the trained learner, so its
+comparator is the trained column under reselected weights. Fixed-bandwidth
+results, coverage, all raw estimates, validation risks, and cache provenance
+are included in the replication archive. No root failures occur in this ablation.
+\end{minipage}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{initialization_ablation.png}
+\caption{Paired adversarial-training effects on exact-reserve mean squared
+error. Negative values favor training. Bars are the mean paired squared-error
+difference plus or minus 1.96 Monte Carlo standard errors across ten
+replications, not confidence intervals for the reserve. Horizontal scales
+differ across panels. These retrospective, approximate uncertainty summaries
+are not a confirmatory dominance test.}
+\label{fig:initialization}
+\end{figure}
