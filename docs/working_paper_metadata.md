@@ -6,7 +6,7 @@
   Maxima
 - **Author:** Shunyu Hao
 - **Document type:** Working paper
-- **Version:** 0.1.2 candidate (monotone/adaptive ablation)
+- **Version:** 0.1.3 candidate (initialization/training mechanism ablation)
 - **Date:** September 27, 2026
 - **Repository:** https://github.com/Shunyu1001/WGAN-DML-Auctions
 - **JEL classifications:** C14; C15; C45; D44

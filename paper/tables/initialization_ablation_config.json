@@ -1,0 +1,26 @@
+{
+  "design": "retrospective paired mechanism ablation; no new independent evaluation",
+  "distributions": [
+    "lognormal",
+    "weibull"
+  ],
+  "sample_sizes": [
+    500,
+    2000
+  ],
+  "repetitions": 10,
+  "evaluation_seed_by_distribution": {
+    "lognormal": 90260930,
+    "weibull": 20260930
+  },
+  "prior_estimator_sha256": "7ebd710e5696fec5fbb1b3b39c824b23d3b96a1deda2d61a0803fd92e77c7070",
+  "source_sha256": "b332420fefa21501314bead50d51bface0801249a1399e21083e661ff07bde06",
+  "prior_raw_sha256": "a2f8c0738207f60152a13116fbdb60c08fafb746f2dab7d54ca4f209b4814f37",
+  "prior_weights_sha256": "c0400454233c98318b8eeda0d1a491b50c0c83d9139e1b3bb50b0819a1787c4f",
+  "protocol_sha256": "5aa969da9735d06778dd14cb5f6ad91bf2c66b74a052942910e289d3fe7bd06c",
+  "initialization_optimizer_steps": 0,
+  "quadrature_nodes": 32768,
+  "python": "3.13.4 (v3.13.4:8a526ec7cbe, Jun  3 2025, 21:14:54) [Clang 16.0.0 (clang-1600.0.26.6)]",
+  "numpy": "2.2.6",
+  "torch": "2.8.0"
+}

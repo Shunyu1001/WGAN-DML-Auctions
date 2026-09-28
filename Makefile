@@ -4,7 +4,9 @@ smoke:
 	python3 code/replication_smoke.py
 	python3 code/test_calibrated_wgan.py
 	python3 code/test_monotone_adaptive.py
+	python3 code/test_initialization_ablation.py
 	python3 code/audit_monotone_results.py --require-full
+	python3 code/audit_initialization_results.py
 	python3 code/build_artifact_manifest.py --check
 
 manifest:

@@ -13,6 +13,9 @@
     "calibrated_wgan_pilot": {"base_seed": 20260928},
     "monotone_adaptive_pilot": {"base_seed": 20260930,
       "final_evaluation_seeds": {"lognormal": 90260930, "weibull": 20260930},
-      "note": "Use run_monotone_release.py; initial lognormal data overlap was replaced in full and retained separately for audit."}
+      "note": "Use run_monotone_release.py; initial lognormal data overlap was replaced in full and retained separately for audit."},
+    "initialization_ablation": {
+      "evaluation_seeds": {"lognormal": 90260930, "weibull": 20260930},
+      "note": "Retrospective paired reuse of the complete corrected monotone cohort, not a new independent evaluation. No new random initialization or optimizer steps."}
   }
 }

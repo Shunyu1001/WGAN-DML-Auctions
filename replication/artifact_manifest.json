@@ -33,6 +33,11 @@
       "sha256": "103dd03d34f9d51b81efa2296c7c932da22849a81b66c279f8de2f4878176c9c"
     },
     {
+      "path": "paper/figures/initialization_ablation.png",
+      "bytes": 81802,
+      "sha256": "2a0b0271f379b871b3fad4fa26cf98055295bc214e33a520021db86e360ef282"
+    },
+    {
       "path": "paper/figures/local_nuisance_ablation.png",
       "bytes": 153318,
       "sha256": "521fd7d41add9a4f17c9643d2f56fdff2404d31d3c2598a70f26b3bd38f5ed27"
@@ -176,6 +181,46 @@
       "path": "paper/tables/external_validity_raw.csv",
       "bytes": 842216,
       "sha256": "372829a811d4ed81abfbc3a11087c85022f3768949200751be564fd36a704f6a"
+    },
+    {
+      "path": "paper/tables/initialization_ablation.csv",
+      "bytes": 10158,
+      "sha256": "b742a79733e29f3a2ce6acd30256398228ba9afaee5fee74cb11d738050a3560"
+    },
+    {
+      "path": "paper/tables/initialization_ablation.tex",
+      "bytes": 476,
+      "sha256": "9fab80550f6b1ff55771b7191c602a66b6ca8087a4605c161fa2c11c398652bb"
+    },
+    {
+      "path": "paper/tables/initialization_ablation_checks.csv",
+      "bytes": 2374,
+      "sha256": "19e536f896d4608612ac20142090e1909e6a89a1230ee1238eccc01885524c93"
+    },
+    {
+      "path": "paper/tables/initialization_ablation_config.json",
+      "bytes": 971,
+      "sha256": "34e2aec49890ee8a88f6a47648371541b339978c03db25ffef5a579e470dede9"
+    },
+    {
+      "path": "paper/tables/initialization_ablation_diagnostics.csv",
+      "bytes": 38044,
+      "sha256": "6d4849bd8b3a4d23fc58a9c8b03ba27ea657258796ba0dc3f375fb7888c010a3"
+    },
+    {
+      "path": "paper/tables/initialization_ablation_paired.csv",
+      "bytes": 3201,
+      "sha256": "c19270354b7dd351cfc786930120f4c5690d3e2437709b461f395245dcdeb08d"
+    },
+    {
+      "path": "paper/tables/initialization_ablation_raw.csv",
+      "bytes": 155933,
+      "sha256": "c89535469840d85187a8fc86cc51cbe346d1c9c414fe87edf265d38fc0476c62"
+    },
+    {
+      "path": "paper/tables/initialization_ablation_weights.csv",
+      "bytes": 37191,
+      "sha256": "8ac853b67833a8363ac47378a46c2f53c35ed9461f35077949f72712cc2b91cf"
     },
     {
       "path": "paper/tables/local_nuisance_ablation.csv",

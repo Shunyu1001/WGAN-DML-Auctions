@@ -204,6 +204,14 @@ See `docs/local_calibration.md` for the design and interpretation boundary.
 
 ## Current Estimation Plan
 
+The [initialization mechanism ablation](docs/initialization_findings.md) now
+compares the trained monotone learner with a zero-update control on every
+prior evaluation sample. It nearly reproduces the lognormal results without
+adversarial training. Better Weibull global fit does not translate reliably
+into lower reserve error under adaptive mixing. This is retrospective evidence,
+not a new independent confirmation or an established WGAN-specific advantage.
+
+
 1. Establish identification from observed order statistics under a symmetric
    independent-private-values benchmark.
 2. Estimate the latent valuation distribution with a structural WGAN-GP.

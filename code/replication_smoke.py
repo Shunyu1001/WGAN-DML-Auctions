@@ -29,6 +29,7 @@ MODULES = (
     "external_validity_monte_carlo",
     "calibrated_wgan_pilot",
     "monotone_adaptive_pilot",
+    "initialization_ablation",
 )
 
 CONFIG_FILES = {
