@@ -2,18 +2,18 @@
 
 ## Core Record
 
-- **Title:** Semiparametric Inference for Myerson Reserve Prices from Auction
-  Maxima
+- **Title:** Semiparametric Estimation of Optimal Reserve Prices with Generative
+  Deep Learning
 - **Author:** Shunyu Hao
 - **Document type:** Working paper
-- **Version:** 0.1.3 candidate (initialization/training mechanism ablation)
-- **Date:** September 27, 2026
+- **Version:** 0.1.4 (title synchronization and separate exploratory archive)
+- **Date:** October 15, 2026
 - **Repository:** https://github.com/Shunyu1001/WGAN-DML-Auctions
 - **JEL classifications:** C14; C15; C45; D44
 
 ## Abstract
 
-This paper studies inference for Myerson reserve prices when only auction
+This paper studies inference for optimal reserve prices when only auction
 maxima are observed. Under symmetric independent private values, maxima
 identify the latent value distribution, which is estimated globally by a
 structural Wasserstein generative adversarial network with gradient penalty
@@ -30,6 +30,18 @@ calibration improves the WGAN score in a paired pilot while closely tracking
 empirical-only estimation and leaving the network and loss unchanged.
 A separate monotone-generator and adaptive-mixing pilot gives mixed results,
 without a uniform advantage over empirical benchmarks.
+
+## Manuscript and Exploratory Results
+
+The main manuscript remains `paper/main.tex`, with fixed-pseudo-count
+calibration of GAN and training-fold empirical kernel moments and three-fold
+orthogonal estimation. Its workflow figure is embedded in
+`paper/sections/inference.tex`.
+
+The October 7 two-threshold experiment is archived separately in
+`experiments/two_threshold/`. It is not incorporated into the manuscript's
+tables, main method, or formal inference claim. This version synchronizes the
+title and project descriptions; it does not present new main-method results.
 
 ## Keywords
 

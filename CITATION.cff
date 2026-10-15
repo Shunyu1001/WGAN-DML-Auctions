@@ -1,13 +1,13 @@
 cff-version: 1.2.0
 message: "Please cite the working paper and its replication package using this metadata."
-title: "WGAN-DML Auctions replication package"
+title: "Semiparametric Estimation of Optimal Reserve Prices with Generative Deep Learning replication package"
 type: software
 authors:
   - family-names: Hao
     given-names: Shunyu
 repository-code: "https://github.com/Shunyu1001/WGAN-DML-Auctions"
-version: 0.1.0
-date-released: 2026-07-19
+version: 0.1.4
+date-released: 2026-10-15
 keywords:
   - optimal auctions
   - reserve prices
@@ -17,7 +17,7 @@ keywords:
   - Wasserstein generative adversarial networks
 preferred-citation:
   type: article
-  title: "Semiparametric Inference for Myerson Reserve Prices from Auction Maxima"
+  title: "Semiparametric Estimation of Optimal Reserve Prices with Generative Deep Learning"
   authors:
     - family-names: Hao
       given-names: Shunyu

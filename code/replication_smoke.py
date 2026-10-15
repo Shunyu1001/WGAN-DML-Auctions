@@ -128,6 +128,11 @@ def check_release_files() -> None:
     for relative in required:
         path = ROOT / relative
         require(path.is_file() and path.stat().st_size > 0, f"Missing required file: {relative}")
+    title = "Semiparametric Estimation of Optimal Reserve Prices with Generative Deep Learning"
+    for relative in ("README.md", "CITATION.cff", "paper/main.tex",
+                     "paper/adviser_memo.tex", "docs/working_paper_metadata.md"):
+        normalized = " ".join((ROOT / relative).read_text(encoding="utf-8").split())
+        require(title in normalized, f"Working-paper title is inconsistent in {relative}")
 
 
 def main() -> None:

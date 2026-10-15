@@ -26,7 +26,7 @@ m_h(\theta,A,G)=1-A^{1/N}-\frac{\theta}{N}A^{1/N-1}G.
 \label{eq:regularized-reserve-moment}
 \end{equation}
 The fixed-bandwidth target $\theta_{0,h}$ is the selected zero of
-$m_h(\theta,A_h(\theta),G_h(\theta))$. It need not equal the exact Myerson
+$m_h(\theta,A_h(\theta),G_h(\theta))$. It need not equal the exact optimal
 reserve $r_0$; approximation of $r_0$ requires a separate shrinking-bandwidth
 argument.
 
@@ -63,6 +63,63 @@ The estimator solves
 \widehat A_h^{(-k)}(\widehat\theta_h),
 \widehat G_h^{(-k)}(\widehat\theta_h)\right)=0.
 \end{equation}
+
+Figure~\ref{fig:estimation-workflow} summarizes the calibrated implementation.
+The training observations supply both the WGAN and empirical local moments;
+the held-out observations enter only through the score signals. Scores are
+pooled across folds before solving for a common reserve estimate.
+
+\begin{figure}[tbp]
+\centering
+\begin{tikzpicture}[
+  box/.style={draw=black!55, rounded corners=3pt, line width=0.5pt,
+    align=center, text width=5.2cm, minimum height=1.05cm,
+    inner sep=5pt, font=\linespread{1}\fontsize{10}{12}\selectfont},
+  flow/.style={-{Stealth[length=2mm]}, draw=black!65, line width=0.6pt}
+]
+\node[box] (train) at (0,0)
+  {Training-fold maxima\\$B_j,\ j\in I_k^c$};
+\node[box] (gan) at (-3.4,-1.8)
+  {Train WGAN-GP\\Generate synthetic maxima};
+\node[box] (empirical) at (3.4,-1.8)
+  {Empirical local moments\\$\widehat A_{E,h}^{(-k)},\ \widehat G_{E,h}^{(-k)}$};
+\node[box] (ganmoments) at (-3.4,-3.6)
+  {WGAN local moments\\$\widehat A_{W,h}^{(-k)},\ \widehat G_{W,h}^{(-k)}$};
+\node[box] (heldout) at (3.4,-3.6)
+  {Held-out maxima\\$B_i,\ i\in I_k$};
+\node[box] (calibration) at (-3.4,-5.4)
+  {Calibrate local moments\\$\widehat A_h^{(-k)},\ \widehat G_h^{(-k)}$};
+\node[box] (signals) at (3.4,-5.4)
+  {Observed score signals\\$S_h(B_i;\theta),\ K_h(B_i;\theta)$};
+\node[box] (score) at (0,-7.2)
+  {Evaluate orthogonal scores\\on held-out observations};
+\node[box] (pool) at (0,-9.0)
+  {Rotate over three folds\\Pool held-out scores};
+\node[box] (root) at (0,-10.8)
+  {Solve pooled score equation\\Reserve estimate $\widehat\theta_h$};
+\draw[flow] (train.south) -- ++(0,-0.2) -| (gan.north);
+\draw[flow] (train.south) -- ++(0,-0.2) -| (empirical.north);
+\draw[flow] (gan) -- (ganmoments);
+\draw[flow] (ganmoments) -- (calibration);
+\draw[flow] (empirical.west) -- (0,-1.8) -- (0,-4.5)
+  -- (-3.4,-4.5) -- (calibration.north);
+\draw[flow] (heldout) -- (signals);
+\draw[flow] (calibration.south) -- ++(0,-0.2)
+  -| ([xshift=-10mm]score.north);
+\draw[flow] (signals.south) -- ++(0,-0.2)
+  -| ([xshift=10mm]score.north);
+\draw[flow] (score) -- (pool);
+\draw[flow] (pool) -- (root);
+\end{tikzpicture}
+\caption{Cross-fitted estimation with calibrated generative local moments.
+Synthetic maxima are formed from $N$ independently generated bidder values.
+For each candidate reserve, the training-fold WGAN and empirical moments are
+combined using equation~\eqref{eq:local-calibration}. Training and tuning use
+only $I_k^c$. The three-fold implementation pools observation-level
+scores, rather than fold-specific reserve estimates. The final estimate targets
+the fixed-bandwidth reserve $\theta_{0,h}$.}
+\label{fig:estimation-workflow}
+\end{figure}
 
 For a formal fixed-bandwidth statement, write
 $\eta_h(\theta)=(A_h(\theta),G_h(\theta))$ and

@@ -4,7 +4,7 @@
 
 This packet is designed to obtain a circulation decision, not another open-ended
 round of estimator development. The adviser-facing memo is
-`paper/adviser_memo.tex`; it can be read before the 28-page manuscript and asks
+`paper/adviser_memo.tex`; it can be read before the full manuscript and asks
 three bounded questions about contribution, claim calibration, and the
 maintained auction assumptions most likely to concern a reader.
 

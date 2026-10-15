@@ -1,0 +1,80 @@
+Two-threshold reserve-price pilot — 2026-10-07
+
+Scope
+Independent exploratory experiment. No manuscript or Overleaf files were changed.
+No new GAN training or loss selection was performed: the exact existing cached
+fold-level generators/synthetic maxima were reused by metadata and data hashes.
+
+Design
+Lognormal individual valuations (mu=0, sigma=0.5); truthful second-price auctions;
+only the maximum submitted bid is observed. Sample sizes: 500, 2000, 10000.
+Three-fold cross-fitting. All four prespecified price half-windows retained:
+delta = 0.05, 0.10, 0.15, 0.20. Main illustrative window: delta=0.15.
+GAN paired pilot: 10 replications per sample size, N=5.
+Empirical diagnostics: 200 replications per sample size for both N=5 and N=2.
+
+Target and inference
+p_minus(r)=H(r-delta), p_plus(r)=H(r+delta).
+The orthogonal moment is the one-step-corrected difference between q(r+delta)
+and q(r-delta), where q(r)=r[1-H(r)^(1/N)]. The fixed-delta target maximizes
+the uniform-window average of q, not exact r0. q is the single-buyer-equivalent
+objective, not actual N-bidder auction revenue; actual revenue is used for regret.
+Exact reserve: r0=0.7718567076821209. At delta=0.15, r_delta is approximately
+0.781179, and H(r_delta-delta) is approximately 0.000182.
+Confidence sets invert pointwise score tests without estimating a density or
+Jacobian. Disconnected components, empty sets and search-boundary hits are kept.
+Coverage is tested directly at the population target during evaluation only;
+displayed confidence segments are grid approximations, not guaranteed envelopes.
+These simulations do not establish a theorem for the new score or uniform CIs.
+
+Numerical safeguards and fairness
+The orthogonal score uses probability floor 1e-8 for negative powers. Clipping
+and zero-probability rates are reported; this safeguard is not assumed harmless.
+Raw CDF plug-in point estimates are NOT floored. No plug-in CI is claimed.
+Root selection uses down-crossings nearest the data-only direct-inversion
+reference. A bisection locates jumps, not necessarily exact score zeros, and
+residuals are reported. This is a pipeline comparison, not a pure single-factor
+experiment replacing only the kernel while retaining identical root algorithms.
+Existing calibrated Richardson results are additionally compared at exact r0.
+Their historical fixed-bandwidth estimates match all 30 rerun estimates exactly.
+
+Main paired result: exact-reserve RMSE, N=5, delta=0.15, 10 replications
+                       n=500      n=2000     n=10000
+Threshold raw GAN      0.231835   0.241661   0.234403
+Threshold calibrated   0.165656   0.100616   0.064719
+Existing calibrated
+Richardson             0.089726   0.047195   0.017250
+
+Additional diagnostics, empirical threshold DML, 200 replications
+N=5, delta=0.15: target-score coverage 18.5%, 27.0%, 80.0%.
+N=5, delta=0.15: fraction of training folds with zero lower-target probability
+is 95.5%, 78.8%, 31.2%, respectively. Thus overlap is a serious finite-sample
+problem. At delta=0.05 and n=10000, empirical target coverage reaches 95%, but
+the exact-reserve RMSE is 0.0503: improved coverage is not a GAN advantage.
+N=2, delta=0.15: exact-reserve RMSE 0.0394, 0.0197, 0.0127; target-score
+coverage 94.5%, 96.0%, 94.5%. This is empirical-CDF evidence only, not a trained
+GAN result and not a comparison with a bias-corrected N=2 Gaussian estimator.
+
+Conclusion
+The two-probability objects are implementable, but this prototype does not
+support replacing the current main method in the N=5 maximum-only setting.
+The simpler-looking nuisance functions still demand accurate lower-tail
+probabilities. The existing GAN does not supply them adequately in this pilot.
+Ten paired GAN repetitions are exploratory; no stable superiority is claimed.
+
+Validation and reproduction
+24 deterministic two-threshold unit tests passed; 6 existing calibration tests
+also passed. audit_two_threshold_results.py checks complete rows, uniqueness,
+finite estimates, absence of plug-in CI claims and legacy matching.
+
+From the repository root:
+.venv/bin/python -m unittest discover -s code -p 'test_two_threshold.py'
+.venv/bin/python code/two_threshold_pilot.py --reps 10
+.venv/bin/python code/two_threshold_pilot.py --no-gan --reps 200 --output output/tables/two_threshold_empirical_200
+.venv/bin/python code/two_threshold_pilot.py --no-gan --bidders 2 --reps 200 --output output/tables/two_threshold_n2_200
+.venv/bin/python code/audit_two_threshold_results.py
+
+The default GAN experiment requires matching caches. --allow-training explicitly
+permits training missing caches; absence of a cache otherwise causes an error.
+All deltas, raw estimates, coverage diagnostics and paired MSE differences are
+saved; no repetitions or parameter cells are discarded based on performance.
