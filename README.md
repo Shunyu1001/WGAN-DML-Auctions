@@ -1,10 +1,15 @@
-# WGAN-DML Auctions
+# Semiparametric Estimation of Optimal Reserve Prices with Generative Deep Learning
 
-This repository contains an MA thesis project on semiparametric estimation of
-Myerson reserve prices from incomplete auction data. The empirical distribution
-of latent bidder values is estimated with WGAN-GP, while cross-fitting and an
-orthogonal score are used to estimate and conduct inference on a low-dimensional
-reserve-price parameter.
+This repository contains Shunyu Hao's MA thesis working paper and replication
+materials. Under symmetric independent private values, observed auction maxima
+identify the latent valuation distribution. A structural WGAN-GP estimates the
+global distribution, while calibrated local moments and a cross-fitted
+orthogonal score estimate a regularized optimal reserve price.
+
+The manuscript's main procedure remains the fixed-pseudo-count calibration of
+GAN and training-fold empirical kernel moments. The separate
+[two-threshold experiment](experiments/two_threshold/README.md) is an exploratory
+archive, not a replacement for that procedure or evidence of a stable GAN gain.
 
 ## Project Structure
 
@@ -15,12 +20,18 @@ reserve-price parameter.
 - `docs/`: research-design notes and implementation decisions.
 - `replication/`: environment, seed registry, artifact checksums, and the
   two-tier replication guide.
-- `output/`: generated figures and tables; ignored by Git except for directory placeholders.
+- `experiments/`: separately archived exploratory designs and results, outside
+  the manuscript's tables and figures.
+- `output/`: local generated files; figure, table, and model-cache directories
+  are ignored by Git except for directory placeholders.
 
 ## Paper
 
 The main LaTeX document is `paper/main.tex`. In Overleaf, select this file as
 the project's Main document if it is not detected automatically.
+The corresponding [Overleaf project](https://www.overleaf.com/project/6a566d8988e3e7d505dc485b)
+uses the same source tree. The workflow figure is defined directly in
+`paper/sections/inference.tex` using TikZ; no separate image upload is required.
 
 For double-blind review, compile `paper/main_anonymous.tex`. It suppresses the
 author name and public repository URL while reusing the same manuscript source:
@@ -201,6 +212,17 @@ and `paper/figures/calibrated_wgan.png`. The new independent-seed comparison
 remains a small pilot. Its figure shows Monte Carlo coverage uncertainty, and
 the paired CSV compares squared errors with their Monte Carlo standard errors.
 See `docs/local_calibration.md` for the design and interpretation boundary.
+
+## Separate Two Threshold Archive
+
+The October 7, 2026 experiment replaces the CDF/density nuisance pair by the
+maximum-bid CDF evaluated at two price thresholds. Its four prespecified price
+windows, raw results, diagnostics, configuration records, and reproduction
+commands are retained under `experiments/two_threshold/`. It does not estimate
+the same fixed-bandwidth target as the main method and does not change the
+manuscript's estimator or its formal inference claims. See the
+[archive guide](experiments/two_threshold/README.md) for its lower-tail failures
+and the boundary between auditing archived results and retraining the GAN.
 
 ## Current Estimation Plan
 

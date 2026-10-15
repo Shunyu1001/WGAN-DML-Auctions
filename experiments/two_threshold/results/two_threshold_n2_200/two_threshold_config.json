@@ -1,0 +1,43 @@
+{
+  "sample_sizes": [
+    500,
+    2000,
+    10000
+  ],
+  "repetitions": 200,
+  "deltas": [
+    0.05,
+    0.1,
+    0.15,
+    0.2
+  ],
+  "bidders": 2,
+  "folds": 3,
+  "pseudo_observations": 50.0,
+  "training_steps": 1200,
+  "generated_maxima": 50000,
+  "seed": 20260928,
+  "threads": 1,
+  "lower": 0.45,
+  "upper": 1.15,
+  "grid_size": 1401,
+  "kernel_bandwidth": 0.15,
+  "no_gan": true,
+  "allow_training": false,
+  "skip_kernel": false,
+  "probability_floor": 1e-08,
+  "exact_reserve": 0.7718567076821209,
+  "kernel_target": 0.8105277038043104,
+  "target": "fixed-delta uniform-window average of single-buyer-equivalent revenue",
+  "root_selection": "down-crossing nearest full-sample direct-inversion reference; no true target used",
+  "confidence": "score-test inversion; all connected components retained; coverage evaluated by exact-target score test",
+  "source_hash": "3afa0229b5d9e6cfa28cc9979a2b64f394c0174bfe46bb76e50bc1b7a363be98",
+  "git_head": "eba7adf3ca57f997aa54d2f0b338173f3afd2ef0",
+  "environment": {
+    "python": "3.13.4 (v3.13.4:8a526ec7cbe, Jun  3 2025, 21:14:54) [Clang 16.0.0 (clang-1600.0.26.6)]",
+    "numpy": "2.2.6",
+    "scipy": "1.18.1",
+    "torch": "2.8.0",
+    "platform": "macOS-14.5-arm64-arm-64bit-Mach-O"
+  }
+}

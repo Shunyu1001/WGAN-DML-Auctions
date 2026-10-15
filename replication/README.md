@@ -1,5 +1,8 @@
 # Replication Guide
 
+Working paper: *Semiparametric Estimation of Optimal Reserve Prices with
+Generative Deep Learning*, by Shunyu Hao.
+
 The repository separates a fast integrity check from expensive Monte Carlo
 regeneration. The integrity check is suitable for every commit; the full runs
 are submission-archive tasks and may take hours on CPU.
@@ -25,6 +28,8 @@ This imports every experiment, verifies code/config seed agreement, tests the
 fold partition and core score/root/interval helpers on deterministic toy data,
 checks submission files, and verifies every committed table and figure against
 `artifact_manifest.json`. It does not train a WGAN or overwrite paper results.
+The separately archived two-threshold results have their own non-training
+check, `make experimental-check`, and do not enter that manuscript manifest.
 
 ## 3. Full result regeneration
 
@@ -51,6 +56,15 @@ first to `output/tables/calibration_pilot`; archive its CSV, JSON, and TeX files
 to `paper/tables` and its PNG to `paper/figures` only after reviewing the run.
 The original experiments remain intact. The fixed pseudo-count is 50 and the
 evaluation seed is separate from the one-sample development check.
+
+The October 7 two-threshold experiment is kept in
+[`experiments/two_threshold/`](../experiments/two_threshold/README.md). The
+archive includes all evaluated windows, raw and summarized estimates,
+configuration files, and diagnostics. Its empirical-only runs can be repeated
+without GAN caches. Reproducing the historical GAN arm requires either the
+original local cache or explicitly retraining with `--allow-training`; cached
+model samples are not part of the public archive. This experiment does not
+replace the main method or its published result files.
 
 The monotone/adaptive follow-up likewise writes first to
 `output/tables/monotone_release`. It compares two generators and two mixing
