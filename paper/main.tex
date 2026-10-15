@@ -6,6 +6,8 @@
 \usepackage{graphicx}
 \usepackage{natbib}
 \usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
 \usepackage[hidelinks]{hyperref}
 
 \linespread{1.3}
@@ -22,12 +24,12 @@
 and random seeds are available at
 \url{https://github.com/Shunyu1001/WGAN-DML-Auctions}.}
 
-\title{Semiparametric Inference for Myerson Reserve Prices\\
-from Auction Maxima}
+\title{Semiparametric Estimation of Optimal Reserve Prices\\
+with Generative Deep Learning}
 \author{\paperdisplayauthor}
 \date{\paperdate}
 \hypersetup{
-  pdftitle={Semiparametric Inference for Myerson Reserve Prices from Auction Maxima},
+  pdftitle={Semiparametric Estimation of Optimal Reserve Prices with Generative Deep Learning},
   pdfauthor={\paperauthor},
   pdfsubject={Working paper},
   pdfkeywords={optimal auctions, reserve prices, auction maxima, double machine learning, semiparametric inference}
@@ -38,7 +40,7 @@ from Auction Maxima}
 \maketitle
 
 \begin{abstract}
-This paper studies inference for Myerson reserve prices when only auction maxima
+This paper studies inference for optimal reserve prices when only auction maxima
 are observed. Under symmetric independent private values, maxima identify the
 latent value distribution, which is estimated globally by a structural
 Wasserstein generative adversarial network with gradient penalty (WGAN-GP).
