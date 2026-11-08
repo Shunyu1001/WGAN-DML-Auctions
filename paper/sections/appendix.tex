@@ -1,81 +1,195 @@
 \section{Additional Derivations and Results}
 
-\subsection{Proof of Theorem~\ref{thm:fixed-h-dml}}
+\subsection{Proof of Proposition~\ref{prop:orthogonal-remainder}}
 
-Let $\widehat\Psi_n(\theta,\eta)$ denote the cross-fitted sample moment. Expand
-the moment around the population pair $\theta_{0,h}$ and $\eta_{0,h}$ to
-obtain
+Take expectations in equation~\eqref{eq:orthogonal-reserve-score}. Since
+$\mathbb E_0T_h=\eta_0$, the asserted identity follows. Differentiating that
+identity at $\eta=\eta_0$ cancels the derivative of $m_h$ with the derivative
+of the residual term. Taylor expansion of $m_h(\theta,\eta_0)$ around $\eta$
+then gives
 \begin{equation}
-0=\widehat\Psi_n(\theta_{0,h},\eta_{0,h})
-+J_h(\widehat\theta_h-\theta_{0,h})+R_{1n}+R_{2n},
+\mathbb E_0\psi_h-m_h(\theta,\eta_0)
+=-\int_0^1(1-t)(\eta_0-\eta)^{\mathsf T}
+\nabla_\eta^2m_h\{\theta,\eta+t(\eta_0-\eta)\}
+(\eta_0-\eta)\,dt.
 \end{equation}
-where $R_{1n}$ is the empirical-process effect of replacing $\eta_{0,h}$ by
-the fold-specific nuisance estimate and $R_{2n}$ is its population remainder.
-More explicitly, write $P_{n,k}$ for the empirical measure on holdout fold
-$k$ and $P$ for the population measure. At $\theta_{0,h}$, the empirical-
-process term is
-\begin{equation}
-R_{1n}=\sum_{k=1}^K\frac{|I_k|}{n}(P_{n,k}-P)
-\left[\psi_h(\widehat\eta_h^{(-k)})
--\psi_h(\eta_{0,h})\right],
-\end{equation}
-where the common arguments $(B;\theta_{0,h})$ are suppressed. Conditional on
-the training sample, cross-fitting makes each bracketed function fixed and
-independent of its holdout observations. Bounded first derivatives of the
-score and the nuisance-rate condition imply that its conditional second
-moment is $O_p(\rho_n^2)$. With fixed $K$, conditional Chebyshev's inequality
-therefore yields
-\begin{equation}
-R_{1n}=O_p(\rho_n/\sqrt n)=o_p(n^{-1/2}).
-\end{equation}
-Neyman orthogonality sets the first Gateaux derivative of the population score
-to zero. A fold-by-fold second-order Taylor expansion and the bounded second
-derivative in Assumption~\ref{ass:fixed-h} give
-\begin{equation}
-|R_{2n}|\lesssim_p \rho_n^2=o_p(n^{-1/2}).
-\end{equation}
-The same conditional argument applies uniformly on the shrinking root
-neighborhood in Assumption~\ref{ass:fixed-h}. Root and numerical-Jacobian
-consistency permit replacement of the intermediate derivative by $J_h$.
-Rearranging yields equation~\eqref{eq:fixed-h-linearization}. The i.i.d.
-central limit theorem applies to the oracle score by the $2+\delta$ moment
-condition. The score difference converges in mean square, so a foldwise law of
-large numbers also gives consistency of the empirical influence-function
-variance. Slutsky's theorem completes the proof. This is the standard
-cross-fitted Z-estimation argument in \citet{chernozhukov2018}, written here
-for the two local kernel moments.
+On the stated region its Hessian is bounded, and its $GG$ entry is zero
+because $m_h$ is linear in $G$. This proves
+equation~\eqref{eq:anisotropic-remainder}. If $A=A_h$, the Taylor expansion
+in $G$ is exact and the remainder vanishes for every $G$. If only $G=G_h$,
+the generally nonzero $AA$ remainder remains. Thus the result is not
+two-sided double robustness.
 
 \subsection{Proof of Proposition~\ref{prop:empirical-local-rate}}
 
-For fixed $h$, the Gaussian signals $S_h(B;\theta)$ and $K_h(B;\theta)$ are
-uniformly bounded over $B$ and $\theta$. Their derivatives with respect to
-$\theta$ are also uniformly bounded by constants depending only on $h$.
-Consequently, the two one-dimensional translate classes indexed by the compact
-set $\mathcal N_h$ have polynomial covering numbers. A maximal inequality for
-bounded empirical processes therefore gives, for every training fold,
+For fixed $h$, the signals $T_h=(S_h,K_h)^{\mathsf T}$, their first
+$\theta$ derivatives, and their Lipschitz constants in $\theta$ are uniformly
+bounded by constants depending only on $h$. For example,
+$\partial_\theta S_h=K_h$ and
+$\partial_\theta K_h=-(\theta-B)K_h/h^2$. Applying Hoeffding's inequality
+to an $n^{-1}$-net of the compact interval $\Theta$ and bounding between grid
+points by the Lipschitz envelopes gives, for each training fold,
 \begin{align}
-\sup_{\theta\in\mathcal N_h}
-|\widehat A_h^{(-k)}(\theta)-A_h(\theta)|
-&=O_p\!\left(\sqrt{\frac{\log n}{n}}\right),\\
-\sup_{\theta\in\mathcal N_h}
-|\widehat G_h^{(-k)}(\theta)-G_h(\theta)|
-&=O_p\!\left(\sqrt{\frac{\log n}{n}}\right).
+\sup_{\theta\in\Theta}
+\|\widehat\eta_{E,h}^{(-k)}(\theta)-\eta_{0,h}(\theta)\|
+&=O_p(\rho_n),\\
+\sup_{\theta\in\Theta}
+\|\partial_\theta\widehat\eta_{E,h}^{(-k)}(\theta)
+-\partial_\theta\eta_{0,h}(\theta)\|
+&=O_p(\rho_n).
 \end{align}
-The maximum over a fixed number of folds has the same order. These bounds can
-also be obtained directly by applying Hoeffding's inequality on an
-$n^{-1}$-net of $\mathcal N_h$ and using the Lipschitz envelopes between grid
-points; see \citet{vandervaartwellner1996} for the general covering-number
-argument. Since $\sqrt{\log n/n}=o(n^{-1/4})$, equation
-\eqref{eq:empirical-local-rate} follows.
+The fold proportions and fixed $K$ make the bounds uniform across folds. The
+same bounds hold for holdout averages of $T_h$ and its first derivative.
+The generated averages and their first derivatives satisfy the same fixed
+envelopes, even if the generated distribution is misspecified or the number of
+draws is fixed. Since $w_k=O(n^{-1})$, replacing the empirical learner with its
+calibration changes both displays by only $O(n^{-1})$.
 
-Equation~\eqref{eq:local-cdf-overlap} and uniform convergence imply
-$\inf_{\theta}\widehat A_h^{(-k)}(\theta)\geq a_h/2$ for every fold with
-probability approaching one. On this event, all powers of $A$ appearing in
-$m_h$, $m_A$, $m_G$, and their first two nuisance derivatives are uniformly
-bounded. The Gaussian signals have bounded moments for fixed $h$. Hence the
-nuisance-rate and smoothness requirements stated in the proposition follow.
-The remaining root conditions are the usual separated-zero conditions for a
-Z-estimator; see \citet{vandervaart1998}. This proves the result.
+Uniform convergence and overlap imply
+$\inf_{k,\theta}\widehat A_h^{(-k)}(\theta)\geq a_h/2$ with probability
+approaching one, so clipping is inactive. On this event all functions of the
+nuisance in the score and its total derivative are uniformly bounded and
+continuous on a compact set. Substitution of the preceding uniform rates
+into the score and equation~\eqref{eq:total-score-derivative} proves uniform
+convergence of $\widehat\Psi_n$ and $\widehat\Psi_n'$.
+
+For completeness, uniform stochastic control can also be expressed through
+the class $\{\psi_h(\cdot;\theta,a,g):\theta\in\Theta,
+a\in[a_h/2,1],\ g\in[0,(\sqrt{2\pi}h)^{-1}]\}$. This class has three real
+indices, bounded Lipschitz envelopes, and polynomial covering numbers. Its
+empirical process is therefore stochastically equicontinuous; see
+\citet{vandervaartwellner1996}. Estimated nuisance curves take values inside
+this class. This uniform argument, rather than a pointwise Chebyshev bound
+alone, justifies evaluations at nearby random roots.
+
+\subsection{Proof of Theorem~\ref{thm:fixed-h-dml}}
+
+By Proposition~\ref{prop:empirical-local-rate},
+$\widehat\Psi_n\to_p m_{0,h}$ uniformly on $\Theta$. Outside any fixed
+neighborhood of $\theta_{0,h}$, compactness and the unique-zero condition
+bound $|m_{0,h}|$ away from zero. Inside a sufficiently small neighborhood,
+uniform derivative convergence gives
+$\widehat\Psi_n'\leq-j_h$ with probability approaching one. Uniform
+convergence also preserves the positive and negative signs at the neighborhood
+endpoints and at the endpoints of $\Theta$. The intermediate value theorem
+then gives exactly one interior downward root and no roots outside that
+neighborhood. Its bracket can be found on a grid containing the endpoints
+and refined. Clipping is inactive and the derivative rejection criterion is
+passed. Thus the failure probability tends to zero, and the selected
+approximate root is consistent. This derives root consistency rather than
+assuming it.
+
+Write $P_{n,k}$ for the holdout empirical measure. At the fixed population
+root, decompose
+\begin{equation}
+\widehat\Psi_n(\theta_{0,h})
+=\frac1n\sum_{i=1}^n\psi_h(B_i;\theta_{0,h},\eta_{0,h})
++R_{1n}+R_{2n},
+\end{equation}
+where
+\begin{equation}
+R_{1n}=\sum_{k=1}^K\frac{|I_k|}{n}(P_{n,k}-P)
+\{\psi_h(\widehat\eta_h^{(-k)})-\psi_h(\eta_{0,h})\}.
+\end{equation}
+The common arguments $(B;\theta_{0,h})$ are suppressed in this display.
+Conditional on training observations and independent training randomization,
+the bracketed function is fixed for a holdout fold. Its conditional second
+moment is $O_p(\rho_n^2)$ by bounded nuisance derivatives. The fixed number
+of nondegenerate folds therefore gives
+$R_{1n}=O_p(\rho_n/\sqrt n)=o_p(n^{-1/2})$; no independence between
+different fold fits is required. Proposition~\ref{prop:orthogonal-remainder}
+gives $R_{2n}=O_p(\rho_n^2)=o_p(n^{-1/2})$.
+
+Let $e_n=\widehat\Psi_n(\widehat\theta_h)$, with
+$|e_n|\leq\varepsilon_n=o(n^{-1/2})$. A mean-value expansion of the smooth
+sample score between the consistent root and $\theta_{0,h}$ gives
+\begin{equation}
+e_n=\widehat\Psi_n(\theta_{0,h})
++\widehat\Psi_n'(\theta_n^*)
+(\widehat\theta_h-\theta_{0,h}),
+\end{equation}
+where uniform derivative convergence and continuity imply
+$\widehat\Psi_n'(\theta_n^*)\to_pJ_h$. Substitution establishes
+equation~\eqref{eq:fixed-h-linearization}. The oracle score is bounded for
+fixed $h$, has mean zero and positive variance, so the i.i.d. central limit
+theorem applies. Uniform nuisance convergence, root consistency, and bounded
+score envelopes also give consistency of the pooled second moment and
+$\widehat J_h$. Slutsky's theorem gives the variance and Wald statements.
+A centered difference with step tending to zero is consistent as well:
+it averages $\widehat\Psi_n'$ over a shrinking interval, whose difference
+from the continuous $m_{0,h}'$ tends uniformly to zero.
+This specializes the cross-fitted Z-estimation argument of
+\citet{chernozhukov2018} without assuming root or Jacobian consistency.
+
+\subsection{Proof of Proposition~\ref{prop:score-set-coverage}}
+\label{app:score-set-proof}
+
+The fixed-target decomposition in the preceding proof gives
+\[
+\sqrt n\,\widehat\Psi_n(\theta_{0,h})
+=\frac{1}{\sqrt n}\sum_{i=1}^n
+\psi_h(B_i;\theta_{0,h},\eta_{0,h})+o_p(1).
+\]
+The summands have mean zero and variance $V_h>0$. The fixed-$h$ bounded
+envelope therefore gives the ordinary central limit theorem. Uniform
+nuisance convergence and the local CDF lower bound also imply
+\[
+\frac1n\sum_{i=1}^n
+\{\widehat\psi_{i,h}(\theta_{0,h})
+-\psi_h(B_i;\theta_{0,h},\eta_{0,h})\}^2=o_p(1).
+\]
+Cauchy--Schwarz and the law of large numbers then give consistency of the
+pooled second moment. Since
+$\widehat\Psi_n(\theta_{0,h})=O_p(n^{-1/2})$, centering the sample scores
+and using divisor $n-1$ does not change the limit:
+$\widehat V_n(\theta_{0,h})\to_pV_h$. This argument does not treat the
+overlapping training folds as independent observations. Their estimated
+scores are compared with the common i.i.d. oracle scores, and the orthogonal
+remainder is controlled as in the preceding proof.
+
+Slutsky's theorem yields
+$T_n(\theta_{0,h})\Rightarrow\mathcal N(0,1)$. The probability that this
+statistic is undefined at the true parameter tends to zero by $V_h>0$ and
+variance consistency; the point-estimation failure probability also tends to
+zero by Theorem~\ref{thm:fixed-h-dml}. Consequently, treating failed
+point-estimation runs as noncoverage does not alter the limit. Membership of
+the true parameter in the continuous acceptance set is exactly its pointwise
+nonrejection event, which proves the first coverage statement. No correction
+for the number of candidate values is involved in that identity.
+
+For every realized set, its interval envelope contains it. Hence
+\[
+\Pr\{\theta_{0,h}\in\mathcal E_{n,1-\gamma}\}
+\geq
+\Pr\{\theta_{0,h}\in\mathcal C_{n,1-\gamma}\},
+\]
+which proves the lower bound. Equality need not hold because the envelope
+includes gaps rejected by the score test. The proposition gives no claim of
+exact finite-sample coverage and no rate for errors from numerical detection
+of acceptance components. Those errors and the implementation's numerical
+failure rules are checked and reported separately. In particular, the
+pointwise argument alone does not bound every additional failure event from
+attempting to evaluate a complete finite-grid acceptance set.
+
+\subsection{Proof of Proposition~\ref{prop:plugin-equivalence}}
+
+The full-sample kernel averages and their first derivatives have the same
+uniform rates. The preceding sign and derivative argument therefore supplies
+a unique consistent plug-in root with probability approaching one. At
+$\theta_{0,h}$, ordinary Taylor expansion in the two sample moments gives
+\begin{equation}
+m_h(\theta_{0,h},\widetilde\eta_h)
+=\nabla_\eta m_h(\theta_{0,h},\eta_{0,h})^{\mathsf T}
+(\widetilde\eta_h-\eta_{0,h})+O_p(\rho_n^2)
+=\frac1n\sum_{i=1}^n\psi_h(B_i;\theta_{0,h},\eta_{0,h})
++o_p(n^{-1/2}).
+\end{equation}
+The sample moment derivative converges uniformly to $m_{0,h}'$. Expansion at
+the plug-in root yields the same asymptotic linear representation as the
+cross-fitted empirical or calibrated root. Subtracting these representations
+proves the asserted first-order equivalence. The conclusion concerns the
+same fixed bandwidth and target; it does not compare an unsmoothed estimator
+with a smoothed one.
 
 \subsection{Proof of Proposition~\ref{prop:richardson-exact}}
 
@@ -101,3 +215,118 @@ $O(h_n^4)$ population bias negligible relative to
 $s_{\mathrm R,n}/\sqrt n$. If $s_{\mathrm R,n}\asymp h_n^{-1/2}$, this
 condition is $\sqrt{nh_n}\,h_n^4\to0$, equivalently $nh_n^9\to0$; the
 additional condition $nh_n\to\infty$ supplies increasing local information.
+
+\subsection{Disconnected-set diagnostics and reporting}
+\label{app:disconnected-set-diagnostic}
+
+In the independent fixed-bandwidth validation, repetitions 29 and 50 at
+$n=500$ produce disconnected score sets for both the calibrated and
+empirical-local estimators. Each contains a low-end component touching the
+prespecified lower search bound, 0.45. The original point-estimation rule
+still returns a unique accepted root. These four method--replication records
+are retained as successful computations with disconnection and lower-boundary
+flags; they are not recoded as failures.
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Flagged score sets in the independent validation}
+\label{tab:confidence-set-flagged}
+\resizebox{\textwidth}{!}{\input{tables/confidence_set_flagged.tex}}
+\begin{minipage}{0.96\textwidth}
+\footnotesize
+\emph{Notes:} Each row retains the complete detected acceptance set. The
+envelope is its smallest containing interval and includes the rejected gap.
+All four source sets are disconnected and touch the lower search boundary
+0.45. These are reporting flags, not numerical failures. Endpoints are rounded
+outward to four decimal places for display; numerical membership uses the
+stored full-precision endpoints.
+\end{minipage}
+\end{table}
+
+The diagnosis reuses the saved data and generated samples without retraining.
+For both replications and all three estimators, grids with 281, 561, 1,121,
+and 2,241 points reproduce the detected set topology. Across these 24
+comparisons, the largest endpoint change is below $2.4\times10^{-12}$.
+Direct centered variances and the implemented second-moment formula agree
+within $3.5\times10^{-13}$; 60-digit decimal aggregation of the same
+double-precision individual scores agrees within $2.3\times10^{-13}$.
+The latter checks summation accuracy, not arbitrary-precision evaluation of
+the kernel functions. The affected CDF estimates remain above the clipping
+threshold. Thus these cases do not support a numerical-root or floating-point
+explanation for the disconnected sets.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{disconnected_sets_diagnostic.png}
+\caption{Score means, standard deviations, and studentized statistics in the
+two flagged replications. Shading marks the calibrated estimator's accepted
+components; horizontal dashed lines in the right panels mark $\pm1.96$ and
+vertical dotted lines mark $\theta_{0,h}$. The low-end component arises because
+the estimated score standard deviation increases, not because the mean score
+has an additional zero.}
+\label{fig:disconnected-set-diagnostic}
+\end{figure}
+
+At $\theta=0.45$, the calibrated score means are approximately 1.798 and
+1.364 in the two replications, whereas their score standard deviations are
+24.557 and 16.604. The resulting studentized statistics, 1.637 and 1.836,
+fall below 1.96 even though the score means are far from zero. A single
+held-out observation accounts for 99.27 and 99.76 percent of the centered
+score sum of squares. In each case the smallest observed maximum is excluded
+from the training fold that supplies its nuisance estimate. A small
+training-fold CDF, amplified by the negative powers of $A$ in the score,
+gives that held-out observation very high influence. The same pattern occurs
+with empirical-local moments, so it is not specific to the GAN.
+
+This phenomenon concerns finite-sample information and the shape of the
+studentized score, not a second population optimum. When one score $M$
+dominates the sum and variance, $\overline\psi\approx M/n$ and
+$s_\psi\approx |M|/\sqrt n$, so the studentized statistic can be close to
+$\operatorname{sign}(M)$ rather than diverging at a distant candidate value.
+Oracle-moment comparisons reject the low-end candidate in both replications;
+they are attribution diagnostics and do not enter the reported estimator.
+
+One simple sensitivity check fixes the score-variance denominator at the
+estimated root while retaining the nonlinear mean:
+\[
+T_n^{\mathrm{fix}}(\theta)
+=\frac{\sqrt n\,\widehat\Psi_n(\theta)}
+{\sqrt{\widehat V_n(\widehat\theta_h)}}.
+\]
+The same pointwise central limit and variance-consistency argument can give
+asymptotic coverage for its inversion, but does not ensure finite-sample
+improvement or global connectedness. On the saved validation replications
+this modification removes the disconnected components, yet lowers
+$n=500$ coverage for both calibrated and empirical-local estimation from
+93 to 90 percent. No new data are drawn for this sensitivity check, and it
+is not treated as another independent validation or adopted as the reporting
+rule.
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Fixed-denominator sensitivity on the saved validation samples}
+\label{tab:score-set-sensitivity}
+\resizebox{\textwidth}{!}{\input{tables/score_set_sensitivity.tex}}
+\begin{minipage}{0.96\textwidth}
+\footnotesize
+\emph{Notes:} Each sample-size and method cell uses the same 100 replications
+as the independent validation. The fixed-denominator statistic uses the
+original estimated root's score standard deviation, without retraining or
+changing the point estimate. Coverage uses all 100 replications; length is the
+sum of accepted component lengths. This retrospective sensitivity comparison
+does not constitute a further independent confirmation. All three interval
+constructions have zero recorded computational failures in these samples.
+\end{minipage}
+\end{table}
+
+The retained convention is therefore the full score set in
+equation~\eqref{eq:score-confidence-set}, with explicit flags. Its optional
+envelope in equation~\eqref{eq:score-envelope} supplies a single interval
+without deleting accepted values. A disconnected set's reported total length
+is the sum of its component lengths, whereas the envelope includes rejected
+gaps. Any source-set disconnection and boundary flag remain visible when an
+envelope is shown. The lower bound is not increased after inspecting these
+replications, and no component or influential observation is removed to
+obtain a shorter interval.

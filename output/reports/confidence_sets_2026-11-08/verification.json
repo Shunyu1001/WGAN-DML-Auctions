@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "checks": {
+    "rows_preserved": true,
+    "original_components_preserved": true,
+    "original_estimates_preserved": true,
+    "original_standard_errors_preserved": true,
+    "original_score_coverage_preserved": true,
+    "original_wald_coverage_preserved": true,
+    "component_long_table_complete": true,
+    "hull_covers_every_original_coverage": true,
+    "hull_length_not_smaller": true,
+    "source_files_unchanged": true,
+    "expected_flagged_cases": true
+  },
+  "rows": 600,
+  "components": 604,
+  "flagged_rows": 4
+}

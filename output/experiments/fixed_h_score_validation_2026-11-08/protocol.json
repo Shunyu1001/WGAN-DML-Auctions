@@ -1,0 +1,55 @@
+{
+  "base_seed": 2026110800,
+  "sample_sizes": [
+    500,
+    2000
+  ],
+  "repetitions_per_size": 100,
+  "methods": [
+    "Calibrated WGAN-DML",
+    "Empirical-local DML",
+    "Smooth plug-in"
+  ],
+  "estimators": {
+    "sample_sizes": [
+      500,
+      2000
+    ],
+    "repetitions": 100,
+    "bidders": 5,
+    "folds": 3,
+    "bandwidth": 0.15,
+    "pseudo_observations": 50.0,
+    "training_steps": 1200,
+    "generated_maxima": 50000,
+    "seed": 2026110800,
+    "threads": 1,
+    "theta_lower": 0.45,
+    "theta_upper": 1.15,
+    "theta_grid_size": 141,
+    "jacobian_floor": 1e-06,
+    "cdf_floor": 1e-08,
+    "root_tolerance": null,
+    "score_tolerance": null
+  },
+  "interval": {
+    "critical_value": 1.96,
+    "bounds": [
+      0.45,
+      1.15
+    ],
+    "grid_size": 281,
+    "endpoint_tolerance": 1e-11,
+    "refined_grid_size": 561,
+    "refined_repetitions": [
+      1,
+      50,
+      100
+    ],
+    "algorithm_sha256": "fa64e7539a4ba41085fa6edca56b47ca23d6af5d6ad92ff19d6973ef91ef3692"
+  },
+  "purpose": "independent fresh-seed confirmation; no tuning from validation outcomes",
+  "failure_policy": "all repetitions retained; interval failures count as noncoverage; lengths conditional on valid intervals",
+  "target": "fixed-bandwidth theta_0,h; not exact r0",
+  "manuscripts_changed": false
+}

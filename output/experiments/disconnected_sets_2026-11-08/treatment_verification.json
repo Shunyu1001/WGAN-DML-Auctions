@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "checks": {
+    "600_fixed_rows": true,
+    "point_estimates_unchanged": true,
+    "fixed_set_identities": true,
+    "fixed_summary_recomputed": true,
+    "600_cache_hashes_unchanged": true,
+    "prior_outputs_unchanged": true,
+    "numeric_audit_passed": true
+  }
+}

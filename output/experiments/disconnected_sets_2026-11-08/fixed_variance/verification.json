@@ -1,0 +1,8 @@
+{
+  "rows": 600,
+  "unique_keys": true,
+  "matched_100_per_cell": true,
+  "max_root_sd_reconstruction_error": 5.3290705182007506e-15,
+  "original_raw_sha256_unchanged": true,
+  "passed": true
+}

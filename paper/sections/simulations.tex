@@ -1,4 +1,107 @@
-\section{Monte Carlo Design}
+\section{Monte Carlo Evidence}
+
+The primary comparison below uses a fresh validation sample after the
+fixed-bandwidth numerical safeguards and score-inversion rule were fixed.
+The subsequent historical experiments are retained as diagnostics and
+are explicitly distinguished from this validation. The revised code rejects
+absent, multiple, boundary, weak-slope, or clipping-affected roots instead of
+returning a minimum-residual grid point. Every failure remains in the coverage
+denominator. Lengths and conditional error summaries identify their valid-run
+sample. A disconnected or boundary-touching confidence set is a separate
+diagnostic flag, not a numerical failure.
+
+\subsection{Fresh validation of fixed-bandwidth confidence sets}
+\label{sec:fresh-validation}
+
+Values satisfy $\log V_{ij}\sim\mathcal N(0,0.5^2)$ with $N=5$ bidders.
+The econometrician observes the maximum in each auction. I generate 100
+independent repetitions at each of $n=500$ and $n=2000$, with base seed
+2026110800. These data, folds, GAN training seeds and synthetic samples do not
+overlap the earlier development experiment. Each repetition shares data
+across calibrated WGAN-DML, empirical-local DML and the same-kernel
+full-sample plug-in; the two DML estimators also share the three-fold split.
+The bandwidth is $h=0.15$, the pseudo-count is 50, each GAN receives 1,200
+generator updates and five critic updates per generator update, and each
+training fold supplies 50,000 generated maxima. None of these settings is
+retuned in the validation.
+
+All intervals and sets target $\theta_{0,h}=0.831828\ldots$, not the exact
+unsmoothed reserve. For the same point estimate, I compare the original
+95 percent Wald interval with the full score-inversion set in
+Section~\ref{sec:score-confidence-sets}. The latter uses a 281-point grid
+augmented by the estimated root, with crossing endpoints refined to
+tolerance $10^{-11}$. The prespecified search interval remains
+$[0.45,1.15]$. Repetitions 1, 50 and 100 also use a 561-point grid as a
+numerical check. All detected components are retained. Coverage of the
+full set is checked against the test at the known simulation target.
+The conservative envelope is a separate output, not a new point estimator
+or a replacement for the accepted set. This reporting layer was adopted
+after examining the disconnected validation cases. It leaves their original
+accepted values and all Wald--score comparisons unchanged; it is not a
+separately preregistered inferential improvement.
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Independent validation of Wald intervals and full score sets}
+\label{tab:fresh-score-validation}
+\input{tables/fresh_score_validation.tex}
+\begin{minipage}{0.98\textwidth}
+\footnotesize
+\emph{Notes:} Each row uses 100 independent repetitions and the fixed target
+$\theta_{0,h}$. Coverage is in percent, with failures counted as noncoverage.
+Lengths are averaged over valid outputs. Full-set length sums component
+lengths and excludes rejected gaps; envelope length includes those gaps.
+F/D/B reports computational failures, disconnected full sets and full sets
+touching a search boundary. Both interval methods have zero computational
+failures in these cells. Envelope reporting retains the source-set flags.
+\end{minipage}
+\end{table}
+
+At $n=500$, score inversion raises coverage from 91 to 93 percent for both
+calibrated GAN and empirical-local DML, and from 91 to 92 percent for the
+plug-in. For calibrated GAN, two repetitions are gained and none lost relative
+to Wald. The paired Monte Carlo standard error of the two-percentage-point
+difference is 1.41 percentage points; the exact two-sided test based on the
+two discordant pairs has $p=0.50$. The Wilson 95 percent interval for the
+93 percent coverage estimate is approximately $[86.25,96.57]$ percent.
+The direction of the development-sample gain is reproduced, but its magnitude
+is imprecise and does not establish uniformly better coverage or a repair to
+the nominal level. At $n=2000$, full-set coverage is 95 percent in all three
+methods, compared with 96, 96 and 95 percent under Wald. These differences do
+not support a coverage ranking at the larger sample size.
+
+Two replications, 29 and 50, produce disconnected sets for both
+calibrated GAN and empirical-local DML. Each has an additional low-end
+component touching 0.45; the plug-in sets are connected. This raises the
+distinction between a confidence \emph{set} and an interval envelope.
+For calibrated GAN at $n=500$, mean full-set length is 0.14614 and mean
+envelope length is 0.14917, versus 0.14215 for Wald. The corresponding
+empirical-local lengths are 0.14208 and 0.14616, versus 0.13911.
+Envelope coverage happens to equal full-set coverage in this validation.
+Its set-inclusion guarantee is not evidence of improved estimation accuracy.
+
+The appendix examines these cases without changing the validation outputs.
+Dense-grid and variance-aggregation checks reproduce the extra components,
+and the low-end variance is dominated by one held-out observation. Fixing the
+variance at the estimated root eliminates the disconnected sets in an
+exploratory replay but reduces calibrated-GAN and empirical-local coverage
+from 93 to 90 percent at $n=500$ (Table~\ref{tab:score-set-sensitivity}).
+It is therefore not adopted. The reporting rule keeps the complete score set,
+flags disconnected and boundary-touching cases, and supplies its conservative
+envelope when a single interval is needed. No component is deleted after
+observing its location or its contribution to coverage.
+
+\subsection{Scope of the archived experiments}
+\label{sec:archived-experiments}
+
+The remaining tables and figures in this section predate the revised
+root-acceptance safeguards. They are not pooled with the validation above.
+The direct-inversion benchmark now uses the empirical CDF left limit at a
+candidate price, so that bids equal to the reserve are eligible to trade.
+The archived direct-inversion numbers below used right-continuous empirical
+CDF values at observed prices. New runs are saved separately and do not
+overwrite these archived results.
 
 \subsection{Direct-inversion benchmark}
 

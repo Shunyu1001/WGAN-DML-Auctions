@@ -32,7 +32,8 @@ fold.
 Under the baseline without covariates, the score's two local moments are also
 directly estimable from observed maximum bids. The empirical-local ablation
 therefore estimates $(A_h,G_h)$ on each training fold without using a WGAN.
-Its reference for selecting among roots is the direct-inversion estimate.
+The archived ablation used the direct-inversion estimate to select among roots;
+the revised estimator instead uses the single-crossing acceptance rule below.
 This experiment diagnoses the local nuisance requirement; it does not by
 itself establish a gain from retaining a global generative model.
 
@@ -56,7 +57,11 @@ $[0,(\sqrt{2\pi}h)^{-1}]$. Hence the difference from the empirical nuisance
 is uniformly $O(n^{-1})$, regardless of the WGAN fit, and the empirical-local
 rate result continues to apply under the same overlap and root conditions.
 This is an empirical-dominated safeguard, not a claim of improved asymptotic
-efficiency. Whether the retained WGAN component improves finite-sample
+efficiency. Section~6 establishes its first-order equivalence to empirical
+local estimation and the same-kernel full-sample plug-in under a common
+single-crossing target. The protection is for fixed $h$ and does not establish
+consistency of the latent distribution produced by the generator.
+Whether the retained WGAN component improves finite-sample
 performance is assessed against the empirical-only estimator and a
 full-sample smoothed plug-in using the same kernel and bandwidth.
 

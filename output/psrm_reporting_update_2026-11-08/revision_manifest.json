@@ -1,0 +1,45 @@
+{
+  "revision": "PSRM confidence-set reporting update, 2026-11-08",
+  "scope": "Local PSRM working paper only; no GitHub or Overleaf sync in this operation",
+  "frozen_thesis": "Excluded from every input and output path; not modified",
+  "pages": 52,
+  "changed_existing_paper_files": [
+    "paper/main.tex",
+    "paper/sections/appendix.tex",
+    "paper/sections/conclusion.tex",
+    "paper/sections/declarations.tex",
+    "paper/sections/inference.tex",
+    "paper/sections/introduction.tex",
+    "paper/sections/simulations.tex"
+  ],
+  "new_paper_files": [
+    "paper/figures/disconnected_sets_diagnostic.png",
+    "paper/tables/confidence_set_flagged.tex",
+    "paper/tables/fresh_score_validation.tex",
+    "paper/tables/score_set_sensitivity.tex"
+  ],
+  "all_other_baseline_paper_files_unchanged": true,
+  "source_results_unchanged": true,
+  "source_results_sha256": {
+    "output/reports/confidence_sets_2026-11-08/summary.csv": "a17978983b7f14d33cffe77b388b7962a2b12078554729ebbe8d48b3488cddaf",
+    "output/reports/confidence_sets_2026-11-08/flagged_cases.csv": "685c0aa999af28f48923960ab6bc33e2e6632286f50c9aacd568f222247a1c5d",
+    "output/experiments/fixed_h_score_validation_2026-11-08/summary/summary.csv": "cc6fa7e8ba57c86bd260b2bd984af88efb61e0bac58fd3402e42e97b8e7c3ae3",
+    "output/experiments/disconnected_sets_2026-11-08/fixed_variance/summary.csv": "49d1abc897bb817fde31c9e3006e26bf7a251e20f423cf124e6b011665e5b025"
+  },
+  "build_warning_patterns_found": [],
+  "pdf": {
+    "path": "output/pdf/WGAN-DML-Auctions-PSRM-Score-Sets-2026-11-08.pdf",
+    "sha256": "130e8743840164f303dfbbf866af9947823933997dad88b2993f33fe787949b6"
+  },
+  "source_zip": {
+    "path": "output/psrm_reporting_update_2026-11-08/PSRM-Score-Sets-Source-2026-11-08.zip",
+    "sha256": "1fc719a091366c230e82a6d492e20eb39be10d43ac25834c610d952d1e6bd49d"
+  },
+  "evidence": {
+    "fresh_validation": "100 repetitions each at n=500 and n=2000; seed 2026110800",
+    "interpretation": "Modest n=500 coverage gains; no established GAN coverage advantage",
+    "confidence_sets": "All accepted components retained; interval envelope reported separately",
+    "chronology": "Score inversion fixed before validation; envelope/flags added after diagnosis",
+    "exact_reserve_inference": "Not claimed; maintained target is fixed-bandwidth theta_0,h"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "completed": true,
+  "cases": [
+    29,
+    50
+  ],
+  "grid_checks": 24,
+  "probe_rows": 84,
+  "verified": true
+}

@@ -1,0 +1,102 @@
+[
+  {
+    "repetition": 29,
+    "method": "Calibrated WGAN-DML",
+    "estimate": 0.8992144035608602,
+    "target": 0.8318283572057762,
+    "minimum_maximum": 0.6466877758038,
+    "second_smallest_maximum": 0.7483546590957965,
+    "saved_components": [
+      [
+        0.45,
+        0.5835126742008641
+      ],
+      [
+        0.7847385568362554,
+        0.9579172669319174
+      ]
+    ]
+  },
+  {
+    "repetition": 29,
+    "method": "Empirical-local DML",
+    "estimate": 0.8968957006275203,
+    "target": 0.8318283572057762,
+    "minimum_maximum": 0.6466877758038,
+    "second_smallest_maximum": 0.7483546590957965,
+    "saved_components": [
+      [
+        0.45,
+        0.5653475969413025
+      ],
+      [
+        0.7918681513407043,
+        0.953516737302406
+      ]
+    ]
+  },
+  {
+    "repetition": 29,
+    "method": "Smooth plug-in",
+    "estimate": 0.8492858285294198,
+    "target": 0.8318283572057762,
+    "minimum_maximum": 0.6466877758038,
+    "second_smallest_maximum": 0.7483546590957965,
+    "saved_components": [
+      [
+        0.7874949125323354,
+        0.909568668150081
+      ]
+    ]
+  },
+  {
+    "repetition": 50,
+    "method": "Calibrated WGAN-DML",
+    "estimate": 0.8325199304651609,
+    "target": 0.8318283572057762,
+    "minimum_maximum": 0.5748068443877338,
+    "second_smallest_maximum": 0.8527316614164134,
+    "saved_components": [
+      [
+        0.45,
+        0.5375687927054444
+      ],
+      [
+        0.6388768029856298,
+        0.9099164949179364
+      ]
+    ]
+  },
+  {
+    "repetition": 50,
+    "method": "Empirical-local DML",
+    "estimate": 0.8310124732225335,
+    "target": 0.8318283572057762,
+    "minimum_maximum": 0.5748068443877338,
+    "second_smallest_maximum": 0.8527316614164134,
+    "saved_components": [
+      [
+        0.45,
+        0.48904476365881316
+      ],
+      [
+        0.6705822066376891,
+        0.9055162450524138
+      ]
+    ]
+  },
+  {
+    "repetition": 50,
+    "method": "Smooth plug-in",
+    "estimate": 0.8140502459168906,
+    "target": 0.8318283572057762,
+    "minimum_maximum": 0.5748068443877338,
+    "second_smallest_maximum": 0.8527316614164134,
+    "saved_components": [
+      [
+        0.734620508999251,
+        0.8799657189306735
+      ]
+    ]
+  }
+]

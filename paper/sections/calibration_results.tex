@@ -11,8 +11,11 @@ is retained; no estimator uses the known target in training or selection.
 
 In addition to original and calibrated WGAN-DML, I report empirical-local
 DML and a full-sample smoothed plug-in with the identical Gaussian kernel and
-bandwidth. All roots use the same direct-inversion reference. Grid brackets
-are refined numerically to tolerance $10^{-10}$. The fixed-bandwidth panel
+bandwidth. The archived pilot selected roots using the same direct-inversion
+reference and refined grid brackets to tolerance $10^{-10}$. These numerical
+results have not been regenerated under the revised single-crossing and
+failure-reporting rules of Section~6. Future runs use the revised implementation
+and preserve failed replications explicitly. The fixed-bandwidth panel
 targets $r_h$ at $h=0.15$. The exact-reserve panel applies the existing
 covariance-aware Richardson combination on the $n^{-0.2}$ bandwidth path;
 this remains a diagnostic rather than an exact-reserve coverage theorem.

@@ -1,0 +1,219 @@
+{
+  "passed": true,
+  "source_sha256": {
+    "output/reports/confidence_sets_2026-11-08/summary.csv": "a17978983b7f14d33cffe77b388b7962a2b12078554729ebbe8d48b3488cddaf",
+    "output/reports/confidence_sets_2026-11-08/flagged_cases.csv": "685c0aa999af28f48923960ab6bc33e2e6632286f50c9aacd568f222247a1c5d",
+    "output/experiments/fixed_h_score_validation_2026-11-08/summary/summary.csv": "cc6fa7e8ba57c86bd260b2bd984af88efb61e0bac58fd3402e42e97b8e7c3ae3",
+    "output/experiments/disconnected_sets_2026-11-08/fixed_variance/summary.csv": "49d1abc897bb817fde31c9e3006e26bf7a251e20f423cf124e6b011665e5b025"
+  },
+  "source_unchanged": true,
+  "table_rows": {
+    "fresh_score_validation": 6,
+    "confidence_set_flagged": 4,
+    "score_set_sensitivity": 6
+  },
+  "endpoint_display_rule": "outward rounding to four decimals; original machine-precision endpoints unchanged",
+  "main_table": [
+    {
+      "auctions": 500,
+      "method": "Calibrated WGAN-DML",
+      "wald_coverage": 0.91,
+      "score_coverage": 0.93,
+      "wald_length": 0.14215345739102775,
+      "score_length": 0.1461406822023141,
+      "envelope_length": 0.1491660211314699,
+      "failures": 0,
+      "disconnected": 2,
+      "boundary": 2
+    },
+    {
+      "auctions": 500,
+      "method": "Empirical-local DML",
+      "wald_coverage": 0.91,
+      "score_coverage": 0.93,
+      "wald_length": 0.1391073214060907,
+      "score_length": 0.1420835395848424,
+      "envelope_length": 0.1461641195586252,
+      "failures": 0,
+      "disconnected": 2,
+      "boundary": 2
+    },
+    {
+      "auctions": 500,
+      "method": "Smooth plug-in",
+      "wald_coverage": 0.91,
+      "score_coverage": 0.92,
+      "wald_length": 0.12363534694115529,
+      "score_length": 0.1230323038989774,
+      "envelope_length": 0.1230323038989774,
+      "failures": 0,
+      "disconnected": 0,
+      "boundary": 0
+    },
+    {
+      "auctions": 2000,
+      "method": "Calibrated WGAN-DML",
+      "wald_coverage": 0.96,
+      "score_coverage": 0.95,
+      "wald_length": 0.06727476600629535,
+      "score_length": 0.0674105454559281,
+      "envelope_length": 0.0674105454559281,
+      "failures": 0,
+      "disconnected": 0,
+      "boundary": 0
+    },
+    {
+      "auctions": 2000,
+      "method": "Empirical-local DML",
+      "wald_coverage": 0.96,
+      "score_coverage": 0.95,
+      "wald_length": 0.06665247047955204,
+      "score_length": 0.0667863060315683,
+      "envelope_length": 0.0667863060315683,
+      "failures": 0,
+      "disconnected": 0,
+      "boundary": 0
+    },
+    {
+      "auctions": 2000,
+      "method": "Smooth plug-in",
+      "wald_coverage": 0.95,
+      "score_coverage": 0.95,
+      "wald_length": 0.06418471754065713,
+      "score_length": 0.0642592592584945,
+      "envelope_length": 0.0642592592584945,
+      "failures": 0,
+      "disconnected": 0,
+      "boundary": 0
+    }
+  ],
+  "flagged": [
+    {
+      "repetition": 29,
+      "method": "Calibrated WGAN-DML",
+      "components": [
+        [
+          0.45,
+          0.5835126742008641
+        ],
+        [
+          0.7847385568362554,
+          0.9579172669319174
+        ]
+      ],
+      "envelope": [
+        0.45,
+        0.9579172669319174
+      ]
+    },
+    {
+      "repetition": 29,
+      "method": "Empirical-local DML",
+      "components": [
+        [
+          0.45,
+          0.5653475969413025
+        ],
+        [
+          0.7918681513407043,
+          0.953516737302406
+        ]
+      ],
+      "envelope": [
+        0.45,
+        0.953516737302406
+      ]
+    },
+    {
+      "repetition": 50,
+      "method": "Calibrated WGAN-DML",
+      "components": [
+        [
+          0.45,
+          0.5375687927054444
+        ],
+        [
+          0.6388768029856298,
+          0.9099164949179364
+        ]
+      ],
+      "envelope": [
+        0.45,
+        0.9099164949179364
+      ]
+    },
+    {
+      "repetition": 50,
+      "method": "Empirical-local DML",
+      "components": [
+        [
+          0.45,
+          0.48904476365881316
+        ],
+        [
+          0.6705822066376891,
+          0.9055162450524138
+        ]
+      ],
+      "envelope": [
+        0.45,
+        0.9055162450524138
+      ]
+    }
+  ],
+  "sensitivity": [
+    {
+      "auctions": 500,
+      "method": "Calibrated WGAN-DML",
+      "fixed_coverage": 0.9,
+      "fixed_length": 0.14493759556743166,
+      "disconnected": 0,
+      "failures": 0
+    },
+    {
+      "auctions": 500,
+      "method": "Empirical-local DML",
+      "fixed_coverage": 0.9,
+      "fixed_length": 0.14166017261059613,
+      "disconnected": 0,
+      "failures": 0
+    },
+    {
+      "auctions": 500,
+      "method": "Smooth plug-in",
+      "fixed_coverage": 0.92,
+      "fixed_length": 0.12512232437701726,
+      "disconnected": 0,
+      "failures": 0
+    },
+    {
+      "auctions": 2000,
+      "method": "Calibrated WGAN-DML",
+      "fixed_coverage": 0.97,
+      "fixed_length": 0.06746992910140563,
+      "disconnected": 0,
+      "failures": 0
+    },
+    {
+      "auctions": 2000,
+      "method": "Empirical-local DML",
+      "fixed_coverage": 0.96,
+      "fixed_length": 0.06684182956364677,
+      "disconnected": 0,
+      "failures": 0
+    },
+    {
+      "auctions": 2000,
+      "method": "Smooth plug-in",
+      "fixed_coverage": 0.96,
+      "fixed_length": 0.06434519936467697,
+      "disconnected": 0,
+      "failures": 0
+    }
+  ],
+  "table_sha256": {
+    "fresh_score_validation.tex": "eb75766d00cfb51b0f25fece91136c2b6ee0a315bb39014ebc6cca6ec7e485dc",
+    "confidence_set_flagged.tex": "ce819e5b8b26016e99920d647f48164f5a11e3ec9cd208ae178c793ee9680643",
+    "score_set_sensitivity.tex": "bb3c1edf44fc0a05eb80b044b667612daaed4f7e37941896f9c1309290bfe8b5"
+  }
+}

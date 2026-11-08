@@ -25,10 +25,15 @@ $G_h(\theta)=\mathbb E[K_h(B;\theta)]$. The regularized reserve moment is
 m_h(\theta,A,G)=1-A^{1/N}-\frac{\theta}{N}A^{1/N-1}G.
 \label{eq:regularized-reserve-moment}
 \end{equation}
-The fixed-bandwidth target $\theta_{0,h}$ is the selected zero of
-$m_h(\theta,A_h(\theta),G_h(\theta))$. It need not equal the exact optimal
-reserve $r_0$; approximation of $r_0$ requires a separate shrinking-bandwidth
-argument.
+Fix a positive compact search interval
+$\Theta=[\underline\theta,\overline\theta]\subset(0,\infty)$ before estimation.
+Define $R_h(\theta)=\theta\{1-A_h(\theta)^{1/N}\}$, so that
+$R_h'(\theta)=m_h(\theta,A_h(\theta),G_h(\theta))$. Under the single-crossing
+condition stated below, the fixed-bandwidth target $\theta_{0,h}$ is its unique
+interior maximizer on $\Theta$. It need not equal the exact optimal reserve
+$r_0$: Gaussian smoothing is applied to the maximum distribution before
+inversion, not to the original valuation distribution. Approximation of $r_0$
+requires a separate shrinking-bandwidth argument.
 
 The derivatives needed for the locally robust correction are
 \begin{align}
@@ -55,6 +60,30 @@ Hence
 \mathbb E\left[\psi_h(B;\theta_{0,h},A,G)\right]
 \right|_{(A,G)=\eta_{0,h}(\theta_{0,h})}=0.
 \end{equation}
+
+\begin{proposition}[Orthogonality and remainder]
+\label{prop:orthogonal-remainder}
+At any fixed $\theta$, let $\eta_0=(A_h(\theta),G_h(\theta))$. Then
+\begin{equation}
+\mathbb E_0\psi_h(B;\theta,\eta)
+=m_h(\theta,\eta)+\nabla_\eta m_h(\theta,\eta)^{\mathsf T}(\eta_0-\eta).
+\end{equation}
+On a compact nuisance region with $A$ bounded away from zero, this implies
+\begin{equation}
+\left|\mathbb E_0\psi_h(B;\theta,\eta)-m_h(\theta,\eta_0)\right|
+\leq C_h\{(A-A_h)^2+|A-A_h|\,|G-G_h|\}.
+\label{eq:anisotropic-remainder}
+\end{equation}
+If $A=A_h$, the expectation is correct for any finite $G$. Correct $G$ alone
+does not generally have this property. The score is therefore Neyman
+orthogonal and locally robust, but not a two-sided doubly robust AIPW score.
+\end{proposition}
+For uniform nuisance errors $\delta_{A,n}$ and $\delta_{G,n}$, the population
+remainder is therefore negligible at the root-$n$ scale if
+$\delta_{A,n}^2+\delta_{A,n}\delta_{G,n}=o_p(n^{-1/2})$.
+This condition must be accompanied by score consistency and the usual
+stochastic and root controls; it is not a license to substitute arbitrary
+quantities for either local moment.
 
 The estimator solves
 \begin{equation}
@@ -96,7 +125,7 @@ pooled across folds before solving for a common reserve estimate.
 \node[box] (pool) at (0,-9.0)
   {Rotate over three folds\\Pool held-out scores};
 \node[box] (root) at (0,-10.8)
-  {Solve pooled score equation\\Reserve estimate $\widehat\theta_h$};
+  {Unique downward-root diagnostic\\Estimate $\widehat\theta_h$ or report failure};
 \draw[flow] (train.south) -- ++(0,-0.2) -| (gan.north);
 \draw[flow] (train.south) -- ++(0,-0.2) -| (empirical.north);
 \draw[flow] (gan) -- (ganmoments);
@@ -117,56 +146,32 @@ For each candidate reserve, the training-fold WGAN and empirical moments are
 combined using equation~\eqref{eq:local-calibration}. Training and tuning use
 only $I_k^c$. The three-fold implementation pools observation-level
 scores, rather than fold-specific reserve estimates. The final estimate targets
-the fixed-bandwidth reserve $\theta_{0,h}$.}
+the fixed-bandwidth reserve $\theta_{0,h}$ and is reported only when the
+prespecified root, overlap, and slope checks pass.}
 \label{fig:estimation-workflow}
 \end{figure}
 
-For a formal fixed-bandwidth statement, write
-$\eta_h(\theta)=(A_h(\theta),G_h(\theta))$ and
-$\Psi_h(\theta,\eta)=\mathbb E[\psi_h(B;\theta,\eta(\theta))]$.
+Write $\widehat\Psi_n(\theta)$ for the pooled sample score in the preceding
+equation. For the population moment and its derivative, use
+\[
+m_{0,h}(\theta)=m_h(\theta,A_h(\theta),G_h(\theta)),
+\qquad J_h=m_{0,h}'(\theta_{0,h}).
+\]
+The formal estimator retains an interior downward
+crossing only when it is the unique root on $\Theta$, the endpoint scores have
+the prescribed positive and negative signs, and its total score derivative
+is negative and separated from zero. Bracket refinement solves the score to
+residual $o(n^{-1/2})$. Missing roots, multiple roots, boundary roots, active
+CDF clipping, or a nearly zero derivative are reported as inference failures,
+not replaced by a minimum-absolute-score point with a Wald interval.
+The implementation scans a prespecified grid and refines detected crossings;
+its finite-sample root count is a diagnostic, not a certificate excluding
+every possible hidden crossing between grid points. The theorem below uses
+uniform derivative convergence and a single population root to justify this
+rule asymptotically, without requiring such a finite-sample certificate.
 
-\begin{assumption}[Fixed-bandwidth regularity]
-\label{ass:fixed-h}
-For fixed $h>0$: (i) the auctions are i.i.d.; (ii) $\theta_{0,h}$ is an
-interior, locally unique zero of $\Psi_h(\theta,\eta_{0,h})$, the map is
-differentiable in $\theta$, and
-$J_h=\partial_\theta\Psi_h(\theta_{0,h},\eta_{0,h})$ is bounded away from zero;
-(iii) conditional on each training sample, the held-out score observations are
-independent of $\widehat\eta_h^{(-k)}$, and for a neighborhood $\mathcal N_h$,
-\begin{equation}
-\max_{k\leq K}\sup_{\theta\in\mathcal N_h}
-\|\widehat\eta_h^{(-k)}(\theta)-\eta_{0,h}(\theta)\|
-=O_p(\rho_n),\qquad \rho_n=o(n^{-1/4});
-\end{equation}
-(iv) the score is twice continuously differentiable in the local nuisance with
-bounded second derivative on that neighborhood and has a uniformly bounded
-$2+\delta$ moment for some $\delta>0$, with score variance bounded away from
-zero; and (v) the selected empirical root and
-the numerical Jacobian are consistent for $\theta_{0,h}$ and $J_h$.
-The nuisance rate includes both WGAN estimation error and finite synthetic-
-sample error.
-\end{assumption}
-
-\begin{theorem}[Fixed-bandwidth DML inference]
-\label{thm:fixed-h-dml}
-Under Assumption~\ref{ass:fixed-h},
-\begin{equation}
-\sqrt n(\widehat\theta_h-\theta_{0,h})
-=\frac{1}{\sqrt n}\sum_{i=1}^n\varphi_{i,h}+o_p(1),
-\qquad
-\varphi_{i,h}=-J_h^{-1}
-\psi_h(B_i;\theta_{0,h},\eta_{0,h}),
-\label{eq:fixed-h-linearization}
-\end{equation}
-and the studentized statistic converges to a standard normal distribution.
-The empirical influence-function variance is consistent. Consequently, the
-usual Wald interval has asymptotic coverage $1-\gamma$ for the regularized
-target $\theta_{0,h}$.
-\end{theorem}
-
-For the empirical-local learner, the high-level nuisance rate has a primitive
-verification. Let $I_k^c$ denote the training observations for fold $k$ and
-$n_{-k}=|I_k^c|$. Define
+Let $I_k^c$ denote the training observations for fold $k$ and
+$n_{-k}=|I_k^c|$. The empirical-local learner is
 \begin{equation}
 \widehat A_h^{(-k)}(\theta)
 =\frac{1}{n_{-k}}\sum_{j\in I_k^c}S_h(B_j;\theta),
@@ -176,55 +181,211 @@ $n_{-k}=|I_k^c|$. Define
 \label{eq:empirical-local-nuisance}
 \end{equation}
 
-\begin{proposition}[Primitive rate for the empirical-local nuisance]
-\label{prop:empirical-local-rate}
-Let $h>0$ and the number of folds $K$ be fixed. Suppose
-$\mathcal N_h$ is compact, $\min_k n_{-k}/n$ is bounded away from zero,
-and
+\begin{assumption}[Fixed-bandwidth regularity]
+\label{ass:fixed-h}
+The sampling restrictions in Section~3 hold, and $h>0$, $N$, and $K\geq2$
+are fixed. The following conditions apply.
+\begin{enumerate}
+\item The interval $\Theta$ is fixed and positive. The continuous function
+$m_{0,h}$ has exactly one zero $\theta_{0,h}$ in its interior,
+$m_{0,h}(\underline\theta)>0$, and $m_{0,h}(\overline\theta)<0$.
+On a neighborhood of that zero, $m_{0,h}'(\theta)\leq-2j_h<0$.
+Moreover,
 \begin{equation}
-\inf_{\theta\in\mathcal N_h}A_h(\theta)\geq a_h>0.
+\inf_{\theta\in\Theta}A_h(\theta)\geq a_h>0.
 \label{eq:local-cdf-overlap}
 \end{equation}
-Then the estimators in equation~\eqref{eq:empirical-local-nuisance} satisfy
+Any numerical CDF clipping threshold is less than $a_h/2$.
+\item The split is independent of the observations, and
+$|I_k|/n\to\pi_k\in(0,1)$ for each fold. Training, model selection, and
+synthetic sampling for a fold use no observations from its holdout set.
+\item The nuisance is either equation~\eqref{eq:empirical-local-nuisance}
+or the calibrated learner in equation~\eqref{eq:local-calibration} with a
+fixed finite pseudo-count (50 in the implementation). Synthetic maxima are
+finite almost surely; their number may be fixed. The same weight is used for
+$A_h$ and $G_h$ and does not depend on $\theta$.
+\item The variance
+$V_h=\operatorname{Var}\{\psi_h(B;\theta_{0,h},\eta_{0,h})\}$ is positive.
+The numerical routine refines its bracket to score residual
+$\varepsilon_n=o(n^{-1/2})$ and uses the total derivative of
+$\widehat\Psi_n$; its rejection threshold is at most $j_h$.
+\end{enumerate}
+\end{assumption}
+
+These conditions state a single-crossing restriction on a specified search
+interval, not an assumption that an arbitrary root-selection routine is
+consistent. They imply that $\theta_{0,h}$ uniquely maximizes $R_h$ on
+$\Theta$. Positive variance and overlap concern the maximum distribution at
+this target, and need not hold uniformly over a growing number of bidders.
+
+\begin{proposition}[Primitive uniform rates]
+\label{prop:empirical-local-rate}
+Under Assumption~\ref{ass:fixed-h}, put $\rho_n=\sqrt{\log n/n}$. For the
+empirical-local learner, and also for its fixed-pseudo-count calibration,
 \begin{equation}
-\max_{k\leq K}\sup_{\theta\in\mathcal N_h}
-\left\|
-\widehat\eta_h^{(-k)}(\theta)-\eta_{0,h}(\theta)
-\right\|
-=O_p\!\left(\sqrt{\frac{\log n}{n}}\right)
-=o_p(n^{-1/4}).
+\max_{k\leq K}\sup_{\theta\in\Theta}
+\left\{\|\widehat\eta_h^{(-k)}-\eta_{0,h}\|
++\|\partial_\theta\widehat\eta_h^{(-k)}
+-\partial_\theta\eta_{0,h}\|\right\}=O_p(\rho_n).
 \label{eq:empirical-local-rate}
 \end{equation}
-On an event with probability approaching one, the nuisance lies in a region
-where the score and its first two nuisance derivatives are uniformly bounded.
-Thus the empirical-local learner satisfies the nuisance-rate and smoothness
-parts of Assumption~\ref{ass:fixed-h}. If the remaining root-separation,
-positive-variance, and numerical-consistency conditions in that assumption
-hold, Theorem~\ref{thm:fixed-h-dml} applies to the empirical-local estimator.
+Calibration changes the empirical nuisance and its first derivative by
+uniformly $O(n^{-1})$.
+Consequently, $\widehat\Psi_n$ and its total derivative converge uniformly to
+$m_{0,h}$ and $m_{0,h}'$, respectively.
 \end{proposition}
 
-Theorem~\ref{thm:fixed-h-dml} is deliberately about $\theta_{0,h}$, not $r_0$.
-Orthogonality makes the nuisance contribution second order, so the sufficient
-$o(n^{-1/4})$ local rate controls the remainder. It does not follow from a
-small global Wasserstein distance. The Monte Carlo ablations below measure
-whether this sufficient local approximation is credible for each nuisance
-learner. Proposition~\ref{prop:empirical-local-rate} shows that, for fixed
-$h$, the rate is automatic for training-fold empirical kernel moments under a
-local CDF overlap condition. No analogous implication follows from a global
-WGAN objective.
-Here the fold-specific nuisances are computed from maximum bids simulated by
-the WGAN trained outside fold $k$. A numerical derivative of the cross-fitted
-mean score estimates the Jacobian, and the empirical score variance supplies
-the conventional influence-function standard error. Validity still requires
-the second-order nuisance remainder and generator simulation error to be
-smaller than sampling error. The pilot below directly tests, rather than
-assumes, this requirement.
+\begin{theorem}[Fixed-bandwidth inference]
+\label{thm:fixed-h-dml}
+Under Assumption~\ref{ass:fixed-h}, the probability of the stated inference
+failures tends to zero. On successful runs the selected root is consistent,
+$\widehat J_h=\widehat\Psi_n'(\widehat\theta_h)\to_pJ_h$, and
+\begin{equation}
+\sqrt n(\widehat\theta_h-\theta_{0,h})
+=\frac{1}{\sqrt n}\sum_{i=1}^n\varphi_{i,h}+o_p(1),
+\qquad
+\varphi_{i,h}=-J_h^{-1}
+\psi_h(B_i;\theta_{0,h},\eta_{0,h}).
+\label{eq:fixed-h-linearization}
+\end{equation}
+The empirical variance of the estimated influence values is consistent for
+$V_h/J_h^2$. The usual studentized statistic is asymptotically standard normal,
+and its Wald interval has asymptotic coverage $1-\gamma$ for
+$\theta_{0,h}$, not for $r_0$.
+\end{theorem}
 
-The asymptotic statement treats root-solving tolerance as $o(n^{-1/2})$ and a
-centered finite-difference step $c_n$ satisfying $c_n\to0$ and
-$\sqrt n c_n\to\infty$. The reported Monte Carlo uses a fine fixed grid and a
-small fixed derivative step as finite-sample numerical approximations; these
-choices are not additional statistical regularization parameters.
+The total derivative includes the dependence of both nuisance functions on
+$\theta$. If $T_h=(S_h,K_h)^{\mathsf T}$ and a dot denotes this derivative,
+\begin{equation}
+\frac{d\psi_h}{d\theta}
+=m_\theta+\nabla_\eta m_h^{\mathsf T}\dot T_h
++\{\nabla_\eta m_\theta+\nabla_\eta^2m_h\dot\eta\}^{\mathsf T}(T_h-\eta).
+\label{eq:total-score-derivative}
+\end{equation}
+Here $\dot S_h=K_h$ and
+$\dot K_h=-(\theta-B)K_h/h^2$. A centered finite difference is also consistent
+if its step tends to zero, remains inside $\Theta$, and is applied to the same
+smooth pooled score; the uniform derivative result supplies this conclusion.
+Fixed numerical tolerances in archived pilots are finite-sample
+approximations, not asymptotic guarantees. Failure frequencies are reported
+alongside coverage rather than silently treating rejected cases as estimates.
+
+\begin{proposition}[Full-sample plug-in equivalence]
+\label{prop:plugin-equivalence}
+Let $\widetilde\eta_h(\theta)=n^{-1}\sum_{i=1}^nT_h(B_i;\theta)$ and let
+$\widetilde\theta_h$ be the unique downward root of
+$m_h(\theta,\widetilde\eta_h(\theta))$ on $\Theta$, refined to the same
+residual tolerance. Under Assumption~\ref{ass:fixed-h}, it has the influence
+function in equation~\eqref{eq:fixed-h-linearization}, and
+\begin{equation}
+\sqrt n(\widehat\theta_h-\widetilde\theta_h)\to_p0.
+\end{equation}
+Thus empirical-local DML, fixed-pseudo-count calibrated DML, and the
+same-kernel full-sample plug-in have the same first-order asymptotic variance.
+\end{proposition}
+
+This equivalence does not rule out finite-sample differences. It does rule out
+attributing a first-order variance improvement to the WGAN component under
+these assumptions. The proof uses the empirical part of the calibrated
+learner and makes no consistency claim for the standalone WGAN. For a pure
+WGAN score, local function and derivative consistency, a negligible remainder
+in equation~\eqref{eq:anisotropic-remainder}, and control of synthetic-sample
+error require separate verification. A low training critic objective does not
+supply those conditions. At fixed $h$, a rate for the true Wasserstein distance
+can control the Lipschitz kernel moments; their constants deteriorate as $h$
+shrinks, and a fitted critic value is not such a population rate.
+
+\subsection{Confidence sets and conservative envelopes}
+\label{sec:score-confidence-sets}
+
+The Wald interval in Theorem~\ref{thm:fixed-h-dml} uses the score slope and
+variance evaluated at the estimated root. A second construction retains the
+nonlinear score curve and evaluates its variance at each candidate reserve.
+For $i\in I_k$, write
+\[
+\widehat\psi_{i,h}(\theta)
+=\psi_h\!\left(B_i;\theta,\widehat\eta_h^{(-k)}(\theta)\right),
+\qquad
+\widehat V_n(\theta)
+=\frac{1}{n-1}\sum_{i=1}^n
+\{\widehat\psi_{i,h}(\theta)-\widehat\Psi_n(\theta)\}^2.
+\]
+This is the sample variance of the pooled observation-level scores, not the
+variance of the $K$ fold means. Define the studentized score and its continuous
+acceptance set by
+\begin{equation}
+T_n(\theta)=\frac{\sqrt n\,\widehat\Psi_n(\theta)}
+{\sqrt{\widehat V_n(\theta)}},
+\qquad
+\mathcal C_{n,1-\gamma}
+=\{\theta\in\Theta: |T_n(\theta)|\leq z_{1-\gamma/2}\}.
+\label{eq:score-confidence-set}
+\end{equation}
+The set is defined at candidates where the statistic is well defined. On a
+failed point-estimation run no confidence set is reported; for coverage
+accounting the set is taken to be empty. The critical value
+is fixed before the experiment; it is 1.96 in the 95 percent comparisons below.
+Neither the point estimate nor the nuisance-learning procedure is changed.
+
+\begin{proposition}[Fixed-bandwidth score-set coverage]
+\label{prop:score-set-coverage}
+Under Assumption~\ref{ass:fixed-h},
+$T_n(\theta_{0,h})\Rightarrow\mathcal N(0,1)$, and the continuous set in
+equation~\eqref{eq:score-confidence-set} satisfies
+\[
+\Pr\{\theta_{0,h}\in\mathcal C_{n,1-\gamma}\}\longrightarrow1-\gamma.
+\]
+If the set is nonempty, define its conservative interval envelope as
+\begin{equation}
+\mathcal E_{n,1-\gamma}
+=[\inf\mathcal C_{n,1-\gamma},\sup\mathcal C_{n,1-\gamma}],
+\label{eq:score-envelope}
+\end{equation}
+and set $\mathcal E_{n,1-\gamma}=\varnothing$ when
+$\mathcal C_{n,1-\gamma}=\varnothing$. Then
+$\mathcal C_{n,1-\gamma}\subseteq\mathcal E_{n,1-\gamma}$ for every sample,
+and
+\[
+\liminf_{n\to\infty}
+\Pr\{\theta_{0,h}\in\mathcal E_{n,1-\gamma}\}\geq1-\gamma.
+\]
+These claims concern the fixed-bandwidth target and the mathematical sets,
+not exact finite-sample coverage or a certificate for a finite search grid.
+\end{proposition}
+
+The proof in Appendix~\ref{app:score-set-proof} uses the same orthogonal
+remainder and variance consistency as the Wald result. Inverting pointwise
+tests does not require a simultaneous confidence band over $\Theta$: coverage
+is the nonrejection event at the one true parameter. The argument does not
+establish robustness to weak identification, growing bidder counts, or
+shrinking bandwidths.
+
+The full acceptance set can be disconnected even when the estimated score
+has a unique zero. Candidate-dependent studentization may produce a distant
+accepted region where the estimated variance is large. I retain every
+detected component, rather than selecting the component containing
+$\widehat\theta_h$. Such selection could remove covered parameter values.
+The interval envelope fills the rejected gaps between components. It is
+therefore reported separately and is not called the original score-test
+confidence set or an improvement in estimation precision.
+
+The implementation evaluates 281 equally spaced candidates on $\Theta$,
+adds the estimated root, and refines detected acceptance-boundary crossings
+by Brent's method with tolerance $10^{-11}$. It records the components without
+joining gaps. Separate flags identify more than one component and contact
+with either search boundary, using tolerance $10^{-9}$ only for the flag.
+The boundaries are not moved by this tolerance. A boundary flag refers to the
+prespecified search interval, not to a data-identified support endpoint.
+Nonfinite candidate moments or nonpositive score variance are recorded as
+inference failures; they are not silently dropped from the search. In
+contrast, disconnection and boundary contact are reporting flags, not
+computational failures. Failure rates use all replications, while reported
+lengths condition on a successfully constructed set. For a disconnected set,
+its length is the sum of component lengths; the envelope length includes the
+intervening gaps. Finer grids check numerical sensitivity but cannot certify
+the absence of every arbitrarily narrow component.
+
+\subsection{Diagnostic extensions}
 
 To diagnose a failure of the WGAN-based nuisance, I also evaluate two versions
 of the identical score. The empirical-local version replaces generated maxima
@@ -234,7 +395,8 @@ Monte Carlo DGP. Agreement between these two versions, together with failure of
 the WGAN version, isolates the problem in nuisance approximation rather than in
 equation~\eqref{eq:orthogonal-reserve-score}.
 
-Inference for the exact reserve adds a separate bandwidth problem. Under local
+Inference for the exact reserve adds a separate bandwidth problem. The
+fixed-bandwidth theorem does not supply a triangular-array result. Under local
 smoothness, Gaussian regularization produces a leading approximation bias of
 order $h^2$, while the density component of the score has stochastic scale of
 order $(nh)^{-1/2}$. A heuristic undersmoothing requirement is therefore
@@ -281,11 +443,18 @@ $\widehat r_{\mathrm R}=2\widehat\theta_h-
 the reference for the smaller-bandwidth root. This continuation rule reduces
 arbitrary root switching but does not eliminate multiple-root uncertainty.
 
-\begin{proposition}[Exact-reserve Richardson inference]
+The following extension is conditional: the joint linear representation,
+higher-order bias expansion, and covariance conditions are additional
+assumptions, not consequences of Theorem~\ref{thm:fixed-h-dml}. In particular,
+the differentiability imposed on $F_0$ in Section~3 is not enough by itself to
+justify the fourth-order expansion.
+
+\begin{proposition}[Conditional exact-reserve Richardson inference]
 \label{prop:richardson-exact}
 Let $h_n\to0$ and fix $\lambda>1$. Suppose the roots at $h_n$ and
-$\lambda h_n$ satisfy a joint version of
-equation~\eqref{eq:fixed-h-linearization}, their covariance estimator is
+$\lambda h_n$ have a joint linear representation with remainder
+$o_p(s_{\mathrm R,n}/\sqrt n)$ after the Richardson combination and a valid
+triangular-array central limit theorem. Suppose their covariance estimator is
 consistent, the relevant population roots are locally unique and separated,
 and
 \begin{equation}

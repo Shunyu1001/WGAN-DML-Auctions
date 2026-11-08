@@ -1,0 +1,13 @@
+auctions,method,comparison,gained,lost,coverage_change,paired_mcse,valid_length_pairs,mean_length_change
+500,Calibrated WGAN-DML,Fixed variance minus Wald,1,2,-0.01,0.017378728435078396,100,0.0027841381764039308
+500,Calibrated WGAN-DML,Fixed variance minus Original score,0,3,-0.03,0.01714466079977653,100,-0.001203086634882439
+500,Empirical-local DML,Fixed variance minus Wald,1,2,-0.01,0.017378728435078396,100,0.0025528512045054587
+500,Empirical-local DML,Fixed variance minus Original score,0,3,-0.03,0.01714466079977653,100,-0.0004233669742462828
+500,Smooth plug-in,Fixed variance minus Wald,1,0,0.01,0.009999999999999997,100,0.0014869774358619175
+500,Smooth plug-in,Fixed variance minus Original score,0,0,0.0,0.0,100,0.0020900204780398544
+2000,Calibrated WGAN-DML,Fixed variance minus Wald,1,0,0.01,0.009999999999999997,100,0.00019516309511028568
+2000,Calibrated WGAN-DML,Fixed variance minus Original score,2,0,0.02,0.014070529413628957,100,5.9383645477570635e-05
+2000,Empirical-local DML,Fixed variance minus Wald,0,0,0.0,0.0,100,0.00018935908409473907
+2000,Empirical-local DML,Fixed variance minus Original score,1,0,0.01,0.009999999999999997,100,5.552353207842246e-05
+2000,Smooth plug-in,Fixed variance minus Wald,1,0,0.01,0.009999999999999997,100,0.0001604818240198453
+2000,Smooth plug-in,Fixed variance minus Original score,1,0,0.01,0.009999999999999997,100,8.594010618248978e-05

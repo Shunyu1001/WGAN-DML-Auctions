@@ -33,6 +33,11 @@
       "sha256": "103dd03d34f9d51b81efa2296c7c932da22849a81b66c279f8de2f4878176c9c"
     },
     {
+      "path": "paper/figures/disconnected_sets_diagnostic.png",
+      "bytes": 376071,
+      "sha256": "da3872786e6ad9bf0674e7453945893de920068392191848397d8842b64a1fb6"
+    },
+    {
       "path": "paper/figures/initialization_ablation.png",
       "bytes": 81802,
       "sha256": "2a0b0271f379b871b3fad4fa26cf98055295bc214e33a520021db86e360ef282"
@@ -138,6 +143,11 @@
       "sha256": "516000bb32161f6694e37c5af22c8a3c2253c98c7c6f7f33a0e47de1f839d560"
     },
     {
+      "path": "paper/tables/confidence_set_flagged.tex",
+      "bytes": 583,
+      "sha256": "ce819e5b8b26016e99920d647f48164f5a11e3ec9cd208ae178c793ee9680643"
+    },
+    {
       "path": "paper/tables/crossfit_wgan_folds.csv",
       "bytes": 5467,
       "sha256": "fef7ef65303291c060d85c22cd13708eb848433cd05e75ad61f4cd17d1c1a5ed"
@@ -181,6 +191,11 @@
       "path": "paper/tables/external_validity_raw.csv",
       "bytes": 842216,
       "sha256": "372829a811d4ed81abfbc3a11087c85022f3768949200751be564fd36a704f6a"
+    },
+    {
+      "path": "paper/tables/fresh_score_validation.tex",
+      "bytes": 1004,
+      "sha256": "eb75766d00cfb51b0f25fece91136c2b6ee0a315bb39014ebc6cca6ec7e485dc"
     },
     {
       "path": "paper/tables/initialization_ablation.csv",
@@ -341,6 +356,11 @@
       "path": "paper/tables/root_robust_inference_raw.csv",
       "bytes": 1252388,
       "sha256": "8fc93022e8c48fcdc9d288b82b30a7b7b0e5dc2f03eb1bbe61fa6b58e951ceab"
+    },
+    {
+      "path": "paper/tables/score_set_sensitivity.tex",
+      "bytes": 833,
+      "sha256": "bb3c1edf44fc0a05eb80b044b667612daaed4f7e37941896f9c1309290bfe8b5"
     },
     {
       "path": "paper/tables/wgan_gp_pilot.csv",

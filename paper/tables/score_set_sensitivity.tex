@@ -1,0 +1,20 @@
+% Exploratory re-use of the fresh validation samples; not independent confirmation.
+{\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{rlrrrrr}
+\toprule
+& & \multicolumn{3}{c}{Coverage (\%)} & \multicolumn{2}{c}{Mean length} \\
+\cmidrule(lr){3-5}\cmidrule(lr){6-7}
+$n$ & Method & Wald & Full set & Fixed scale & Full set & Fixed scale \\
+\midrule
+500 & Calibrated GAN & 91 & 93 & 90 & 0.14614 & 0.14494 \\
+500 & Empirical DML & 91 & 93 & 90 & 0.14208 & 0.14166 \\
+500 & Smooth plug-in & 91 & 92 & 92 & 0.12303 & 0.12512 \\
+\addlinespace
+2,000 & Calibrated GAN & 96 & 95 & 97 & 0.06741 & 0.06747 \\
+2,000 & Empirical DML & 96 & 95 & 96 & 0.06679 & 0.06684 \\
+2,000 & Smooth plug-in & 95 & 95 & 96 & 0.06426 & 0.06435 \\
+\bottomrule
+\end{tabular}
+}
+% The fixed-scale variant is a sensitivity exercise, not the adopted reporting rule.

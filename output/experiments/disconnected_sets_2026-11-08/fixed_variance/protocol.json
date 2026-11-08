@@ -1,0 +1,21 @@
+{
+  "design": "exploratory paired fixed-variance shape sensitivity, not independent validation",
+  "definition": "sqrt(n)*original nonlinear pooled score mean(theta)/score_sd(saved root)",
+  "root_score_sd": "saved_standard_error * sqrt(n) * abs(saved_jacobian)",
+  "critical_value": 1.96,
+  "bounds": [
+    0.45,
+    1.15
+  ],
+  "grid_size": 281,
+  "endpoint_tolerance": 1e-11,
+  "sample_sizes": [
+    500,
+    2000
+  ],
+  "repetitions": 100,
+  "source": "/Users/shunyuhao/LocalResearch/WGAN-DML-Auctions-PSRM/output/experiments/fixed_h_score_validation_2026-11-08",
+  "new_training": false,
+  "original_raw_sha256": "2d9d23f69cc088ece9c5bd933780b98f2f7af77e2c77946493cdea677abfdb92",
+  "frozen_inversion_sha256": "fa64e7539a4ba41085fa6edca56b47ca23d6af5d6ad92ff19d6973ef91ef3692"
+}

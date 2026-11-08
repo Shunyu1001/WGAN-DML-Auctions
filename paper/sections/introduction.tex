@@ -14,8 +14,10 @@ statistics. If only the highest of $N$ valuations is observed, then the
 probability of seeing an auction maximum below the reserve is $F_0(r_0)^N$.
 The reserve can therefore depend on a region with very few observations even
 when the observable maximum-bid distribution is well approximated overall.
-Quantile or Wasserstein accuracy averaged over the support need not control the
-local CDF and density errors entering the optimal-reserve first-order condition.
+A small finite-sample fitting criterion is not a certificate of the local
+accuracy required by the optimal-reserve score. For a fixed bandwidth, a true
+population Wasserstein distance does bound the smoothed local moments through
+their Lipschitz constants; those constants deteriorate as the bandwidth shrinks.
 
 The proposed framework treats the valuation distribution as an
 infinite-dimensional nuisance parameter and the reserve price as the
@@ -33,16 +35,20 @@ generator respects the independent-private-values structure before applying
 the same maximum operator observed in the data. Second, it derives an
 observation-level orthogonal score for a smoothed reserve and gives
 conditions for cross-fitted asymptotic linearity and valid fixed-bandwidth
-inference. For the empirical-local learner, primitive fixed-bandwidth empirical-
-process conditions imply the required nuisance rate; the corresponding WGAN
-rate remains an explicit condition to be diagnosed. A covariance-aware
-Richardson combination provides a separate route
+inference. It distinguishes the full confidence set obtained by inverting
+the studentized score from a conservative interval envelope that contains it.
+For the empirical-local and fixed-pseudo-count calibrated learners,
+bounded kernel classes and a separated single-crossing root supply primitive
+conditions. The resulting estimators are first-order equivalent to the
+same-kernel full-sample plug-in; no first-order efficiency gain from the GAN is
+claimed. A pure WGAN learner requires additional local-rate conditions.
+A covariance-aware Richardson combination remains a conditional extension
 from that regularized target to the exact reserve. Third, it uses nested Monte
 Carlo ablations to distinguish failures of global WGAN learning, local nuisance
 rates, smoothing bias, and empirical root selection rather than attributing all
 errors to the generative model.
 
-The results sharpen the role of WGAN-GP in this problem. It reproduces the
+The archived Monte Carlo results sharpen the role of WGAN-GP in this problem. It reproduces the
 observable maximum distribution reasonably well but misses local tail moments
 that matter for the reserve. Replacing only those score nuisances with
 training-fold empirical moments restores near-oracle coverage for the
@@ -55,7 +61,7 @@ reported design. More aggressive shrinkage creates multiple roots; taking the
 union over all root chains increases interval length without improving
 coverage.
 
-A paired follow-up implements a simple hybrid by giving the WGAN the weight
+An archived paired follow-up implements a simple hybrid by giving the WGAN the weight
 of 50 pseudo-observations in the training-fold local moments. It substantially
 reduces error relative to the raw WGAN score without changing the network or
 loss, but tracks empirical-only estimation closely and does not establish an
@@ -64,7 +70,22 @@ eleven-parameter monotone generator and adaptive mixing separately and jointly.
 Its mixed results do not establish a uniform gain over empirical benchmarks.
 A retrospective initialization-only control nearly reproduces the lognormal
 results, so those gains cannot be attributed to adversarial training alone.
-The paper's formal coverage result concerns the
-fixed-bandwidth regularized reserve. Exact-reserve intervals are reported as a
-bias-aware prototype whose uniform validity requires additional conditions on
-the shrinking-bandwidth root process.
+The primary new validation fixes the single-crossing safeguards and
+score-inversion rule before drawing 100 fresh samples at each of $n=500$
+and $n=2000$.
+At the smaller sample size, calibrated-GAN coverage changes from 91 percent
+under Wald inference to 93 percent under score inversion, with similarly
+modest changes for the empirical comparators. The small number of discordant
+pairs does not establish a reliable improvement. Two samples produce
+disconnected sets for the calibrated and empirical-local methods. All
+components are retained, and boundary and disconnection flags remain visible
+when a conservative interval envelope is supplied. At $n=2000$, both interval
+constructions are close to the nominal level. The new results support a
+transparent reporting rule, not a claim of uniformly accurate finite-sample
+coverage or an incremental GAN advantage.
+
+The formal coverage result concerns the fixed-bandwidth regularized reserve.
+Exact-reserve intervals remain a bias-aware prototype whose uniform validity
+requires additional conditions on the shrinking-bandwidth root process.
+The older simulation tables precede the stricter numerical gates and are
+retained separately from the independent validation rather than pooled with it.

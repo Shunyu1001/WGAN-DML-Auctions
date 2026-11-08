@@ -9,6 +9,14 @@ For known $N$, the latent distribution is therefore identified by
 \begin{equation}
 F_0(v)=H_0(v\mid N)^{1/N}.
 \end{equation}
+Where $H_0(v\mid N)>0$, writing $g_0=\partial_v H_0$ also gives
+\begin{equation}
+f_0(v)=\frac{g_0(v\mid N)}{N H_0(v\mid N)^{1-1/N}}.
+\end{equation}
+These are restrictions on the distribution of the complete highest value,
+not on a sale price or a maximum observed only after exceeding an existing
+reserve. In particular, conditioning the sample on sale changes the observed
+CDF and does not preserve the displayed inversion without further work.
 
 Let $\widehat H_n$ be the empirical CDF of the observed maxima. The direct
 inversion estimator is
@@ -18,9 +26,14 @@ inversion estimator is
 It yields a density-free reserve estimator
 \begin{equation}
 \widehat r_{\mathrm{DI}}
-\in\arg\max_r r\{1-\widehat F_{\mathrm{DI}}(r)\}.
+\in\arg\max_{r\in\{B_1,\ldots,B_n\}}
+r\{1-\widehat H_n(r-)^{1/N}\}.
 \end{equation}
-In computation, the objective is evaluated at the observed maxima. This direct
+The candidate set is the observed positive prices, and $\widehat H_n(r-)$
+counts maxima strictly below $r$. This left-limit convention treats a value
+equal to the reserve as eligible to trade and handles tied bids consistently.
+It is an explicit finite-candidate policy rather than an unattained supremum
+at a downward jump of a right-continuous empirical revenue curve. This direct
 estimator is the first benchmark because it separates identification from the
 approximation and optimization error introduced by WGAN-GP.
 
@@ -30,9 +43,12 @@ reserve is $F_0(r_0)^N$, which can be small even for moderate $N$. Thus, tail
 and quantile errors near the economically relevant reserve can be substantial
 in finite samples despite point identification. The later semiparametric
 analysis asks whether the scalar reserve can nevertheless be estimated and
-inferred on without requiring uniformly accurate recovery of the entire
-distribution.
+inferred on through a regularized target without requiring uniformly accurate
+recovery of the entire distribution. It does not assert root-$n$ inference for
+the unsmoothed reserve solely because that reserve is one-dimensional.
 
 These conclusions do not automatically extend to unknown competition,
 correlated bidder values, auction-level unobserved heterogeneity, endogenous
 entry, or data containing the transaction price rather than the highest bid.
+The baseline also does not pool different bidder counts or heterogeneous
+auction populations under one common $F_0$ without an additional restriction.

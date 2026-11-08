@@ -49,10 +49,21 @@ def true_reserve(config: SimulationConfig) -> float:
 
 
 def estimate_reserve_from_maxima(maxima: np.ndarray, bidders: int) -> float:
-    """Invert the empirical CDF of maxima and maximize empirical monopoly revenue."""
+    """Maximize empirical revenue over observed prices, accepting ties at reserve.
+
+    At candidate r, a value equal to r is eligible to trade.  The relevant
+    no-sale probability is therefore the empirical left limit H_n(r-), not
+    the right-continuous H_n(r).  This also treats duplicate bids consistently.
+    """
     ordered = np.sort(np.asarray(maxima, dtype=float))
-    # Use the right-continuous empirical CDF and its observed support points.
-    empirical_h = np.arange(1, ordered.size + 1, dtype=float) / ordered.size
+    if ordered.ndim != 1 or ordered.size == 0:
+        raise ValueError("maxima must be a nonempty one-dimensional array")
+    if not np.all(np.isfinite(ordered)) or np.any(ordered <= 0):
+        raise ValueError("maxima must contain finite positive values")
+    if not isinstance(bidders, (int, np.integer)) or bidders < 1:
+        raise ValueError("bidders must be a positive integer")
+    # Number strictly below each candidate, including identical-bid blocks.
+    empirical_h = np.searchsorted(ordered, ordered, side="left") / ordered.size
     empirical_f = empirical_h ** (1.0 / bidders)
     objective = ordered * (1.0 - empirical_f)
     return float(ordered[np.argmax(objective)])

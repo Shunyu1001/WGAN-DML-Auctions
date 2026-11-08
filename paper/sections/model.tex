@@ -1,25 +1,32 @@
 \section{Auction Model and Target Parameter}
 
 Consider auctions indexed by $j=1,\ldots,n$. In the baseline model each auction
-has a known and fixed number $N\geq2$ of risk-neutral bidders. Bidder
+has the same known number $N\geq2$ of risk-neutral bidders; $N$ remains fixed
+as the number of auctions grows. Bidder
 valuations satisfy
 \begin{equation}
 V_{ij}\overset{\mathrm{iid}}{\sim}F_0,
 \qquad i=1,\ldots,N,
 \end{equation}
-independently across auctions. The distribution $F_0$ is continuously
-differentiable on the positive real line with density $f_0$. The observed data
+independently across auctions. Values are private, utilities are quasilinear,
+and the second-price allocation and payment rules are enforced. The seller's
+value from retaining the object is normalized to zero. The distribution $F_0$
+is continuously differentiable on the positive real line with density $f_0$
+and finite first moment. The observed data
 are $O_j=(B_j,N)$, where
 \begin{equation}
 B_j=\max_{1\leq i\leq N}V_{ij}.
 \end{equation}
 Under truthful bidding in the second-price benchmark, $B_j$ is the highest
-submitted bid. It is not the transaction price, which is the second-highest bid
-when the reserve does not bind. This distinction is an empirical requirement,
-not a relabeling of the observed price.
+submitted bid. It must be observed without censoring or truncation for every
+sampled auction, including auctions that do not result in a sale. It is not
+the transaction price, which is the second-highest bid when the reserve does
+not bind. The fixed bidder population and truthful-bidding conditions are
+maintained restrictions, not conclusions from a good distributional fit.
+Neither selective entry nor reserve-dependent participation is modeled here.
 
-For a regular valuation distribution, the optimal reserve $r_0$ is the unique
-solution to
+Assume a regular valuation distribution with a unique interior
+revenue-maximizing reserve $r_0>0$ and $f_0(r_0)>0$. Its first-order condition is
 \begin{equation}
 1-F_0(r_0)-r_0 f_0(r_0)=0.
 \end{equation}
@@ -32,6 +39,8 @@ with common reserve $r$ is
 &+\int_r^\infty
 \left[1-F_0(t)^N-N\{1-F_0(t)\}F_0(t)^{N-1}\right]\,dt.
 \end{align}
-The baseline target is the scalar $r_0$. Later sections introduce smoothing
-only where it is needed to construct an orthogonal estimating equation and
-valid inference.
+The economic target is the scalar $r_0$. The main inferential result below
+instead concerns a precisely defined fixed-bandwidth regularized target,
+$\theta_{0,h}$. Point identification of $r_0$ does not by itself imply regular
+root-$n$ inference for it. Connecting the two targets requires additional
+smoothness and a separate shrinking-bandwidth argument.

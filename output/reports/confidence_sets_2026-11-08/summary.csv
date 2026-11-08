@@ -1,0 +1,19 @@
+auctions,method,reported_object,repetitions,valid_count,failure_count,failure_rate,coverage,mean_length,disconnected_count,lower_boundary_count,upper_boundary_count,source_disconnected_count
+500,Calibrated WGAN-DML,Wald,100,100,0,0.0,0.91,0.1421534573910277,0,0,0,0
+500,Calibrated WGAN-DML,Full score set,100,100,0,0.0,0.93,0.1461406822023141,2,2,0,2
+500,Calibrated WGAN-DML,Conservative envelope,100,100,0,0.0,0.93,0.1491660211314699,0,2,0,2
+500,Empirical-local DML,Wald,100,100,0,0.0,0.91,0.1391073214060907,0,0,0,0
+500,Empirical-local DML,Full score set,100,100,0,0.0,0.93,0.1420835395848424,2,2,0,2
+500,Empirical-local DML,Conservative envelope,100,100,0,0.0,0.93,0.1461641195586252,0,2,0,2
+500,Smooth plug-in,Wald,100,100,0,0.0,0.91,0.1236353469411552,0,0,0,0
+500,Smooth plug-in,Full score set,100,100,0,0.0,0.92,0.1230323038989774,0,0,0,0
+500,Smooth plug-in,Conservative envelope,100,100,0,0.0,0.92,0.1230323038989774,0,0,0,0
+2000,Calibrated WGAN-DML,Wald,100,100,0,0.0,0.96,0.0672747660062953,0,0,0,0
+2000,Calibrated WGAN-DML,Full score set,100,100,0,0.0,0.95,0.0674105454559281,0,0,0,0
+2000,Calibrated WGAN-DML,Conservative envelope,100,100,0,0.0,0.95,0.0674105454559281,0,0,0,0
+2000,Empirical-local DML,Wald,100,100,0,0.0,0.96,0.066652470479552,0,0,0,0
+2000,Empirical-local DML,Full score set,100,100,0,0.0,0.95,0.0667863060315683,0,0,0,0
+2000,Empirical-local DML,Conservative envelope,100,100,0,0.0,0.95,0.0667863060315683,0,0,0,0
+2000,Smooth plug-in,Wald,100,100,0,0.0,0.95,0.0641847175406571,0,0,0,0
+2000,Smooth plug-in,Full score set,100,100,0,0.0,0.95,0.0642592592584945,0,0,0,0
+2000,Smooth plug-in,Conservative envelope,100,100,0,0.0,0.95,0.0642592592584945,0,0,0,0

@@ -1,0 +1,27 @@
+{
+  "created_utc": "2026-11-08T13:26:18.570475+00:00",
+  "base_seed": 2026110800,
+  "sample_sizes": [
+    500,
+    2000
+  ],
+  "repetitions_per_size": 100,
+  "workers": 6,
+  "shard_size": 10,
+  "completed": true,
+  "prior_results_preserved": true,
+  "seed_independence_verified": true,
+  "runner_pid": 8138,
+  "source_sha256": {
+    "wgan_gp_baseline.py": "b39e97ce4a85b5f1ff62c276ebe3f231cea4726307c2be053a3bf645274a7d38",
+    "baseline_direct_inversion.py": "69d9e693f20de1db6b61d4bde2a334c9bae48ba2c520686d139176e0323d29c4",
+    "orthogonal_wgan_dml.py": "7f90c4964d811676c6e46ac32f6a4fed6d60c1ae25b738d910b74cfe72d8a495",
+    "crossfit_wgan_pilot.py": "fd9bdbab56f13422ce9ccdd79817e6311dd106006d2025b68a89454578d422db",
+    "calibrated_wgan_pilot.py": "a512c76dc7af7eb176cfe15b12b257f788823488d6d20060031916a34e5d8965",
+    "fixed_h_small_simulation.py": "6f0b488b96d2638fdad4669e83c7f71ed5b41a5a13cf94f4e3e3f8c66e4319b5",
+    "diagnose_fixed_h_coverage.py": "fa64e7539a4ba41085fa6edca56b47ca23d6af5d6ad92ff19d6973ef91ef3692",
+    "fresh_score_validation.py": "70d1c3b646f09a6299ffe62707261a4ccd831f4b8fcbd36331258fd82a90f787",
+    "verify_fresh_score_validation.py": "a138a01bfda69003f45de8edbf2cd763fc52d8ed2cb945e50039033eaf60eb1b"
+  },
+  "elapsed_seconds": 2375.7130840000004
+}

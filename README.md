@@ -1,7 +1,8 @@
 # Semiparametric Estimation of Optimal Reserve Prices with Generative Deep Learning
 
-This repository contains Shunyu Hao's MA thesis working paper and replication
-materials. Under symmetric independent private values, observed auction maxima
+This repository contains Shunyu Hao's active PSRM working paper and replication
+materials. The separately frozen MA thesis is not an editing target. Under
+symmetric independent private values, observed auction maxima
 identify the latent valuation distribution. A structural WGAN-GP estimates the
 global distribution, while calibrated local moments and a cross-fitted
 orthogonal score estimate a regularized optimal reserve price.
@@ -10,6 +11,25 @@ The manuscript's main procedure remains the fixed-pseudo-count calibration of
 GAN and training-fold empirical kernel moments. The separate
 [two-threshold experiment](experiments/two_threshold/README.md) is an exploratory
 archive, not a replacement for that procedure or evidence of a stable GAN gain.
+
+The November 8 working revision adds a fixed-bandwidth single-crossing theory,
+explicit numerical failure rules, and full score-inversion confidence sets.
+The complete accepted set is the primary inferential object. A conservative
+interval envelope is reported separately; it fills rejected gaps and does not
+replace the original confidence set.
+
+Fresh-seed validation uses 100 repetitions each at 500 and 2,000 auctions.
+At 500 auctions, score inversion raises coverage from 91% to 93% for both
+calibrated GAN and empirical-local estimation, and from 91% to 92% for the
+same-kernel plug-in. This modest change does not establish a reliable coverage
+advantage or an incremental GAN gain. Two replications produce disconnected,
+boundary-touching sets for both calibrated GAN and empirical-local estimation;
+all components and flags are retained. Archived experiments remain separate.
+
+The [current PDF](output/pdf/WGAN-DML-Auctions-PSRM-Score-Sets-2026-11-08.pdf),
+[LaTeX source archive](output/psrm_reporting_update_2026-11-08/PSRM-Score-Sets-Source-2026-11-08.zip),
+and [validation/reporting guide](docs/psrm_confidence_sets_2026-11-08.md)
+refer to the same working revision.
 
 ## Project Structure
 

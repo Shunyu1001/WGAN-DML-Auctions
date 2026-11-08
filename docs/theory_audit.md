@@ -1,41 +1,68 @@
-# Fixed-Bandwidth Theory Audit
+# Fixed Bandwidth Theory and Implementation
 
-## What Is Now Proved
+The active PSRM working revision targets the unique single-crossing reserve
+on a positive, prespecified compact price interval. The MA thesis freeze is
+unchanged. The main inferential target is the fixed-bandwidth parameter, not
+the exact unsmoothed reserve.
 
-For a fixed smoothing bandwidth and a fixed number of folds, the training-fold
-empirical estimates of the local maximum-bid CDF and density moments converge
-uniformly at `O_p(sqrt(log(n) / n))` on a compact reserve neighborhood. The
-argument uses bounded, Lipschitz Gaussian kernel classes and training folds of
-order `n`. A local CDF-overlap condition keeps the powers of the CDF in the
-orthogonal score away from their singular boundary.
+## Primitive Fixed Bandwidth Result
 
-This rate is `o_p(n^(-1/4))`. Together with root separation, positive score
-variance, and numerical consistency, it verifies the fixed-bandwidth DML
-theorem for the empirical-local nuisance learner. The appendix also makes the
-cross-fit expansion explicit: the held-out empirical-process remainder is
-`O_p(rho_n / sqrt(n))`, while Neyman orthogonality reduces the population
-nuisance remainder to `O_p(rho_n^2)`.
+The model requires complete, untruncated highest truthful bids, a fixed known
+number of iid private values, independent auctions, enforced second-price
+rules, and a seller retention value of zero. The economic reserve and the
+Gaussian-regularized reserve are defined separately.
 
-## What Remains High-Level
+For fixed bandwidth and a fixed number of nondegenerate folds, the training
+empirical kernel moments and their first price derivatives converge uniformly
+at `O_p(sqrt(log(n)/n))`. A fixed finite pseudo-count gives the generated
+moments weight `O(1/n)`; generated Gaussian signals and their derivatives have
+fixed envelopes. Thus the calibrated moments inherit the same rates without
+assuming a consistent standalone GAN or increasing synthetic-sample size.
 
-- The WGAN nuisance must achieve the same local CDF-and-density rate. A small
-  global Wasserstein loss does not imply this, especially near the reserve.
-- Exact-reserve inference with a shrinking bandwidth requires a triangular-
-  array treatment of smoothing bias, variance, and root continuation.
-- The selected empirical root must be locally separated and the score variance
-  must remain positive. These conditions can fail when bidder competition
-  leaves almost no observed maxima near the reserve.
-- Formal numerical equivalence requires root tolerance `o(n^(-1/2))` and a
-  centered finite-difference step tending to zero slowly enough. The fixed
-  grid and derivative step in the Monte Carlo are finite-sample
-  approximations.
+Uniform score and derivative convergence, overlap, endpoint signs, and a
+strictly negative local slope imply root and Jacobian consistency. The proof
+now derives these facts rather than assuming the selected root is consistent.
+A uniform empirical-process argument justifies evaluation at the random root.
+The orthogonal remainder is `O(delta_A^2 + abs(delta_A*delta_G))`. With a
+numerical score residual `o(n^(-1/2))`, asymptotic linearity and Wald coverage
+follow for the regularized target.
 
-## Submission Boundary
+The score is locally orthogonal but not two-sided doubly robust: correct A
+eliminates G misspecification in its expectation, while correct G alone does
+not generally eliminate A misspecification. Empirical DML, fixed-pseudo-count
+calibrated DML, and the same-kernel full-sample plug-in have the same first-order
+influence function under the common assumptions. No GAN efficiency gain is
+claimed.
 
-The strongest theorem is fixed-bandwidth inference for a regularized reserve
-using a nuisance learner that satisfies the stated local rate. The primitive
-verification covers the empirical-local learner, not the WGAN learner. The
-WGAN is therefore best framed as a global structural and counterfactual model,
-with local empirical moments supplying the inferential score. Richardson and
-residual-bias-envelope intervals for the exact reserve remain transparent
-finite-sample prototypes rather than uniformly valid confidence procedures.
+## Numerical Rule
+
+`code/calibrated_wgan_pilot.py` accepts only a single detected interior downward
+root with correct endpoint signs, inactive CDF clipping, a sufficiently
+negative analytic total Jacobian, a small score residual, and positive finite
+influence variance. A finite grid is a diagnostic rather than a global root
+certificate; the asymptotic argument supplies eventual uniqueness under its
+stated conditions. Root and residual tolerances are explicit and can decrease
+with sample size. Floating-point precision remains a finite-sample limit.
+
+Rejected runs retain a failure reason and NaN estimate/SE. Unconditional
+coverage counts failure as noncoverage. Conditional coverage and valid-fit
+error statistics show their valid counts. Paired comparisons report the number
+of jointly valid replications. Richardson propagates any failed bandwidth fit.
+
+The direct-inversion benchmark uses the empirical CDF left limit at each
+observed candidate price, so a value equal to the reserve is eligible to trade.
+This resolves the discontinuous-objective convention explicitly.
+
+## Results and Remaining Boundary
+
+Existing manuscript tables are archived results from earlier root and
+right-continuous benchmark conventions. They have not been silently recomputed.
+Revised runs use a new output directory and a distinct algorithm version;
+existing raw output is protected against overwrite and legacy/v2 results cannot
+be pooled as one estimator.
+
+Exact-reserve Richardson inference remains a conditional extension. Higher-order
+smoothness, shrinking-bandwidth uniform rates, stable roots, joint triangular
+array limits, and covariance consistency are additional requirements. Bias
+envelopes and root unions remain diagnostics, not honest uniform confidence
+sets. No new entry model, covariate model, network, or loss was introduced.

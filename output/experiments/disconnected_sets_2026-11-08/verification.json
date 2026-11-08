@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "checks": {
+    "all_24_grid_comparisons_present": true,
+    "endpoint_stability": true,
+    "endpoint_residuals": true,
+    "direct_variance_matches_formula": true,
+    "decimal_variance_matches_direct": true,
+    "input_results_unchanged": true,
+    "hull_never_loses_observed_coverage": true,
+    "hull_never_shorter": true,
+    "six_hull_cells_complete": true,
+    "six_original_caches_unchanged": true
+  },
+  "grid_checks": 24,
+  "high_precision_points": 84,
+  "maximum_grid_endpoint_difference": 2.375433183487985e-12,
+  "maximum_decimal_variance_error": 2.2737367544323206e-13,
+  "high_precision_scope": "60-digit aggregation of unchanged double-precision individual scores"
+}

@@ -1,0 +1,14 @@
+{
+  "pytest_passed": 47,
+  "active_pipeline_18_cells_match": true,
+  "exporter_smoke_passed": true,
+  "manuscript_hashes_unchanged": true,
+  "manuscript_files_checked": 90,
+  "code_sha256": {
+    "confidence_set_reporting.py": "ec75ad0222b84a58a369a80fb1d423380ec5c92008f65b46e25d7fdea325b0f0",
+    "export_confidence_set_tables.py": "6aa357c12043ef6aacb68d175f66ba7301a9df907915186e16bfc58c24e06bce",
+    "fresh_score_validation.py": "17c27b5e4096d0546becbe89831a12c4fea03f1d0004809bc053858d622882c5",
+    "verify_fresh_score_validation.py": "bf5e59695d72f7a2b8d33b3f600482df889ddc28aa5d5dd1bc7ee5e7f1c916a3",
+    "test_confidence_set_reporting.py": "3b9c0a31cdef1ddc9afb43ebf1bc2c3b8a3cb33480d7f407334004ea64b5d77c"
+  }
+}
